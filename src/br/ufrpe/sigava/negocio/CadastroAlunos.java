@@ -27,16 +27,14 @@ public class CadastroAlunos {
        }
     }
 
-    public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
-        boolean retorno = false;
+    public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
         if (nome != null && email != null && sexo == 'm' || sexo == 'f' && dataNascimento != null && senha != null &&
                 cpf != null) { //TODO
             Aluno aluno = repositorioAluno.buscar(cpf);
             if (aluno == null) { //TODO
-                retorno = repositorioAluno.adicionar(nome, email, sexo, dataNascimento, senha, cpf);
-            }
-        }
-        return retorno;
+                 repositorioAluno.adicionar(nome, email, sexo, dataNascimento, senha, cpf);
+            }else{}
+        }else{}
     }
     
     public void descadastrar(Aluno aluno) throws AlunoNaoExisteException {
@@ -72,7 +70,6 @@ public class CadastroAlunos {
         boolean retorno = false;
         Marcacao marcacao = null;
         Tarefa tarefa = null;
-
         if(nomeCronograma != null){ //TODO
             if(repositorioAluno.existe(aluno) &&  repositorioAluno.existeCronograma(aluno,nomeCronograma)){
                 if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null &&
@@ -81,9 +78,9 @@ public class CadastroAlunos {
                     if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isAfter(dataTermino)){ //TODO
                         marcacao = new Marcacao(codigoTarefa,dataTermino);
                         retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);
-                    }
-                }
-            }
+                    } else {}
+                } else{}
+            }else{}
         }
         return retorno;
     }
@@ -98,15 +95,15 @@ public class CadastroAlunos {
                 if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
                     marcacao = new Marcacao(codigoTarefa,dataTermino);
                     repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
-                }
-            }
-        }
+                }else{}
+            }else{}
+        }else{}
     }
     
     public void removerMarcacao(Marcacao marcacao, String nomeCronograma, Aluno aluno){
         if(marcacao != null){ //TODO
             repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
-        }
+        }else{}
     }
     
     public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa){
@@ -117,9 +114,9 @@ public class CadastroAlunos {
                 cronograma = aluno.buscarCronograma(nome);
                 if(cronograma.buscarMarcacao(codigoTarefa)!= null){ //TODO
                     marcacao = cronograma.buscarMarcacao(codigoTarefa);
-                }
-            }
-        }
+                }else{}
+            }else{}
+        }else{}
         return marcacao;
     }
     
@@ -133,14 +130,14 @@ public class CadastroAlunos {
                                 if(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa())!= null){
                                     if(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getDataTermino().isAfter(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa()).getDataTermino())){
                                         aluno.buscarCronograma(nomeCronograma).remover(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i));
-                                    }
-                                }
-                            }
-                        }
+                                    }else{}
+                                }else{}
+                            }else{}
+                        }else{}
                     }
                 }
-            }
-        }
+            }else{}
+        }else{}
     }
     
     public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome){
@@ -150,9 +147,9 @@ public class CadastroAlunos {
                 Cronograma cronograma = aluno.buscarCronograma(nome);
                 if(cronograma.buscarMarcacao(marcacao.getCodigoTarefa())!= null){
                     existe = true;
-                }
-            }
-        }
+                }else{}
+            }else{}
+        }else{}
         return existe;
     }
     
@@ -162,8 +159,8 @@ public class CadastroAlunos {
             if(aluno.buscarCronograma(nomeCronograma) == null){
                 cronograma = new Cronograma(nomeCronograma);
                 aluno.adicionarCronograma(cronograma);
-            }
-        }
+            }else{}
+        }else{}
     }
     
     public void removerCronograma(Aluno aluno, String nomeCronograma){
@@ -172,8 +169,8 @@ public class CadastroAlunos {
             if(aluno.buscarCronograma(nomeCronograma) != null){
                 cronograma = aluno.buscarCronograma(nomeCronograma);
                 aluno.removerCronograma(cronograma);
-            }
-        }
+            }else{}
+        }else{}
     }
     
     public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma){
@@ -181,8 +178,8 @@ public class CadastroAlunos {
         if(aluno != null && nomeCronograma != null){
             if(aluno.buscarCronograma(nomeCronograma)!= null){
                 cronograma = aluno.buscarCronograma(nomeCronograma);
-            }
-        }
+            }else{}
+        }else{}
         return cronograma;
     }
 }

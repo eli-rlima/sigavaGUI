@@ -32,28 +32,24 @@ public class CadastroTarefas {
         return repositorioTarefa.listarTarefas();
     }
 
-    public boolean cadastrar(String descricao, LocalDate dataInicio,
+    public void cadastrar(String descricao, LocalDate dataInicio,
                              LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
-        boolean retorno = false;
         if (descricao != null && dataInicio != null && dataTermino != null
                 && disciplina != null && codigoTarefa >= 0) { //TODO
             if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
-                retorno = this.repositorioTarefa.adicionar(descricao, dataInicio,
+                 this.repositorioTarefa.adicionar(descricao, dataInicio,
                         dataTermino, codigoTarefa, disciplina);
-            }
-        }
-        return retorno;
+            }else{}
+        }else{}
     }
 
     public void descadastrar(Tarefa tarefa) throws TarefaNaoExisteException{
-      
         if(tarefa != null){ //TODO
             this.repositorioTarefa.remover(tarefa);
         } else{
             TarefaNaoExisteException naoExiste = new TarefaNaoExisteException();
             throw naoExiste;
         }
-      
     }
 
     public Tarefa procurar(int codigo){
@@ -68,7 +64,7 @@ public class CadastroTarefas {
         boolean retorno = false;
         if (tarefa != null){ //TODO
             retorno = this.repositorioTarefa.existe(tarefa);
-        }
+        }else{}
         return retorno;
     }
 

@@ -33,13 +33,10 @@ public class CadastroDisciplinas {
         return repositorioDisciplina.listarDisciplinas();
     }
 
-    public boolean cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
-        boolean retorno = false;
+    public void cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
         if (nome != null && dataInicio != null && diaAula != null && duracaoAula > 0 && cargaHoraria > 0){ //TODO
-            retorno = this.repositorioDisciplina.adicionar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
-
-        }
-        return retorno;
+             this.repositorioDisciplina.adicionar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
+        }else{}
     }
 
     public void descadastrar(Disciplina disciplina) throws DisciplinaNaoExisteException{
@@ -67,46 +64,39 @@ public class CadastroDisciplinas {
         return retorno;
     }
 
-    public boolean cadastrarProfessor(String nome, Professor professor){
-        boolean retorno = false;
+    public void cadastrarProfessor(String nome, Professor professor){
+
         Disciplina disciplina = null;
         if (nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
-        }
+        }else{}
         if (disciplina != null && professor != null){ //TODO
             disciplina.adicionarProfessor(professor);
             professor.adicionar(disciplina);  // Garantir que professor receba a disciplina,
                                                         // quando o mesmo esteja sendo adicionado.
-            retorno = true;
-        }
-        return retorno;
+        }else{}
+
     }
 
-    public boolean cadastrarAluno(String nome, Aluno aluno){
-        boolean retorno = false;
+    public void cadastrarAluno(String nome, Aluno aluno){
         Disciplina disciplina = null;
         if (nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
-        }
+        }else{}
         if (disciplina != null && aluno != null){ //TODO
             disciplina.adicionarAluno(aluno);
             aluno.adicionarDisciplina(disciplina);  // certificar de quando um aluno entrar na disciplina,
                                                     // a disciplina esteja nos seus atributos.
-            retorno = true;
-        }
-        return retorno;
+        }else{}
     }
 
-    public boolean cadastrarTarefa(String nome, Tarefa tarefa){
-        boolean retorno = false;
+    public void cadastrarTarefa(String nome, Tarefa tarefa){
         Disciplina disciplina = null;
         if (nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
-        }
+        }else{}
         if (disciplina != null && tarefa != null){ //TODO
             disciplina.adicionarTarefa(tarefa);
-            retorno = true;
-        }
-        return retorno;
+        }else{}
     }
 }

@@ -30,18 +30,16 @@ public class CadastroProfessor {
         return repositorioProfessor.listarProfessores();
     }
 
-    public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
+    public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
         Professor professor = null;
-        boolean retorno = false;
         if (nome != null && email != null && senha != null && cpf != null){ //TODO
             if(sexo == 'm' || sexo == 'f'){ //TODO
                 professor = repositorioProfessor.buscarCpf(cpf);
-            }
+            }else{}
             if (professor == null){ //TODO
-                 retorno = this.repositorioProfessor.adicionar(nome,email,sexo,dataNascimento,senha,cpf);
-            }
-        }
-        return retorno;
+                 this.repositorioProfessor.adicionar(nome,email,sexo,dataNascimento,senha,cpf);
+            }else{}
+        }else{}
     }
 
     public void descadastrar (Professor professor) throws ProfessorNaoExisteException{
@@ -65,7 +63,7 @@ public class CadastroProfessor {
         boolean retorno = false;
         if(professor != null){ //TODO
             retorno = this.repositorioProfessor.existe(professor);
-        }
+        }else{}
         return retorno;
     }
 

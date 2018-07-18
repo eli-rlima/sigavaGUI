@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
@@ -19,7 +20,11 @@ import javafx.scene.control.Button;
 public class DesktopController implements Initializable {
 
     @FXML
-    private Button btn_chato;
+    private ComboBox<?> box_aluno;
+    @FXML
+    private ComboBox<?> box_disc;
+    @FXML
+    private ComboBox<?> box_prof;
 
     /**
      * Initializes the controller class.

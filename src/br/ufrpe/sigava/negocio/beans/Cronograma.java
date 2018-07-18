@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Cronograma {
     private ArrayList<Marcacao> marcacoes = new ArrayList<Marcacao>();
     private String nome;
+    
+    public ArrayList<Marcacao> marcacoes(){
+        return this.marcacoes;
+    }
 
     public Cronograma(String nome){ this.setNome(nome);}
 

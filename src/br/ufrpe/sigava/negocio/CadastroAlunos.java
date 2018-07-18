@@ -7,6 +7,7 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.dados.RepositorioAluno;
 import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.negocio.beans.Cronograma;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -106,5 +107,82 @@ public class CadastroAlunos {
         if(marcacao != null){ //TODO
             repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
         }
+    }
+    
+    public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa){
+        Marcacao marcacao = null;
+        Cronograma cronograma = null;
+        if(aluno != null && nome != null && codigoTarefa >= 0){ //TODO
+            if(aluno.buscarCronograma(nome) != null){ //TODO
+                cronograma = aluno.buscarCronograma(nome);
+                if(cronograma.buscarMarcacao(codigoTarefa)!= null){ //TODO
+                    marcacao = cronograma.buscarMarcacao(codigoTarefa);
+                }
+            }
+        }
+        return marcacao;
+    }
+    
+    public void atualizarMarcacoes(String nomeCronograma, Aluno aluno){
+        if(nomeCronograma != null && aluno != null){
+            if(aluno.buscarCronograma(nomeCronograma)!= null){
+                for(int i = 0; i < aluno.buscarCronograma(nomeCronograma).marcacoes().size(); i++){
+                    for(int j = 0; j < aluno.getDisciplinas().size(); j++){
+                        if(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i) != null){
+                            if(aluno.getDisciplinas().get(j) != null){
+                                if(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa())!= null){
+                                    if(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getDataTermino().isAfter(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa()).getDataTermino())){
+                                        aluno.buscarCronograma(nomeCronograma).remover(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome){
+        boolean existe = false;
+        if(aluno != null && marcacao != null && nome != null){ //TODO
+            if(aluno.buscarCronograma(nome)!= null){
+                Cronograma cronograma = aluno.buscarCronograma(nome);
+                if(cronograma.buscarMarcacao(marcacao.getCodigoTarefa())!= null){
+                    existe = true;
+                }
+            }
+        }
+        return existe;
+    }
+    
+    public void adicionarCronograma(Aluno aluno, String nomeCronograma){
+        Cronograma cronograma;
+        if(aluno != null && nomeCronograma != null){
+            if(aluno.buscarCronograma(nomeCronograma) == null){
+                cronograma = new Cronograma(nomeCronograma);
+                aluno.adicionarCronograma(cronograma);
+            }
+        }
+    }
+    
+    public void removerCronograma(Aluno aluno, String nomeCronograma){
+        Cronograma cronograma;
+        if(aluno != null && nomeCronograma != null){
+            if(aluno.buscarCronograma(nomeCronograma) != null){
+                cronograma = aluno.buscarCronograma(nomeCronograma);
+                aluno.removerCronograma(cronograma);
+            }
+        }
+    }
+    
+    public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma){
+        Cronograma cronograma = null;
+        if(aluno != null && nomeCronograma != null){
+            if(aluno.buscarCronograma(nomeCronograma)!= null){
+                cronograma = aluno.buscarCronograma(nomeCronograma);
+            }
+        }
+        return cronograma;
     }
 }

@@ -6,6 +6,8 @@ import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.dados.RepositorioDisciplina;
+import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -18,16 +20,13 @@ public class CadastroDisciplinas {
         this.repositorioDisciplina = RepositorioDisciplina.getInstance();
     }
 
-    public boolean cadastrar(Disciplina disciplina){
-        boolean retorno = false;
-        if (disciplina == null){ //TODO
-            retorno = false;
-        }
-        else if (!this.repositorioDisciplina.existe(disciplina)) { //TODO
-            this.repositorioDisciplina.adicionar(disciplina);
-            retorno = true;
-        }
-        return retorno;
+    public void cadastrar(Disciplina disciplina) throws DisciplinaJaExisteException{
+       if (this.repositorioDisciplina.existe(disciplina)){
+           this.repositorioDisciplina.adicionar(disciplina);
+        }else{
+           DisciplinaJaExisteException jaExiste = new DisciplinaJaExisteException();
+           throw jaExiste;
+       }
     }
 
     public ArrayList<Disciplina> listarDisciplinas(){
@@ -43,13 +42,13 @@ public class CadastroDisciplinas {
         return retorno;
     }
 
-    public boolean descadastrar(Disciplina disciplina){
-        boolean retorno = false;
-        if(disciplina != null){ //TODO
+    public void descadastrar(Disciplina disciplina) throws DisciplinaNaoExisteException{
+        if(disciplina != null){
             this.repositorioDisciplina.remover(disciplina);
-            retorno = true;
+        } else{
+            DisciplinaNaoExisteException naoExiste = new DisciplinaNaoExisteException();
+            throw naoExiste;
         }
-        return retorno;
     }
 
     public Disciplina procurar(String nome){

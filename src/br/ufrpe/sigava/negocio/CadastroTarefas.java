@@ -4,6 +4,9 @@ import br.ufrpe.sigava.dados.IRepositorioTarefa;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.dados.RepositorioTarefa;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
+import br.ufrpe.sigava.exceptions.TarefaJaExisteException;
+import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,16 +18,14 @@ public class CadastroTarefas {
         this.repositorioTarefa = RepositorioTarefa.getInstance();
     }
 
-    public boolean cadastrar(Tarefa tarefa){
-        boolean retorno = false;
-        if (tarefa == null){ //TODO
-            retorno = false;
-        }
-        else if (!this.repositorioTarefa.existe(tarefa)) {
-            this.repositorioTarefa.adicionar(tarefa);
-            retorno = true;
-        }
-        return retorno;
+    public void cadastrar(Tarefa tarefa)throws TarefaJaExisteException{
+       if (this.repositorioTarefa.existe(tarefa)) {
+           this.repositorioTarefa.adicionar(tarefa);
+       } else{
+           TarefaJaExisteException jaExiste = new TarefaJaExisteException();
+            throw jaExiste;
+       }
+       
     }
 
     public ArrayList<Tarefa> listarTarefas (){
@@ -44,13 +45,15 @@ public class CadastroTarefas {
         return retorno;
     }
 
-    public boolean descadastrar(Tarefa tarefa){
-        boolean retorno = false;
+    public void descadastrar(Tarefa tarefa) throws TarefaNaoExisteException{
+      
         if(tarefa != null){ //TODO
             this.repositorioTarefa.remover(tarefa);
-            retorno = true;
+        } else{
+            TarefaNaoExisteException naoExiste = new TarefaNaoExisteException();
+            throw naoExiste;
         }
-        return retorno;
+      
     }
 
     public Tarefa procurar(int codigo){

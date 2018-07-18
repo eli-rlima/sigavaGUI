@@ -5,6 +5,8 @@ import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.dados.RepositorioAluno;
+import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,15 +17,13 @@ public class CadastroAlunos {
         this.repositorioAluno = RepositorioAluno.getInstance();
     }
 
-    public boolean cadastrar(Aluno aluno){
-        boolean retorno = false;
-        if(aluno == null){ //TODO
-            retorno = false;
-        }
-        else if(!repositorioAluno.existe(aluno)){
-            retorno = this.repositorioAluno.adicionar(aluno);
-        }
-        return retorno;
+    public void cadastrar(Aluno aluno) throws AlunoJaExisteException {
+       if(repositorioAluno.existe(aluno)){
+           this.repositorioAluno.adicionar(aluno);
+        } else{ 
+           AlunoJaExisteException jaExiste = new AlunoJaExisteException();
+           throw jaExiste;
+       }
     }
 
     public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
@@ -37,12 +37,14 @@ public class CadastroAlunos {
         }
         return retorno;
     }
-    public boolean descadastrar(Aluno aluno){
-        boolean retorno = false;
-         if(aluno != null && repositorioAluno.existe(aluno)){ //TODO
-            retorno = repositorioAluno.remover(aluno);
-        }
-        return retorno;
+    
+    public void descadastrar(Aluno aluno) throws AlunoNaoExisteException {
+         if(aluno != null && repositorioAluno.existe(aluno)){
+            this.repositorioAluno.remover(aluno);
+        }else{
+             AlunoNaoExisteException naoExiste = new AlunoNaoExisteException();
+             throw naoExiste;
+         }
     }
 
     public ArrayList<Aluno> listarAlunos (){

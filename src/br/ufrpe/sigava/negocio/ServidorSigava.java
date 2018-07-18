@@ -1,5 +1,13 @@
 package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorJaExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
+import br.ufrpe.sigava.exceptions.TarefaJaExisteException;
+import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
@@ -47,8 +55,8 @@ public class ServidorSigava implements IServidorSigava{
         return disciplinas.listarDisciplinas();
     }
 
-    public boolean cadastrarAluno(Aluno aluno){ //TODO excepcion
-       return this.alunos.cadastrar(aluno);
+    public void cadastrarAluno(Aluno aluno) throws AlunoJaExisteException{
+        this.alunos.cadastrar(aluno);
     }
 
     public Aluno buscarAluno(String cpf){
@@ -63,24 +71,24 @@ public class ServidorSigava implements IServidorSigava{
         return this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
     }
 
-    public boolean descadastrarAluno(Aluno aluno){
-        return this.alunos.descadastrar(aluno);
+    public void descadastrarAluno(Aluno aluno) throws AlunoNaoExisteException{
+        this.alunos.descadastrar(aluno);
     }
 
     public boolean existeAluno(Aluno aluno){
         return this.alunos.existe(aluno);
     }
 
-    public boolean cadastrarDisciplina(Disciplina disciplina){
-        return this.disciplinas.cadastrar(disciplina);
+    public void cadastrarDisciplina(Disciplina disciplina) throws DisciplinaJaExisteException{
+        this.disciplinas.cadastrar(disciplina);
     }
 
     public boolean cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
         return this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
     }
 
-    public boolean descadastrarDisciplina(Disciplina disciplina){
-        return this.disciplinas.descadastrar(disciplina);
+    public void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException {
+        this.disciplinas.descadastrar(disciplina);
     }
 
     public Disciplina buscarDisciplina(String nome){
@@ -103,16 +111,16 @@ public class ServidorSigava implements IServidorSigava{
         return this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
     }
 
-    public boolean cadastrarProfessor(Professor professor){
-        return this.professores.cadastrar(professor);
+    public void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException{
+        this.professores.cadastrar(professor);
     }
 
     public boolean cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
         return this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
-    public boolean descadastrarProfessor(Professor professor){
-        return this.professores.descadastrar(professor);
+    public void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException{
+        this.professores.descadastrar(professor);
     }
 
     public Professor buscarProfessor(String cpf){
@@ -123,8 +131,8 @@ public class ServidorSigava implements IServidorSigava{
         return this.professores.existe(professor);
     }
 
-    public boolean cadastrarTarefa(Tarefa tarefa){
-        return this.tarefas.cadastrar(tarefa);
+    public void cadastrarTarefa(Tarefa tarefa) throws TarefaJaExisteException{
+        this.tarefas.cadastrar(tarefa);
     }
 
     public boolean cadastrarTarefa(String descricao, LocalDate dataInicio,
@@ -132,8 +140,8 @@ public class ServidorSigava implements IServidorSigava{
         return this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
     }
 
-    public boolean descadastrarTarefa(Tarefa tarefa){
-        return this.tarefas.descadastrar(tarefa);
+    public void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException{
+        this.tarefas.descadastrar(tarefa);
     }
 
     public Tarefa buscarTarefa(int codigo){
@@ -143,8 +151,5 @@ public class ServidorSigava implements IServidorSigava{
     public boolean existeTarefa(Tarefa tarefa){
         return this.tarefas.existe(tarefa);
     }
-
-
-
 
 }

@@ -1,5 +1,13 @@
 package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorJaExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
+import br.ufrpe.sigava.exceptions.TarefaJaExisteException;
+import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
@@ -11,7 +19,7 @@ import java.util.ArrayList;
 
 public interface IServidorSigava {
 
-    boolean cadastrarAluno(Aluno aluno);
+    void cadastrarAluno(Aluno aluno) throws AlunoJaExisteException;
 
     Aluno buscarAluno(String cpf);
 
@@ -19,15 +27,15 @@ public interface IServidorSigava {
 
     boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
 
-    boolean descadastrarAluno(Aluno aluno);
+    void descadastrarAluno(Aluno aluno) throws AlunoNaoExisteException;
 
     boolean existeAluno(Aluno aluno);
 
-    boolean cadastrarDisciplina(Disciplina disciplina);
+    void cadastrarDisciplina(Disciplina disciplina) throws DisciplinaJaExisteException;
 
     boolean cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria);
 
-    boolean descadastrarDisciplina(Disciplina disciplina);
+    void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException;
 
     Disciplina buscarDisciplina(String nome);
 
@@ -39,22 +47,22 @@ public interface IServidorSigava {
 
     boolean cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa);
 
-    boolean cadastrarProfessor(Professor professor);
+    void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException;
 
     boolean cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
 
-    boolean descadastrarProfessor(Professor professor);
+    void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException;
 
     Professor buscarProfessor(String cpf);
 
     boolean existeProfessor(Professor professor);
 
-    boolean cadastrarTarefa(Tarefa tarefa);
+    void cadastrarTarefa(Tarefa tarefa) throws TarefaJaExisteException;
 
     boolean cadastrarTarefa(String descricao, LocalDate dataInicio,
                             LocalDate dataTermino, int codigoTarefa, Disciplina disciplina);
 
-    boolean descadastrarTarefa(Tarefa tarefa);
+    void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException;
 
     Tarefa buscarTarefa(int codigo);
 

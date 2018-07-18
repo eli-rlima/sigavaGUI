@@ -73,23 +73,76 @@ public class RepositorioAluno implements IRepositorioAluno{
         return cronograma.remover(marcacao);
     }
     
-    
     public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa){
         Marcacao marcacao =  null;
         Cronograma cronograma = null;
         if(nome != null && aluno != null && codigoTarefa >= 0){
             for(int i = 0; i < repositorioAluno.size(); i++){
-                if(repositorioAluno.get(i).buscarCronograma(nome)!=null){
-                    cronograma = repositorioAluno.get(i).buscarCronograma(nome);
+                if(repositorioAluno.get(i).equals(aluno)){
+                    if(repositorioAluno.get(i).buscarCronograma(nome) != null){
+                        cronograma = repositorioAluno.get(i).buscarCronograma(nome);
+                        if(cronograma.buscarMarcacao(codigoTarefa) != null){
+                            marcacao = cronograma.buscarMarcacao(codigoTarefa);
+                        }
+                    }
                 }
-            }
-            if(cronograma.buscarMarcacao(codigoTarefa) != null){
-                marcacao = cronograma.buscarMarcacao(codigoTarefa);
             }
         }
         return marcacao;
     }
-
+    
+    public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome){
+        boolean existe = false;
+        Cronograma cronograma = null;
+        if(marcacao != null){
+            for(int i = 0; i < repositorioAluno.size(); i++){
+                if(repositorioAluno.get(i).equals(aluno)){
+                    if(repositorioAluno.get(i).buscarCronograma(nome) != null){
+                        cronograma = repositorioAluno.get(i).buscarCronograma(nome);
+                        if(cronograma.existeMarcacao(marcacao)){
+                            existe = true;
+                        }
+                    }
+                }
+            }
+        }
+        return existe;
+    }
+    
+    public void adicionarCronograma(Aluno aluno, String nomeCronograma){
+        if(aluno != null && nomeCronograma != null){
+            for(int i = 0; i < repositorioAluno.size(); i++){
+                if(repositorioAluno.get(i).equals(aluno)){
+                    Cronograma cronograma = new Cronograma(nomeCronograma);
+                    repositorioAluno.get(i).adicionarCronograma(cronograma);
+                }
+            }
+        }
+    }
+    
+    public void removerCronograma(Aluno aluno, String nomeCronograma){
+        if(aluno != null && nomeCronograma != null){
+            for(int i = 0; i < repositorioAluno.size(); i++){
+                if(repositorioAluno.get(i).equals(aluno)){
+                    Cronograma cronograma = new Cronograma(nomeCronograma);
+                    repositorioAluno.get(i).removerCronograma(cronograma);
+                }
+            }
+        }
+    }
+    
+    public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma){
+        Cronograma cronograma = null;
+        if(aluno != null && nomeCronograma != null){
+            for(int i = 0; i < repositorioAluno.size(); i++){
+                if(repositorioAluno.get(i).equals(aluno)){
+                    cronograma = repositorioAluno.get(i).buscarCronograma(nomeCronograma);
+                }
+            }
+        }
+        return cronograma;
+    }
+    
     @Override
     public boolean existeCronograma (Aluno aluno, String nomeCronograma) {
         boolean retorno = false;

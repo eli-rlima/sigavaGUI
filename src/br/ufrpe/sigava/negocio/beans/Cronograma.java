@@ -47,6 +47,17 @@ public class Cronograma {
         }
         return marcacao;
     }
+    public boolean existeMarcacao(Marcacao marcacao){
+        boolean existe = false;
+        if(marcacao != null){
+            for(int i = 0; i < marcacoes.size(); i++){
+                if(marcacoes.get(i).equals(marcacao)){
+                    existe = true;
+                }
+            }
+        }
+        return existe;
+    }
 
     @Override
     public String toString (){

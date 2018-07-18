@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.dados;
 
+import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
@@ -96,6 +97,16 @@ public interface IRepositorioAluno {
      * @return true ou false, caso tenha sido encontrado true, caso não false.
      */
     boolean existeCronograma (Aluno aluno, String nomeCronograma);
+    
+    public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa);
+    
+    public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome);
+    
+    public void adicionarCronograma(Aluno aluno, String nomeCronograma);
+    
+    public void removerCronograma(Aluno aluno, String nomeCronograma);
+    
+    public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma);
 
     /**
      * Retorna as disciplinas que o aluno está cadastrado.

@@ -72,7 +72,7 @@ public class RepositorioAluno implements IRepositorioAluno{
         Cronograma cronograma = aluno.buscarCronograma(nome);
         return cronograma.remover(marcacao);
     }
-    
+    @Override
     public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa){
         Marcacao marcacao =  null;
         Cronograma cronograma = null;
@@ -91,6 +91,7 @@ public class RepositorioAluno implements IRepositorioAluno{
         return marcacao;
     }
     
+    @Override
     public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome){
         boolean existe = false;
         Cronograma cronograma = null;
@@ -108,7 +109,7 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
         return existe;
     }
-    
+    @Override
     public void adicionarCronograma(Aluno aluno, String nomeCronograma){
         if(aluno != null && nomeCronograma != null){
             for(int i = 0; i < repositorioAluno.size(); i++){
@@ -119,7 +120,7 @@ public class RepositorioAluno implements IRepositorioAluno{
             }
         }
     }
-    
+    @Override
     public void removerCronograma(Aluno aluno, String nomeCronograma){
         if(aluno != null && nomeCronograma != null){
             for(int i = 0; i < repositorioAluno.size(); i++){
@@ -130,7 +131,7 @@ public class RepositorioAluno implements IRepositorioAluno{
             }
         }
     }
-    
+    @Override
     public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma){
         Cronograma cronograma = null;
         if(aluno != null && nomeCronograma != null){

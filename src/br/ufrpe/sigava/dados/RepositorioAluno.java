@@ -23,7 +23,8 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
         return instance;
     }
-
+    
+    @Override
     public ArrayList<Aluno> listarAlunos(){
         return this.repositorioAluno;
     }
@@ -66,9 +67,27 @@ public class RepositorioAluno implements IRepositorioAluno{
         return cronograma.adicionar(codigoTarefa, dataTermino);
     }
     
+    @Override
     public boolean removerMarcacao(String nome, Aluno aluno, Marcacao marcacao){
         Cronograma cronograma = aluno.buscarCronograma(nome);
         return cronograma.remover(marcacao);
+    }
+    
+    
+    public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa){
+        Marcacao marcacao =  null;
+        Cronograma cronograma = null;
+        if(nome != null && aluno != null && codigoTarefa >= 0){
+            for(int i = 0; i < repositorioAluno.size(); i++){
+                if(repositorioAluno.get(i).buscarCronograma(nome)!=null){
+                    cronograma = repositorioAluno.get(i).buscarCronograma(nome);
+                }
+            }
+            if(cronograma.buscarMarcacao(codigoTarefa) != null){
+                marcacao = cronograma.buscarMarcacao(codigoTarefa);
+            }
+        }
+        return marcacao;
     }
 
     @Override
@@ -83,7 +102,8 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
         return retorno;
     }
-
+    
+    @Override
     public ArrayList<Disciplina> listarDisciplinas (Aluno aluno){
         return aluno.getDisciplinas();
     }

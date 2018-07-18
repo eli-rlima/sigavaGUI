@@ -38,6 +38,15 @@ public class Cronograma {
         }
         return marcacao;
     }
+    public Marcacao buscarMarcacao(int codigoTarefa){
+        Marcacao marcacao = null; 
+        for(int i = 0; i < marcacoes.size(); i++){
+            if(marcacoes.get(i).getCodigoTarefa() == codigoTarefa){
+                marcacao = marcacoes.get(i);
+            }
+        }
+        return marcacao;
+    }
 
     @Override
     public String toString (){

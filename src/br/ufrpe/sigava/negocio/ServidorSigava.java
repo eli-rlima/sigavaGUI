@@ -2,13 +2,17 @@ package br.ufrpe.sigava.negocio;
 
 import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
+import br.ufrpe.sigava.exceptions.MarcacaoNaoExisteException;
 import br.ufrpe.sigava.exceptions.ProfessorJaExisteException;
 import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaJaExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
+import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
@@ -38,116 +42,192 @@ public class ServidorSigava implements IServidorSigava{
         }
         return instance;
     }
-
+    @Override
     public ArrayList <Aluno> listarAlunos (){
         return alunos.listarAlunos();
     }
-
+    
+    @Override
     public ArrayList <Professor> listarProfessores (){
         return professores.listarProfessores();
     }
-
+    
+    @Override
     public ArrayList <Tarefa> listarTarefas (){
         return tarefas.listarTarefas();
     }
-
+    
+    @Override
     public ArrayList <Disciplina> listarDisciplinas (){
         return disciplinas.listarDisciplinas();
     }
-
+    
+    @Override
     public void cadastrarAluno(Aluno aluno) throws AlunoJaExisteException{
         this.alunos.cadastrar(aluno);
     }
-
-    public Aluno buscarAluno(String cpf){
+    
+    @Override
+    public Aluno buscarAluno(String cpf) throws AlunoNaoExisteException, IllegalArgumentException{
         return this.alunos.procurar(cpf);
     }
-
-    public void cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+    
+    @Override
+    public void cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) throws AlunoJaExisteException, IllegalArgumentException{
         this.alunos.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
-
-    public void adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
-        this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
-    }
-
+    
+    @Override
     public void descadastrarAluno(Aluno aluno) throws AlunoNaoExisteException{
         this.alunos.descadastrar(aluno);
     }
-
-    public boolean existeAluno(Aluno aluno){
+    
+    @Override
+    public boolean existeAluno(Aluno aluno) throws IllegalArgumentException{
         return this.alunos.existe(aluno);
     }
+    
+    @Override
+    public void adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino) throws TarefaNaoExisteException, AlunoNaoExisteException, CronogramaNaoExisteException, IllegalArgumentException, DisciplinaNaoExisteException{
+        this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
+    }
+    
+    @Override
+    public void removerMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino)
+                throws TarefaNaoExisteException, DisciplinaNaoExisteException, IllegalArgumentException{
+        this.alunos.removerMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
+    }
+    
+    @Override
+    public void removerMarcacao(Marcacao marcacao, String nomeCronograma, Aluno aluno) 
+                throws AlunoNaoExisteException, MarcacaoNaoExisteException, IllegalArgumentException{
+         this.alunos.removerMarcacao(marcacao, nomeCronograma, aluno);
+    }
+    
+    @Override
+    public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa)
+            throws MarcacaoNaoExisteException, CronogramaNaoExisteException, IllegalArgumentException{
+        return alunos.buscarMarcacao(nome, aluno, codigoTarefa);
+    }
+    
+    @Override
+    public void atualizarMarcacoes(String nomeCronograma, Aluno aluno) 
+           throws TarefaNaoExisteException, DisciplinaNaoExisteException, MarcacaoNaoExisteException, 
+                CronogramaNaoExisteException, IllegalArgumentException{
+        this.alunos.atualizarMarcacoes(nomeCronograma, aluno);
+    }
+    
+    @Override
+    public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome) throws CronogramaNaoExisteException, 
+            MarcacaoNaoExisteException, IllegalArgumentException{
+        return this.alunos.existeMarcacao(aluno, marcacao, nome);
+    }
+    
+    @Override
+    public void adicionarCronograma(Aluno aluno, String nomeCronograma) throws AlunoNaoExisteException, 
+            CronogramaNaoExisteException, IllegalArgumentException{
+        this.alunos.adicionarCronograma(aluno, nomeCronograma);
+    }
+    
+    @Override
+    public void removerCronograma(Aluno aluno, String nomeCronograma)throws AlunoNaoExisteException, 
+            CronogramaNaoExisteException, IllegalArgumentException{
+        this.alunos.removerCronograma(aluno, nomeCronograma);
+    }
+    
+    @Override
+    public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma) throws AlunoNaoExisteException, 
+            CronogramaNaoExisteException, IllegalArgumentException{
+        return this.alunos.buscarCronograma(aluno, nomeCronograma);
+    }
 
+    @Override
     public void cadastrarDisciplina(Disciplina disciplina) throws DisciplinaJaExisteException{
         this.disciplinas.cadastrar(disciplina);
     }
 
+    @Override
     public void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
          this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
     }
 
+    @Override
     public void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException {
         this.disciplinas.descadastrar(disciplina);
     }
 
+    @Override
     public Disciplina buscarDisciplina(String nome){
         return this.disciplinas.procurar(nome);
     }
 
+    @Override
     public boolean existeDisciplina(Disciplina disciplina){
         return this.disciplinas.existe(disciplina);
     }
-
+    
+    @Override
     public void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor){
          this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
     }
 
+    @Override
     public void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno){
          this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
     }
-
+    
+    @Override
     public void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa){
          this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
     }
 
+    @Override
     public void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException{
         this.professores.cadastrar(professor);
     }
 
+    @Override
     public void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
         this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
+    @Override
     public void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException{
         this.professores.descadastrar(professor);
     }
 
+    @Override
     public Professor buscarProfessor(String cpf){
         return this.professores.procurar(cpf);
     }
 
+    @Override
     public boolean existeProfessor(Professor professor){
         return this.professores.existe(professor);
     }
 
+    @Override
     public void cadastrarTarefa(Tarefa tarefa) throws TarefaJaExisteException{
         this.tarefas.cadastrar(tarefa);
     }
 
+    @Override
     public void cadastrarTarefa(String descricao, LocalDate dataInicio,
                                    LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
         this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
     }
 
+    @Override
     public void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException{
         this.tarefas.descadastrar(tarefa);
     }
 
+    @Override
     public Tarefa buscarTarefa(int codigo){
         return this.tarefas.procurar(codigo);
     }
 
+    @Override
     public boolean existeTarefa(Tarefa tarefa){
         return this.tarefas.existe(tarefa);
     }

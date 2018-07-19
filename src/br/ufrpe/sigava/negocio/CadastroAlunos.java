@@ -7,6 +7,10 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.dados.RepositorioAluno;
 import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
+import br.ufrpe.sigava.exceptions.MarcacaoNaoExisteException;
+import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,30 +23,33 @@ public class CadastroAlunos {
     }
 
     public void cadastrar(Aluno aluno) throws AlunoJaExisteException {
-       if(repositorioAluno.existe(aluno)){
+       if(!repositorioAluno.existe(aluno)){
            this.repositorioAluno.adicionar(aluno);
         } else{ 
-           AlunoJaExisteException jaExiste = new AlunoJaExisteException();
-           throw jaExiste;
+           throw new AlunoJaExisteException();
        }
     }
 
-    public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
+    public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf)
+            throws AlunoJaExisteException, IllegalArgumentException{
         if (nome != null && email != null && sexo == 'm' || sexo == 'f' && dataNascimento != null && senha != null &&
                 cpf != null) { //TODO
             Aluno aluno = repositorioAluno.buscar(cpf);
             if (aluno == null) { //TODO
                  repositorioAluno.adicionar(nome, email, sexo, dataNascimento, senha, cpf);
-            }else{}
-        }else{}
+            }else{
+                throw new AlunoJaExisteException();
+            }
+        }else{
+           throw new IllegalArgumentException("Argumento(s) inválido(s)!");
+        }
     }
     
     public void descadastrar(Aluno aluno) throws AlunoNaoExisteException {
          if(aluno != null && repositorioAluno.existe(aluno)){
             this.repositorioAluno.remover(aluno);
         }else{
-             AlunoNaoExisteException naoExiste = new AlunoNaoExisteException();
-             throw naoExiste;
+             throw new AlunoNaoExisteException();
          }
     }
 
@@ -50,63 +57,117 @@ public class CadastroAlunos {
         return repositorioAluno.listarAlunos();
     }
 
-    public Aluno procurar (String cpf){
+    public Aluno procurar (String cpf) throws AlunoNaoExisteException, IllegalArgumentException{
         Aluno aluno = null;
-        if(cpf != null){ //TODO
-            aluno = repositorioAluno.buscar(cpf);
+        if(cpf != null){ 
+            if(repositorioAluno.buscar(cpf) != null){
+                aluno = repositorioAluno.buscar(cpf);
+            }
+            else{
+                throw new AlunoNaoExisteException();
+            }
+        }
+        else{
+            throw new IllegalArgumentException("Argumento inválido!");
         }
         return aluno;
     }
 
-    public boolean existe(Aluno aluno){
+    public boolean existe(Aluno aluno) throws IllegalArgumentException{
         boolean retorno = false;
-        if(aluno != null){ //TODO
+        if(aluno != null){ 
             retorno = repositorioAluno.existe(aluno);
+        }
+        else{
+            throw new IllegalArgumentException("Argumento Inválido!");
         }
         return retorno;
     }
-
-    public boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+    
+    public boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino)
+                    throws TarefaNaoExisteException, AlunoNaoExisteException, CronogramaNaoExisteException, IllegalArgumentException, 
+                    DisciplinaNaoExisteException{
         boolean retorno = false;
         Marcacao marcacao = null;
         Tarefa tarefa = null;
-        if(nomeCronograma != null){ //TODO
-            if(repositorioAluno.existe(aluno) &&  repositorioAluno.existeCronograma(aluno,nomeCronograma)){
-                if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null &&
-                        aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null) { //TODO
-                    tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
-                    if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isAfter(dataTermino)){ //TODO
-                        marcacao = new Marcacao(codigoTarefa,dataTermino);
-                        retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);
-                    } else {}
-                } else{}
-            }else{}
+        if(nomeCronograma != null){
+            if(repositorioAluno.existe(aluno)){
+                if(repositorioAluno.existeCronograma(aluno,nomeCronograma)){
+                    if (codigoTarefa >= 0){
+                        if(aluno.buscarDisciplina(nomeDisciplina) != null){
+                            if(aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null){
+                                tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
+                                if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isAfter(dataTermino)){ //TODO
+                                    marcacao = new Marcacao(codigoTarefa,dataTermino);
+                                    retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);
+                                }
+                            }else{
+                                throw new TarefaNaoExisteException();
+                            }
+                        }else{
+                            throw new DisciplinaNaoExisteException();
+                        }
+                    }else{
+                        throw new IllegalArgumentException("Argumento inválido");
+                    }
+                } else{
+                    throw new CronogramaNaoExisteException();
+                }
+            }else{
+                throw new AlunoNaoExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento inválido!");
         }
         return retorno;
     }
     
-    public void removerMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+    public void removerMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino)
+                throws TarefaNaoExisteException, DisciplinaNaoExisteException, IllegalArgumentException{
         Tarefa tarefa;
         Marcacao marcacao;
         if(nomeCronograma != null){ 
-            if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null &&
-                aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null) { //TODO
-                tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
-                if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
-                    marcacao = new Marcacao(codigoTarefa,dataTermino);
+            if (codigoTarefa >= 0){
+                if(aluno.buscarDisciplina(nomeDisciplina) != null){
+                    if(aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null){
+                        tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
+                        if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
+                            marcacao = new Marcacao(codigoTarefa,dataTermino);
+                            repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
+                        }
+                    }else{
+                        throw new TarefaNaoExisteException();
+                    }
+                }else{
+                    throw new DisciplinaNaoExisteException();
+                }
+            }else{
+                throw new IllegalArgumentException("Argumento inválido");
+            }        
+        }else{
+            throw new IllegalArgumentException("Argumento inválido");
+        }
+    }
+    
+    public void removerMarcacao(Marcacao marcacao, String nomeCronograma, Aluno aluno) 
+                throws AlunoNaoExisteException, MarcacaoNaoExisteException, IllegalArgumentException{
+        if(marcacao != null){
+            if(nomeCronograma != null){
+                if(aluno != null){
                     repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
-                }else{}
-            }else{}
-        }else{}
+                }else{
+                    throw new AlunoNaoExisteException();
+                }
+            }else{
+                throw new IllegalArgumentException("Argumento inválido");
+            }
+        }else{
+            throw new MarcacaoNaoExisteException();
+        }
     }
     
-    public void removerMarcacao(Marcacao marcacao, String nomeCronograma, Aluno aluno){
-        if(marcacao != null){ //TODO
-            repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
-        }else{}
-    }
-    
-    public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa){
+    public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa)
+            throws MarcacaoNaoExisteException, CronogramaNaoExisteException, IllegalArgumentException{
         Marcacao marcacao = null;
         Cronograma cronograma = null;
         if(aluno != null && nome != null && codigoTarefa >= 0){ //TODO
@@ -114,13 +175,21 @@ public class CadastroAlunos {
                 cronograma = aluno.buscarCronograma(nome);
                 if(cronograma.buscarMarcacao(codigoTarefa)!= null){ //TODO
                     marcacao = cronograma.buscarMarcacao(codigoTarefa);
-                }else{}
-            }else{}
-        }else{}
+                }else{
+                    throw new MarcacaoNaoExisteException();
+                }
+            }else{
+                throw new CronogramaNaoExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)");
+        }
         return marcacao;
     }
     
-    public void atualizarMarcacoes(String nomeCronograma, Aluno aluno){
+    public void atualizarMarcacoes(String nomeCronograma, Aluno aluno) 
+                throws TarefaNaoExisteException, DisciplinaNaoExisteException, MarcacaoNaoExisteException, 
+                CronogramaNaoExisteException, IllegalArgumentException{
         if(nomeCronograma != null && aluno != null){
             if(aluno.buscarCronograma(nomeCronograma)!= null){
                 for(int i = 0; i < aluno.buscarCronograma(nomeCronograma).marcacoes().size(); i++){
@@ -130,56 +199,100 @@ public class CadastroAlunos {
                                 if(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa())!= null){
                                     if(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getDataTermino().isAfter(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa()).getDataTermino())){
                                         aluno.buscarCronograma(nomeCronograma).remover(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i));
-                                    }else{}
-                                }else{}
-                            }else{}
-                        }else{}
+                                    }
+                                }else{
+                                    throw new TarefaNaoExisteException();
+                                }
+                            }else{
+                                throw new DisciplinaNaoExisteException();
+                            }
+                        }else{
+                            throw new MarcacaoNaoExisteException();
+                        }
                     }
                 }
-            }else{}
-        }else{}
+            }else{
+                throw new CronogramaNaoExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)");
+        }
     }
     
-    public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome){
+    public boolean existeMarcacao(Aluno aluno, Marcacao marcacao, String nome) throws CronogramaNaoExisteException, 
+            MarcacaoNaoExisteException, IllegalArgumentException{
         boolean existe = false;
         if(aluno != null && marcacao != null && nome != null){ //TODO
             if(aluno.buscarCronograma(nome)!= null){
                 Cronograma cronograma = aluno.buscarCronograma(nome);
                 if(cronograma.buscarMarcacao(marcacao.getCodigoTarefa())!= null){
                     existe = true;
-                }else{}
-            }else{}
-        }else{}
+                }else{
+                    throw new MarcacaoNaoExisteException();
+                }
+            }else{
+                throw new CronogramaNaoExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)");
+        }
         return existe;
     }
     
-    public void adicionarCronograma(Aluno aluno, String nomeCronograma){
+    public void adicionarCronograma(Aluno aluno, String nomeCronograma) throws AlunoNaoExisteException, 
+            CronogramaNaoExisteException, IllegalArgumentException{
         Cronograma cronograma;
-        if(aluno != null && nomeCronograma != null){
-            if(aluno.buscarCronograma(nomeCronograma) == null){
-                cronograma = new Cronograma(nomeCronograma);
-                aluno.adicionarCronograma(cronograma);
-            }else{}
-        }else{}
+        if(aluno != null){
+            if(nomeCronograma != null){
+                if(aluno.buscarCronograma(nomeCronograma) == null){
+                    cronograma = new Cronograma(nomeCronograma);
+                    aluno.adicionarCronograma(cronograma);
+                }else{
+                    throw new CronogramaNaoExisteException();
+                }
+            }else{
+                throw new IllegalArgumentException("Argumento inválido");
+            }
+        }else{
+            throw new AlunoNaoExisteException();
+        }
     }
     
-    public void removerCronograma(Aluno aluno, String nomeCronograma){
+    public void removerCronograma(Aluno aluno, String nomeCronograma)throws AlunoNaoExisteException, 
+            CronogramaNaoExisteException, IllegalArgumentException{
         Cronograma cronograma;
-        if(aluno != null && nomeCronograma != null){
-            if(aluno.buscarCronograma(nomeCronograma) != null){
-                cronograma = aluno.buscarCronograma(nomeCronograma);
-                aluno.removerCronograma(cronograma);
-            }else{}
-        }else{}
+        if(aluno != null){
+            if(nomeCronograma != null){
+                if(aluno.buscarCronograma(nomeCronograma) != null){
+                    cronograma = aluno.buscarCronograma(nomeCronograma);
+                    aluno.removerCronograma(cronograma);
+                }else{
+                    throw new CronogramaNaoExisteException();
+                }
+            }else{
+                throw new IllegalArgumentException("Argumento inválido");
+            }
+        }else{
+            throw new AlunoNaoExisteException();
+        }
     }
     
-    public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma){
+    public Cronograma buscarCronograma(Aluno aluno, String nomeCronograma) throws AlunoNaoExisteException, 
+            CronogramaNaoExisteException, IllegalArgumentException{
         Cronograma cronograma = null;
-        if(aluno != null && nomeCronograma != null){
-            if(aluno.buscarCronograma(nomeCronograma)!= null){
-                cronograma = aluno.buscarCronograma(nomeCronograma);
-            }else{}
-        }else{}
+        if(aluno != null){
+            if(nomeCronograma != null){
+                if(aluno.buscarCronograma(nomeCronograma)!= null){
+                    cronograma = aluno.buscarCronograma(nomeCronograma);
+                }else{
+                    throw new CronogramaNaoExisteException();
+                }
+            }else{
+                throw new IllegalArgumentException("Argumento inválido");
+            }
+        }else{
+            throw new AlunoNaoExisteException();
+        }
         return cronograma;
     }
 }

@@ -59,19 +59,23 @@ public interface IServidorSigava {
 
     void cadastrarDisciplina(Disciplina disciplina) throws DisciplinaJaExisteException;
 
-    void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria);
+    void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria) throws
+            DisciplinaJaExisteException, IllegalArgumentException;
 
     void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException;
 
-    Disciplina buscarDisciplina(String nome);
+    Disciplina buscarDisciplina(String nome)throws DisciplinaJaExisteException, IllegalArgumentException;
 
-    boolean existeDisciplina(Disciplina disciplina);
+    boolean existeDisciplina(Disciplina disciplina) throws IllegalArgumentException;
 
-    void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor);
+    void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor)throws DisciplinaNaoExisteException,
+            ProfessorNaoExisteException, IllegalArgumentException;
 
-    void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno);
+    void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException,
+            IllegalArgumentException;
 
-    void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa);
+    void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa)throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
+            IllegalArgumentException;
 
     void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException;
 

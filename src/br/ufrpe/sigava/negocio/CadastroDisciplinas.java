@@ -6,8 +6,11 @@ import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.dados.RepositorioDisciplina;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
+import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -21,82 +24,97 @@ public class CadastroDisciplinas {
     }
 
     public void cadastrar(Disciplina disciplina) throws DisciplinaJaExisteException{
-       if (this.repositorioDisciplina.existe(disciplina)){
+        if (!this.repositorioDisciplina.existe(disciplina)){
            this.repositorioDisciplina.adicionar(disciplina);
         }else{
-           DisciplinaJaExisteException jaExiste = new DisciplinaJaExisteException();
-           throw jaExiste;
-       }
+            throw new DisciplinaJaExisteException();
+        }
     }
 
     public ArrayList<Disciplina> listarDisciplinas(){
         return repositorioDisciplina.listarDisciplinas();
     }
 
-    public void cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
-        if (nome != null && dataInicio != null && diaAula != null && duracaoAula > 0 && cargaHoraria > 0){ //TODO
-             this.repositorioDisciplina.adicionar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
-        }else{}
+    public void cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria) throws
+            DisciplinaJaExisteException, IllegalArgumentException{
+        if (nome != null && dataInicio != null && diaAula != null && duracaoAula > 0 && cargaHoraria > 0){
+            Disciplina disciplina = new Disciplina(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
+            if(!repositorioDisciplina.existe(disciplina)){
+                this.repositorioDisciplina.adicionar(disciplina);
+            }else{
+                throw new DisciplinaJaExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)");
+        }
     }
 
     public void descadastrar(Disciplina disciplina) throws DisciplinaNaoExisteException{
         if(disciplina != null){
             this.repositorioDisciplina.remover(disciplina);
         } else{
-            DisciplinaNaoExisteException naoExiste = new DisciplinaNaoExisteException();
-            throw naoExiste;
+            throw new DisciplinaNaoExisteException();
         }
     }
 
-    public Disciplina procurar(String nome){
+    public Disciplina procurar(String nome) throws DisciplinaJaExisteException, IllegalArgumentException{
         Disciplina disciplina = null;
-        if(nome != null){ //TODO
-            disciplina = this.repositorioDisciplina.buscar(nome);
-        }
+        if(nome != null){
+            if(this.repositorioDisciplina.buscar(nome) != null){
+                disciplina = this.repositorioDisciplina.buscar(nome);
+            }else throw new DisciplinaJaExisteException();
+        }else throw new IllegalArgumentException("Argumento inválido");
         return disciplina;
     }
 
-    public boolean existe(Disciplina disciplina){
+    public boolean existe(Disciplina disciplina) throws IllegalArgumentException{
         boolean retorno = false;
         if (disciplina != null){ //TODO
             retorno = this.repositorioDisciplina.existe(disciplina);
-        }
+        }else throw new IllegalArgumentException("Argumento inválido");
         return retorno;
     }
 
-    public void cadastrarProfessor(String nome, Professor professor){
-
+    public void cadastrarProfessor(String nome, Professor professor) throws DisciplinaNaoExisteException,
+            ProfessorNaoExisteException, IllegalArgumentException{
         Disciplina disciplina = null;
         if (nome != null){ //TODO
-            disciplina = this.repositorioDisciplina.buscar(nome);
-        }else{}
-        if (disciplina != null && professor != null){ //TODO
-            disciplina.adicionarProfessor(professor);
-            professor.adicionar(disciplina);  // Garantir que professor receba a disciplina,
-                                                        // quando o mesmo esteja sendo adicionado.
-        }else{}
-
+            if(this.repositorioDisciplina.buscar(nome) != null){
+                disciplina = this.repositorioDisciplina.buscar(nome);
+            }else throw new DisciplinaNaoExisteException();
+        }else throw new IllegalArgumentException("Argumento inválido");
+        if (disciplina != null ){
+            if(professor != null){
+                disciplina.adicionarProfessor(professor);
+                professor.adicionar(disciplina);
+            }else throw new ProfessorNaoExisteException();
+        }else throw new DisciplinaNaoExisteException();
     }
 
-    public void cadastrarAluno(String nome, Aluno aluno){
+    public void cadastrarAluno(String nome, Aluno aluno) throws DisciplinaNaoExisteException, AlunoNaoExisteException,
+            IllegalArgumentException{
         Disciplina disciplina = null;
-        if (nome != null){ //TODO
-            disciplina = this.repositorioDisciplina.buscar(nome);
-        }else{}
-        if (disciplina != null && aluno != null){ //TODO
+        if (nome != null){
+            if(this.repositorioDisciplina.buscar(nome) != null){
+               disciplina = this.repositorioDisciplina.buscar(nome);
+            }else throw new DisciplinaNaoExisteException();
+        }else throw new IllegalArgumentException("Argumento inválido");
+        if(aluno != null){
             disciplina.adicionarAluno(aluno);
-            aluno.adicionarDisciplina(disciplina);  // certificar de quando um aluno entrar na disciplina,
-                                                    // a disciplina esteja nos seus atributos.
-        }else{}
+            aluno.adicionarDisciplina(disciplina);
+        }else throw new AlunoNaoExisteException();
     }
 
-    public void cadastrarTarefa(String nome, Tarefa tarefa){
+    public void cadastrarTarefa(String nome, Tarefa tarefa) throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
+            IllegalArgumentException{
         Disciplina disciplina = null;
-        if (nome != null){ //TODO
-            disciplina = this.repositorioDisciplina.buscar(nome);
-        }else{}
-        if (disciplina != null && tarefa != null){ //TODO
+        if (nome != null){
+            if(this.repositorioDisciplina.buscar(nome) != null){
+                disciplina = this.repositorioDisciplina.buscar(nome);
+            }else throw new DisciplinaNaoExisteException();
+        }else throw new IllegalArgumentException("Argumento inválido");
+        if(tarefa != null){
             disciplina.adicionarTarefa(tarefa);
-        }else{}
+        }else throw new TarefaNaoExisteException();
     }
 }

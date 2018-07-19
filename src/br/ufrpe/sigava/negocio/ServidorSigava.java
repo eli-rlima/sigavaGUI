@@ -147,7 +147,8 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
+    public void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria) throws
+            DisciplinaJaExisteException, IllegalArgumentException{
          this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
     }
 
@@ -157,27 +158,30 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public Disciplina buscarDisciplina(String nome){
+    public Disciplina buscarDisciplina(String nome)throws DisciplinaJaExisteException, IllegalArgumentException{
         return this.disciplinas.procurar(nome);
     }
 
     @Override
-    public boolean existeDisciplina(Disciplina disciplina){
+    public boolean existeDisciplina(Disciplina disciplina) throws IllegalArgumentException{
         return this.disciplinas.existe(disciplina);
     }
     
     @Override
-    public void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor){
+    public void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor)throws DisciplinaNaoExisteException,
+            ProfessorNaoExisteException, IllegalArgumentException{
          this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
     }
 
     @Override
-    public void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno){
+    public void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException,
+            IllegalArgumentException{
          this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
     }
     
     @Override
-    public void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa){
+    public void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa)throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
+            IllegalArgumentException{
          this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
     }
 

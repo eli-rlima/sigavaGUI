@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
@@ -9,38 +8,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.DesktopController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="764.0" stylesheets="@SigavaCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.DesktopController">
    <children>
-      <VBox layoutY="-3.0" prefHeight="487.0" prefWidth="288.0" style="-fx-background-color: #CD5C5C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutY="-3.0" prefHeight="487.0" prefWidth="266.0" style="-fx-background-color: #CD5C5C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="153.0" prefWidth="288.0">
                <children>
-                  <Label layoutX="98.0" layoutY="57.0" text="SIGAVA" textFill="#fcfcfc">
+                  <Label layoutX="98.0" layoutY="59.0" text="SIGAVA" textFill="#fcfcfc">
                      <font>
                         <Font name="Calibri Light Italic" size="31.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Button id="btn_aluno" mnemonicParsing="false" prefHeight="60.0" prefWidth="288.0" style="-fx-background-color: #CD5C5C;" text="Aluno" textFill="WHITE">
+            <Button id="btn_aluno" fx:id="btn_Aluno" mnemonicParsing="false" prefHeight="60.0" prefWidth="288.0" style="-fx-background-color: #CD5C5C;" stylesheets="@SigavaCSS.css" text="Aluno" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="20.0" />
+                  <Font name="Calibri Light" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="btn_professor" mnemonicParsing="false" prefHeight="65.0" prefWidth="287.0" style="-fx-background-color: #CD5C5C;" text="Professor" textFill="WHITE">
+            <Button id="btn_professor" fx:id="btn_Professor" mnemonicParsing="false" prefHeight="65.0" prefWidth="287.0" style="-fx-background-color: #CD5C5C;" text="Professor" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="20.0" />
+                  <Font name="Calibri Light" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="btn_disciplina" mnemonicParsing="false" prefHeight="64.0" prefWidth="289.0" style="-fx-background-color: #CD5C5C;" text="Disciplina" textFill="WHITE">
+            <Button id="btn_disciplina" fx:id="btn_Disciplina" mnemonicParsing="false" prefHeight="64.0" prefWidth="289.0" style="-fx-background-color: #CD5C5C;" text="Disciplina" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="20.0" />
+                  <Font name="Calibri Light" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -48,25 +47,38 @@
             </Button>
          </children>
       </VBox>
+      <Pane layoutX="265.0" prefHeight="87.0" prefWidth="499.0" style="-fx-background-color: #FF7171;" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="68.0" text="Aluno" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox layoutX="265.0" layoutY="87.0" prefHeight="400.0" prefWidth="116.0" style="-fx-background-color: #FF7171;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="87.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="116.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="116.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="116.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="116.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="SIGAVA" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.DesktopController">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-         <children>
-            <ComboBox fx:id="box_aluno" layoutY="2.0" prefWidth="150.0" promptText="Aluno" />
-            <ComboBox fx:id="box_disc" layoutX="299.0" layoutY="2.0" prefWidth="150.0" promptText="Disciplina" />
-            <ComboBox fx:id="box_prof" layoutX="150.0" layoutY="2.0" prefWidth="150.0" promptText="Professor" />
-            <Pane layoutX="1.0" layoutY="33.0" prefHeight="340.0" prefWidth="600.0" />
-         </children></AnchorPane>
-  </content>
-</TitledPane>
->>>>>>> master

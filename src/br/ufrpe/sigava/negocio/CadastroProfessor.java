@@ -30,7 +30,7 @@ public class CadastroProfessor {
         return repositorioProfessor.listarProfessores();
     }
 
-    public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
+    public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) throws ProfessorJaExisteException, IllegalArgumentException {
         Professor professor = null;
         if (nome != null && email != null && senha != null && cpf != null){ //TODO
             if(sexo == 'm' || sexo == 'f'){ //TODO
@@ -38,8 +38,11 @@ public class CadastroProfessor {
             }else{}
             if (professor == null){ //TODO
                  this.repositorioProfessor.adicionar(nome,email,sexo,dataNascimento,senha,cpf);
-            }else{}
-        }else{}
+            }else{
+                throw new ProfessorJaExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)!");}
     }
 
     public void descadastrar (Professor professor) throws ProfessorNaoExisteException{
@@ -51,21 +54,28 @@ public class CadastroProfessor {
         }
     }
 
-    public Professor procurar (String cpf){
+    public Professor procurar (String cpf) throws ProfessorNaoExisteException,IllegalArgumentException{
         Professor professor = null;
-        if (cpf != null){ //TODO
+        if (cpf != null){
+            if(repositorioProfessor.buscar(cpf)!= null){
             professor = this.repositorioProfessor.buscarCpf(cpf);
+        }else{
+            throw new ProfessorNaoExisteException();
+    }
+    }
+        else{
+            throw new IllegalArgumentException("Argumento inválido!");
         }
         return professor;
     }
 
-    public boolean existe(Professor professor){
+    public boolean existe(Professor professor) throws IllegalArgumentException {
         boolean retorno = false;
         if(professor != null){ //TODO
             retorno = this.repositorioProfessor.existe(professor);
-        }else{}
+        }else{
+            throw new IllegalArgumentException("Argumento Inválido!");
+        }
         return retorno;
     }
-
-
 }

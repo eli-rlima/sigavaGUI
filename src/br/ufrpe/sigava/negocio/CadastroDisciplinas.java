@@ -57,12 +57,12 @@ public class CadastroDisciplinas {
         }
     }
 
-    public Disciplina procurar(String nome) throws DisciplinaJaExisteException, IllegalArgumentException{
+    public Disciplina procurar(String nome) throws DisciplinaNaoExisteException, IllegalArgumentException{
         Disciplina disciplina = null;
         if(nome != null){
             if(this.repositorioDisciplina.buscar(nome) != null){
                 disciplina = this.repositorioDisciplina.buscar(nome);
-            }else throw new DisciplinaJaExisteException();
+            }else throw new DisciplinaNaoExisteException();
         }else throw new IllegalArgumentException("Argumento inválido");
         return disciplina;
     }

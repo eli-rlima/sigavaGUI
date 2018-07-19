@@ -158,7 +158,7 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public Disciplina buscarDisciplina(String nome)throws DisciplinaJaExisteException, IllegalArgumentException{
+    public Disciplina buscarDisciplina(String nome)throws DisciplinaNaoExisteException, IllegalArgumentException{
         return this.disciplinas.procurar(nome);
     }
 
@@ -191,7 +191,7 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+    public void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) throws ProfessorJaExisteException, IllegalArgumentException{
         this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
@@ -201,7 +201,7 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public Professor buscarProfessor(String cpf){
+    public Professor buscarProfessor(String cpf) throws ProfessorNaoExisteException, IllegalArgumentException{
         return this.professores.procurar(cpf);
     }
 
@@ -217,7 +217,7 @@ public class ServidorSigava implements IServidorSigava{
 
     @Override
     public void cadastrarTarefa(String descricao, LocalDate dataInicio,
-                                   LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
+                                   LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) throws TarefaJaExisteException, IllegalArgumentException{
         this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
     }
 
@@ -227,12 +227,12 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public Tarefa buscarTarefa(int codigo){
+    public Tarefa buscarTarefa(int codigo) throws TarefaNaoExisteException, IllegalArgumentException{
         return this.tarefas.procurar(codigo);
     }
 
     @Override
-    public boolean existeTarefa(Tarefa tarefa){
+    public boolean existeTarefa(Tarefa tarefa) throws IllegalArgumentException{
         return this.tarefas.existe(tarefa);
     }
 

@@ -33,15 +33,19 @@ public class CadastroTarefas {
     }
 
     public void cadastrar(String descricao, LocalDate dataInicio,
-                             LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
+                             LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) throws TarefaJaExisteException, IllegalArgumentException{
         if (descricao != null && dataInicio != null && dataTermino != null
                 && disciplina != null && codigoTarefa >= 0) { //TODO
             if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
                  this.repositorioTarefa.adicionar(descricao, dataInicio,
                         dataTermino, codigoTarefa, disciplina);
-            }else{}
-        }else{}
-    }
+            }else{
+                throw new TarefaJaExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)!");
+        }
+   }
 
     public void descadastrar(Tarefa tarefa) throws TarefaNaoExisteException{
         if(tarefa != null){ //TODO
@@ -52,19 +56,27 @@ public class CadastroTarefas {
         }
     }
 
-    public Tarefa procurar(int codigo){
+    public Tarefa procurar(int codigo) throws TarefaNaoExisteException, IllegalArgumentException{
         Tarefa tarefa = null;
-        if(codigo >= 0){ //TODO
-            tarefa = this.repositorioTarefa.buscar(codigo);
+        if(codigo >= 0){
+            if(repositorioTarefa.buscar(codigo) != null){
+                tarefa = this.repositorioTarefa.buscar(codigo);
+            }else{
+            throw new TarefaNaoExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento inválido!");
         }
         return tarefa;
     }
 
-    public boolean existe(Tarefa tarefa){
+    public boolean existe(Tarefa tarefa) throws IllegalArgumentException{
         boolean retorno = false;
         if (tarefa != null){ //TODO
             retorno = this.repositorioTarefa.existe(tarefa);
-        }else{}
+        }else{
+            throw new IllegalArgumentException("Argumento Inválido!");
+        }
         return retorno;
     }
 

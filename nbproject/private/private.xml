@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/elive/Desktop/repoSigava1/sigavaGUI/src/br/ufrpe/sigava/negocio/beans/Marcacao.java</file>
-            <file>file:/C:/Users/elive/Desktop/repoSigava1/sigavaGUI/src/br/ufrpe/sigava/negocio/beans/Cronograma.java</file>
-            <file>file:/C:/Users/elive/Desktop/repoSigava1/sigavaGUI/src/br/ufrpe/sigava/dados/IRepositorioAluno.java</file>
-            <file>file:/C:/Users/elive/Desktop/repoSigava1/sigavaGUI/src/br/ufrpe/sigava/negocio/CadastroAlunos.java</file>
-            <file>file:/C:/Users/elive/Desktop/repoSigava1/sigavaGUI/src/br/ufrpe/sigava/dados/RepositorioAluno.java</file>
+            <file>file:/C:/Users/Thiago/Documents/ACADEMICO/programaçao%202/sigavaGUI/src/br/ufrpe/sigava/gui/DesktopController.java</file>
+            <file>file:/C:/Users/Thiago/Documents/ACADEMICO/programaçao%202/sigavaGUI/src/br/ufrpe/sigava/gui/SigavaGUI.java</file>
         </group>
     </open-files>
 </project-private>

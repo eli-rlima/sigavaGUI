@@ -19,12 +19,6 @@ import javafx.scene.control.ComboBox;
  */
 public class DesktopController implements Initializable {
 
-    @FXML
-    private ComboBox<?> box_aluno;
-    @FXML
-    private ComboBox<?> box_disc;
-    @FXML
-    private ComboBox<?> box_prof;
 
     /**
      * Initializes the controller class.

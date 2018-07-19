@@ -64,7 +64,7 @@ public interface IServidorSigava {
 
     void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException;
 
-    Disciplina buscarDisciplina(String nome)throws DisciplinaJaExisteException, IllegalArgumentException;
+    Disciplina buscarDisciplina(String nome) throws DisciplinaNaoExisteException, IllegalArgumentException;
 
     boolean existeDisciplina(Disciplina disciplina) throws IllegalArgumentException;
 
@@ -79,24 +79,24 @@ public interface IServidorSigava {
 
     void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException;
 
-    void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
+    void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) throws ProfessorJaExisteException, IllegalArgumentException;
 
-    void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException;
+    void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException, IllegalArgumentException;
 
-    Professor buscarProfessor(String cpf);
+    Professor buscarProfessor(String cpf) throws ProfessorNaoExisteException, IllegalArgumentException;
 
     boolean existeProfessor(Professor professor);
 
     void cadastrarTarefa(Tarefa tarefa) throws TarefaJaExisteException;
 
-    void cadastrarTarefa(String descricao, LocalDate dataInicio,
-                            LocalDate dataTermino, int codigoTarefa, Disciplina disciplina);
+    void cadastrarTarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) 
+            throws TarefaJaExisteException, IllegalArgumentException, DisciplinaNaoExisteException;
 
     void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException;
 
-    Tarefa buscarTarefa(int codigo);
+    Tarefa buscarTarefa(int codigo) throws TarefaNaoExisteException, IllegalArgumentException;
 
-    boolean existeTarefa(Tarefa tarefa);
+    boolean existeTarefa(Tarefa tarefa)throws TarefaNaoExisteException;
 
     ArrayList<Aluno> listarAlunos ();
 

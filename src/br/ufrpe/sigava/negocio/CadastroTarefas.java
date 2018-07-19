@@ -4,6 +4,7 @@ import br.ufrpe.sigava.dados.IRepositorioTarefa;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.dados.RepositorioTarefa;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaJaExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
@@ -19,52 +20,57 @@ public class CadastroTarefas {
     }
 
     public void cadastrar(Tarefa tarefa)throws TarefaJaExisteException{
-       if (this.repositorioTarefa.existe(tarefa)) {
+       if (!this.repositorioTarefa.existe(tarefa)) {
            this.repositorioTarefa.adicionar(tarefa);
-       } else{
-           TarefaJaExisteException jaExiste = new TarefaJaExisteException();
-            throw jaExiste;
-       }
-       
+       } else throw new TarefaJaExisteException();
     }
 
     public ArrayList<Tarefa> listarTarefas (){
         return repositorioTarefa.listarTarefas();
     }
 
-    public void cadastrar(String descricao, LocalDate dataInicio,
-                             LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
-        if (descricao != null && dataInicio != null && dataTermino != null
-                && disciplina != null && codigoTarefa >= 0) { //TODO
-            if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
-                 this.repositorioTarefa.adicionar(descricao, dataInicio,
-                        dataTermino, codigoTarefa, disciplina);
-            }else{}
-        }else{}
-    }
+    public void cadastrar(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) 
+            throws TarefaJaExisteException, IllegalArgumentException, DisciplinaNaoExisteException{
+        if (descricao != null && dataInicio != null && dataTermino != null && codigoTarefa >= 0) { //TODO
+            if(disciplina != null){
+                if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
+                    this.repositorioTarefa.adicionar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
+                }else{
+                    throw new TarefaJaExisteException();
+                }
+            }else throw new DisciplinaNaoExisteException();
+        }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)!");
+        }
+   }
 
     public void descadastrar(Tarefa tarefa) throws TarefaNaoExisteException{
-        if(tarefa != null){ //TODO
+        if(tarefa != null){ 
             this.repositorioTarefa.remover(tarefa);
-        } else{
-            TarefaNaoExisteException naoExiste = new TarefaNaoExisteException();
-            throw naoExiste;
-        }
+        } else throw new TarefaNaoExisteException();
     }
 
-    public Tarefa procurar(int codigo){
+    public Tarefa procurar(int codigo) throws TarefaNaoExisteException, IllegalArgumentException{
         Tarefa tarefa = null;
-        if(codigo >= 0){ //TODO
-            tarefa = this.repositorioTarefa.buscar(codigo);
+        if(codigo >= 0){
+            if(repositorioTarefa.buscar(codigo) != null){
+                tarefa = this.repositorioTarefa.buscar(codigo);
+            }else{
+            throw new TarefaNaoExisteException();
+            }
+        }else{
+            throw new IllegalArgumentException("Argumento inválido!");
         }
         return tarefa;
     }
 
-    public boolean existe(Tarefa tarefa){
+    public boolean existe(Tarefa tarefa) throws TarefaNaoExisteException{
         boolean retorno = false;
-        if (tarefa != null){ //TODO
+        if (tarefa != null){ 
             retorno = this.repositorioTarefa.existe(tarefa);
-        }else{}
+        }else{
+            throw new TarefaNaoExisteException();
+        }
         return retorno;
     }
 

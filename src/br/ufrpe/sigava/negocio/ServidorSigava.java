@@ -196,7 +196,7 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException{
+    public void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException, IllegalArgumentException{
         this.professores.descadastrar(professor);
     }
 
@@ -216,8 +216,8 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public void cadastrarTarefa(String descricao, LocalDate dataInicio,
-                                   LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) throws TarefaJaExisteException, IllegalArgumentException{
+    public void cadastrarTarefa(String descricao, LocalDate dataInicio,LocalDate dataTermino, int codigoTarefa, Disciplina disciplina)
+            throws TarefaJaExisteException, IllegalArgumentException, DisciplinaNaoExisteException{
         this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
     }
 
@@ -232,7 +232,7 @@ public class ServidorSigava implements IServidorSigava{
     }
 
     @Override
-    public boolean existeTarefa(Tarefa tarefa) throws IllegalArgumentException{
+    public boolean existeTarefa(Tarefa tarefa) throws TarefaNaoExisteException{
         return this.tarefas.existe(tarefa);
     }
 

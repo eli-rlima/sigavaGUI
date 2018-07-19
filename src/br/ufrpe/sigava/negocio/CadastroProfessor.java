@@ -19,10 +19,7 @@ public class CadastroProfessor {
     public void cadastrar (Professor professor)throws ProfessorJaExisteException{
         if (professor != null && !repositorioProfessor.existe(professor)){
             this.repositorioProfessor.adicionar(professor);
-         }else{
-            ProfessorJaExisteException jaExiste = new ProfessorJaExisteException();
-            throw jaExiste;
-        }
+         }else throw new ProfessorJaExisteException();
     }
         
 
@@ -33,9 +30,9 @@ public class CadastroProfessor {
     public void cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) throws ProfessorJaExisteException, IllegalArgumentException {
         Professor professor = null;
         if (nome != null && email != null && senha != null && cpf != null){ //TODO
-            if(sexo == 'm' || sexo == 'f'){ //TODO
+            if(sexo == 'm' || sexo == 'f'){
                 professor = repositorioProfessor.buscarCpf(cpf);
-            }else{}
+            }else throw new IllegalArgumentException("Argumento inválido");
             if (professor == null){ //TODO
                  this.repositorioProfessor.adicionar(nome,email,sexo,dataNascimento,senha,cpf);
             }else{
@@ -45,33 +42,27 @@ public class CadastroProfessor {
             throw new IllegalArgumentException("Argumento(s) inválido(s)!");}
     }
 
-    public void descadastrar (Professor professor) throws ProfessorNaoExisteException{
-        if (professor != null && repositorioProfessor.existe(professor)){ //TODO
-            this.repositorioProfessor.remover(professor);
-        }else{
-            ProfessorNaoExisteException naoExiste = new ProfessorNaoExisteException();
-            throw naoExiste;
-        }
+    public void descadastrar (Professor professor) throws ProfessorNaoExisteException, IllegalArgumentException{
+        if (professor != null){
+            if(repositorioProfessor.existe(professor)){
+                this.repositorioProfessor.remover(professor);
+            }else throw new ProfessorNaoExisteException();
+        }else throw new IllegalArgumentException("Argumento inválido");
     }
 
     public Professor procurar (String cpf) throws ProfessorNaoExisteException,IllegalArgumentException{
         Professor professor = null;
         if (cpf != null){
             if(repositorioProfessor.buscar(cpf)!= null){
-            professor = this.repositorioProfessor.buscarCpf(cpf);
-        }else{
-            throw new ProfessorNaoExisteException();
-    }
-    }
-        else{
-            throw new IllegalArgumentException("Argumento inválido!");
-        }
+                professor = this.repositorioProfessor.buscarCpf(cpf);
+            }else throw new ProfessorNaoExisteException();
+        }else throw new IllegalArgumentException("Argumento inválido!");        
         return professor;
     }
 
     public boolean existe(Professor professor) throws IllegalArgumentException {
         boolean retorno = false;
-        if(professor != null){ //TODO
+        if(professor != null){
             retorno = this.repositorioProfessor.existe(professor);
         }else{
             throw new IllegalArgumentException("Argumento Inválido!");

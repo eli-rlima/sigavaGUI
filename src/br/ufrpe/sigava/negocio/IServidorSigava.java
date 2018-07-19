@@ -81,7 +81,7 @@ public interface IServidorSigava {
 
     void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) throws ProfessorJaExisteException, IllegalArgumentException;
 
-    void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException;
+    void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException, IllegalArgumentException;
 
     Professor buscarProfessor(String cpf) throws ProfessorNaoExisteException, IllegalArgumentException;
 
@@ -89,14 +89,14 @@ public interface IServidorSigava {
 
     void cadastrarTarefa(Tarefa tarefa) throws TarefaJaExisteException;
 
-    void cadastrarTarefa(String descricao, LocalDate dataInicio,
-                            LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) throws TarefaJaExisteException, IllegalArgumentException;
+    void cadastrarTarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa, Disciplina disciplina) 
+            throws TarefaJaExisteException, IllegalArgumentException, DisciplinaNaoExisteException;
 
     void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException;
 
     Tarefa buscarTarefa(int codigo) throws TarefaNaoExisteException, IllegalArgumentException;
 
-    boolean existeTarefa(Tarefa tarefa);
+    boolean existeTarefa(Tarefa tarefa)throws TarefaNaoExisteException;
 
     ArrayList<Aluno> listarAlunos ();
 

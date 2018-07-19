@@ -63,12 +63,12 @@ public class ServidorSigava implements IServidorSigava{
         return this.alunos.procurar(cpf);
     }
 
-    public boolean cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
-        return this.alunos.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
+    public void cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+        this.alunos.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
-    public boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
-        return this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
+    public void adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+        this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
     }
 
     public void descadastrarAluno(Aluno aluno) throws AlunoNaoExisteException{
@@ -83,8 +83,8 @@ public class ServidorSigava implements IServidorSigava{
         this.disciplinas.cadastrar(disciplina);
     }
 
-    public boolean cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
-        return this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
+    public void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
+         this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
     }
 
     public void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException {
@@ -99,24 +99,24 @@ public class ServidorSigava implements IServidorSigava{
         return this.disciplinas.existe(disciplina);
     }
 
-    public boolean cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor){
-        return this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
+    public void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor){
+         this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
     }
 
-    public boolean cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno){
-        return this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
+    public void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno){
+         this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
     }
 
-    public boolean cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa){
-        return this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
+    public void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa){
+         this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
     }
 
     public void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException{
         this.professores.cadastrar(professor);
     }
 
-    public boolean cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
-        return this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
+    public void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+        this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
     public void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException{
@@ -135,9 +135,9 @@ public class ServidorSigava implements IServidorSigava{
         this.tarefas.cadastrar(tarefa);
     }
 
-    public boolean cadastrarTarefa(String descricao, LocalDate dataInicio,
+    public void cadastrarTarefa(String descricao, LocalDate dataInicio,
                                    LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
-        return this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
+        this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
     }
 
     public void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException{

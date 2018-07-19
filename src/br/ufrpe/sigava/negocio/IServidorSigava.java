@@ -23,9 +23,9 @@ public interface IServidorSigava {
 
     Aluno buscarAluno(String cpf);
 
-    boolean cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
+    void cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
 
-    boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
+    void adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
 
     void descadastrarAluno(Aluno aluno) throws AlunoNaoExisteException;
 
@@ -33,7 +33,7 @@ public interface IServidorSigava {
 
     void cadastrarDisciplina(Disciplina disciplina) throws DisciplinaJaExisteException;
 
-    boolean cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria);
+    void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria);
 
     void descadastrarDisciplina(Disciplina disciplina) throws DisciplinaNaoExisteException;
 
@@ -41,15 +41,15 @@ public interface IServidorSigava {
 
     boolean existeDisciplina(Disciplina disciplina);
 
-    boolean cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor);
+    void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor);
 
-    boolean cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno);
+    void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno);
 
-    boolean cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa);
+    void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa);
 
     void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException;
 
-    boolean cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
+    void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
 
     void descadastrarProfessor(Professor professor) throws ProfessorNaoExisteException;
 
@@ -59,7 +59,7 @@ public interface IServidorSigava {
 
     void cadastrarTarefa(Tarefa tarefa) throws TarefaJaExisteException;
 
-    boolean cadastrarTarefa(String descricao, LocalDate dataInicio,
+    void cadastrarTarefa(String descricao, LocalDate dataInicio,
                             LocalDate dataTermino, int codigoTarefa, Disciplina disciplina);
 
     void descadastrarTarefa(Tarefa tarefa) throws TarefaNaoExisteException;

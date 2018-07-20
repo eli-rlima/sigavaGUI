@@ -1,65 +1,249 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.DesktopController">
+<AnchorPane fx:id="AnchorPane_Main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="1196.0" stylesheets="@SigavaCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.DesktopController">
    <children>
-      <VBox layoutY="-3.0" prefHeight="487.0" prefWidth="288.0" style="-fx-background-color: #CD5C5C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="VBox_Main" layoutY="-3.0" prefHeight="487.0" prefWidth="266.0" style="-fx-background-color: #CD5C5C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="153.0" prefWidth="288.0">
+            <Pane fx:id="Pane_Sigava" prefHeight="153.0" prefWidth="208.0">
                <children>
-                  <Label layoutX="98.0" layoutY="57.0" text="SIGAVA" textFill="#fcfcfc">
+                  <Label fx:id="Label_Sigava" layoutX="94.0" layoutY="59.0" text="SIGAVA" textFill="#fcfcfc">
                      <font>
                         <Font name="Calibri Light Italic" size="31.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Button id="btn_aluno" mnemonicParsing="false" prefHeight="60.0" prefWidth="288.0" style="-fx-background-color: #CD5C5C;" text="Aluno" textFill="WHITE">
+            <Button id="btn_aluno" fx:id="btn_Aluno" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="60.0" prefWidth="288.0" style="-fx-background-color: #CD5C5C;" stylesheets="@SigavaCSS.css" text="Aluno" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="20.0" />
+                  <Font name="Calibri Light" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <padding>
+                  <Insets left="60.0" />
+               </padding>
             </Button>
-            <Button id="btn_professor" mnemonicParsing="false" prefHeight="65.0" prefWidth="287.0" style="-fx-background-color: #CD5C5C;" text="Professor" textFill="WHITE">
+            <Button id="btn_professor" fx:id="btn_Professor" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="65.0" prefWidth="287.0" style="-fx-background-color: #CD5C5C;" text="Professor" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="20.0" />
+                  <Font name="Calibri Light" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <padding>
+                  <Insets left="60.0" />
+               </padding>
             </Button>
-            <Button id="btn_disciplina" mnemonicParsing="false" prefHeight="64.0" prefWidth="289.0" style="-fx-background-color: #CD5C5C;" text="Disciplina" textFill="WHITE">
+            <Button id="btn_disciplina" fx:id="btn_Disciplina" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleClicks" prefHeight="64.0" prefWidth="289.0" style="-fx-background-color: #CD5C5C;" text="Disciplina" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="20.0" />
+                  <Font name="Calibri Light" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <padding>
+                  <Insets left="60.0" />
+               </padding>
             </Button>
          </children>
       </VBox>
+      <StackPane layoutX="263.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="2.0" />
+      <StackPane layoutX="266.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="87.0">
+         <children>
+            <VBox fx:id="VBox_Professor" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Button fx:id="btn_Professor_Cadastrar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Professor_Remover" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Professor_Atualizar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Professor_Procurar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="VBox_Disciplina" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Button fx:id="btn_Disciplina_Cadastrar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_Remover" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_Atualizar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_Procurar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_AssociarP" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Ass. Professor" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_AssociarA" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Associar Aluno" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="VBox_Aluno" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Button fx:id="btn_Aluno_Cadastrar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Aluno_Remover" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Aluno_Atualizar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_Aluno_Procurar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+      <Pane fx:id="pane_Disciplina" layoutX="266.0" prefHeight="87.0" prefWidth="931.0" style="-fx-background-color: #FF7171;">
+         <children>
+            <Label fx:id="Label_Disciplina" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="198.0" text="Disciplina" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="28.0" />
+               </font>
+            </Label>
+            <Pane fx:id="pane_Professor" prefHeight="87.0" prefWidth="931.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Label fx:id="Professor" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="198.0" text="Professor" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="2.0" />
+               </padding>
+            </Pane>
+            <Pane fx:id="pane_Aluno" prefHeight="87.0" prefWidth="931.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Label fx:id="Label_Aluno" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="68.0" text="Aluno" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="2.0" />
+               </padding>
+            </Pane>
+         </children>
+      </Pane>
+      <StackPane layoutX="401.0" layoutY="88.0">
+         <children>
+            <GridPane fx:id="grid_Disciplina" prefHeight="649.0" prefWidth="793.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="649.0" minHeight="10.0" prefHeight="389.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TableView fx:id="table_Aluno2" prefHeight="617.0" prefWidth="802.0">
+                     <columns>
+                        <TableColumn fx:id="table_Aluno_Nome2" prefWidth="192.0" text="Nome" />
+                        <TableColumn fx:id="table_Aluno_CPF2" prefWidth="263.0" text="Professor" />
+                        <TableColumn fx:id="table_Aluno_Nascimento2" prefWidth="86.0" text="Data Inicio" />
+                        <TableColumn fx:id="table_Aluno_Email2" minWidth="0.0" prefWidth="87.0" text="Data Fim" />
+                        <TableColumn fx:id="table_Aluno_CPF22" prefWidth="74.0" text="Dia da Aula" />
+                        <TableColumn fx:id="table_Aluno_Senha2" prefWidth="89.0" text="CH Restante" />
+                     </columns>
+                  </TableView>
+               </children>
+            </GridPane>
+            <GridPane fx:id="grid_Professor" prefHeight="649.0" prefWidth="793.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="649.0" minHeight="10.0" prefHeight="389.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TableView fx:id="table_Professor" prefHeight="617.0" prefWidth="802.0">
+                     <columns>
+                        <TableColumn fx:id="table_Professor_Nome" prefWidth="291.0" text="Nome" />
+                        <TableColumn fx:id="table_Professor_CPF" prefWidth="183.0" text="CPF" />
+                        <TableColumn fx:id="table_Professor_Nascimento" prefWidth="103.0" text="Nascimento" />
+                        <TableColumn fx:id="table_Professor_Email" prefWidth="108.0" text="Email" />
+                        <TableColumn fx:id="table_Professor_Senha" prefWidth="107.0" text="Senha" />
+                     </columns>
+                  </TableView>
+               </children>
+            </GridPane>
+            <GridPane fx:id="grid_Aluno" prefHeight="649.0" prefWidth="793.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="649.0" minHeight="10.0" prefHeight="389.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TableView fx:id="table_Aluno" prefHeight="617.0" prefWidth="802.0">
+                    <columns>
+                      <TableColumn fx:id="table_Aluno_Nome" prefWidth="291.0" text="Nome" />
+                      <TableColumn fx:id="table_Aluno_CPF" prefWidth="183.0" text="CPF" />
+                        <TableColumn fx:id="table_Aluno_Nascimento" prefWidth="103.0" text="Nascimento" />
+                        <TableColumn fx:id="table_Aluno_Email" prefWidth="108.0" text="Email" />
+                        <TableColumn fx:id="table_Aluno_Senha" prefWidth="107.0" text="Senha" />
+                    </columns>
+                  </TableView>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.ufrpe.sigava.gui.DesktopController">
-   <children>
-      <Button fx:id="btn_chato" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
-   </children>
-</AnchorPane>
->>>>>>> master

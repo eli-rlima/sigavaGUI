@@ -208,15 +208,19 @@ public class DesktopController implements Initializable {
     private void ClickAluno(ActionEvent event) {
         if (event.getSource() == btn_Aluno_Atualizar){
             System.out.println("A_A");
+            
         }
         if (event.getSource() == btn_Aluno_Remover){
             System.out.println("A_R");
+            
         }
         if (event.getSource() == btn_Aluno_Procurar){
             System.out.println("A_P");
+            
         }
         if (event.getSource() == btn_Aluno_Cadastrar){
             System.out.println("A_C");
+            
         }
     
     }

@@ -63,100 +63,17 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="263.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="2.0" />
-      <StackPane layoutX="266.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="87.0">
+      <StackPane layoutX="266.0" prefHeight="87.0" prefWidth="928.0" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="2.0">
          <children>
-            <VBox fx:id="VBox_Professor" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+            <Pane fx:id="pane_Disciplina" prefHeight="87.0" prefWidth="905.0" style="-fx-background-color: #FF7171;">
                <children>
-                  <Button fx:id="btn_Professor_Cadastrar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                  <Label fx:id="Label_Disciplina" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="198.0" text="Disciplina" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Light" size="18.0" />
+                        <Font name="Calibri Light" size="28.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="btn_Professor_Remover" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Professor_Atualizar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Professor_Procurar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
+                  </Label>
                </children>
-            </VBox>
-            <VBox fx:id="VBox_Disciplina" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
-               <children>
-                  <Button fx:id="btn_Disciplina_Cadastrar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Disciplina_Remover" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Disciplina_Atualizar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Disciplina_Procurar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Disciplina_AssociarP" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Ass. Professor" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Disciplina_AssociarA" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Associar Aluno" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox fx:id="VBox_Aluno" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
-               <children>
-                  <Button fx:id="btn_Aluno_Cadastrar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Aluno_Remover" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Aluno_Atualizar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_Aluno_Procurar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </StackPane>
-      <Pane fx:id="pane_Disciplina" layoutX="266.0" prefHeight="87.0" prefWidth="931.0" style="-fx-background-color: #FF7171;">
-         <children>
-            <Label fx:id="Label_Disciplina" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="198.0" text="Disciplina" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="28.0" />
-               </font>
-            </Label>
+            </Pane>
             <Pane fx:id="pane_Professor" prefHeight="87.0" prefWidth="931.0" style="-fx-background-color: #FF7171;">
                <children>
                   <Label fx:id="Professor" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="198.0" text="Professor" textAlignment="CENTER" textFill="WHITE">
@@ -169,7 +86,7 @@
                   <Insets left="2.0" />
                </padding>
             </Pane>
-            <Pane fx:id="pane_Aluno" prefHeight="87.0" prefWidth="931.0" style="-fx-background-color: #FF7171;">
+            <Pane fx:id="pane_Aluno" prefHeight="68.0" prefWidth="897.0" style="-fx-background-color: #FF7171;">
                <children>
                   <Label fx:id="Label_Aluno" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="204.0" layoutY="19.0" prefHeight="49.0" prefWidth="68.0" text="Aluno" textAlignment="CENTER" textFill="WHITE">
                      <font>
@@ -181,8 +98,135 @@
                   <Insets left="2.0" />
                </padding>
             </Pane>
+         </children></StackPane>
+      <StackPane layoutX="266.0" layoutY="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="87.0">
+         <children>
+            <VBox fx:id="VBox_Professor" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Button fx:id="btn_Professor_Cadastrar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Professor_Remover" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Professor_Atualizar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Professor_Procurar" mnemonicParsing="false" onAction="#ClickProfessor" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="VBox_Disciplina" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Button fx:id="btn_Disciplina_Cadastrar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_Remover" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_Atualizar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_Procurar" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_AssociarP" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Ass. Professor" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Disciplina_AssociarA" mnemonicParsing="false" onAction="#ClickDisciplina" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Associar Aluno" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="VBox_Aluno" prefHeight="649.0" prefWidth="135.0" style="-fx-background-color: #FF7171;">
+               <children>
+                  <Button fx:id="btn_Aluno_Cadastrar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="199.0" style="-fx-background-color: #FF7171;" text="Cadastrar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Aluno_Remover" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="156.0" style="-fx-background-color: #FF7171;" text="Remover" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Aluno_Atualizar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="144.0" style="-fx-background-color: #FF7171;" text="Atualizar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_Aluno_Procurar" mnemonicParsing="false" onAction="#ClickAluno" prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #FF7171;" text="Procurar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
          </children>
-      </Pane>
+      </StackPane>
       <StackPane layoutX="401.0" layoutY="88.0">
          <children>
             <GridPane fx:id="grid_Disciplina" prefHeight="649.0" prefWidth="793.0">

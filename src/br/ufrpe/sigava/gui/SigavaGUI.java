@@ -5,6 +5,8 @@
  */
 package br.ufrpe.sigava.gui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +26,7 @@ public class SigavaGUI extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -32,6 +35,8 @@ public class SigavaGUI extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        
     }
     
 }

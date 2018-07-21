@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane id="AnchorPane" fx:id="pane_Login" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.ufrpe.sigava.gui.Controller">
    <children>
-      <Pane layoutX="192.0" layoutY="128.0" prefHeight="144.0" prefWidth="217.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="128.0">
-         <children>
-            <JFXTextField layoutX="50.0" layoutY="40.0" style="-fx-background-color: #ffffff;" />
-            <JFXPasswordField layoutX="50.0" layoutY="75.0" style="-fx-background-color: #ffffff;" />
-            <Label layoutX="14.0" layoutY="44.0" text="CPF" textFill="#f5f4f4" />
-            <Label layoutX="11.0" layoutY="80.0" text="SENHA" textFill="#f8f8f8" />
-         </children>
-      </Pane>
-      <Label layoutX="14.0" layoutY="14.0" text="DARKAVA" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+      <JFXButton fx:id="btn_login" layoutX="253.0" layoutY="296.0" prefHeight="32.0" prefWidth="67.0" text="Login" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btn_CancelLogin" layoutX="326.0" layoutY="296.0" prefHeight="32.0" prefWidth="79.0" text="Cancelar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btn_Cadastrar" layoutX="492.0" layoutY="14.0" prefHeight="46.0" prefWidth="93.0" text="Cadastrar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="txt_CPF" layoutX="253.0" layoutY="181.0" prefHeight="32.0" prefWidth="156.0" promptText="___.___.___-__" style="-fx-background-color: WHITE;">
          <font>
-            <Font name="Gigi" size="41.0" />
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="txt_PASS" layoutX="253.0" layoutY="226.0" prefHeight="32.0" prefWidth="156.0" promptText="********" style="-fx-background-color: WHITE;">
+         <font>
+            <Font name="Calibri Light" size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <Label fx:id="txt_SigavaLogin" layoutX="49.0" layoutY="39.0" text="SIGAVA" textFill="WHITE">
+         <font>
+            <Font name="Calibri Light Italic" size="60.0" />
          </font>
       </Label>
+      <FontAwesomeIconView fx:id="icon_User" fill="#fcfcfc" glyphName="USER" glyphStyle="f007" layoutX="215.0" layoutY="203.0" size="20" />
+      <FontAwesomeIconView fx:id="icon_UserLock" fill="WHITE" glyphName="LOCK" layoutX="216.0" layoutY="250.0" size="20" text="" />
    </children>
 </AnchorPane>

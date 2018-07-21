@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="SigavaGUI.jar" size="44931" download="eager" />
+=======
+    <jar href="SigavaGUI.jar" size="45737" download="eager" />
+>>>>>>> master
     <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="lib\jfoenix-8.0.5.jar" size="2657082" download="eager" />
   </resources>

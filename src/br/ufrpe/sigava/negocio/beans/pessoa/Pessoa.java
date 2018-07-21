@@ -24,7 +24,7 @@ public abstract class Pessoa {
         this.setEmail(email);
         this.setSexo(sexo);
         this.setDataNascimento(dataNascimento);
-        this.login = new Login(email,senha);
+        this.login = new Login(cpf,senha);
         this.cpf = cpf;
     }
     public Pessoa(){}

@@ -40,4 +40,16 @@ public class Login {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    public boolean equals(Login otherLogin){
+        boolean equals = false;
+        if(otherLogin != null){
+            if(this.senha.equals(otherLogin.senha)){
+                if(this.usuario.equals(otherLogin.usuario)){
+                    equals = true;
+                }
+            }
+        }
+        return equals;
+    }
 }

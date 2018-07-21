@@ -22,6 +22,12 @@ public class SigavaGUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        /*Parent rootAluno = FXMLLoader.load(getClass().getResource("Aluno.fxml"));
+        Scene sceneAluno = new Scene(rootAluno);
+        
+        if(Controller.IS_ALUNO){
+            stage.setScene(sceneAluno);
+        }*/
         
         Scene scene = new Scene(root);
         
@@ -35,7 +41,6 @@ public class SigavaGUI extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
         
     }
     

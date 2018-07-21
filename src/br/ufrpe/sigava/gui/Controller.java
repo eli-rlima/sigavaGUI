@@ -17,6 +17,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import br.ufrpe.sigava.negocio.IServidorSigava;
+import br.ufrpe.sigava.negocio.ServidorSigava;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Pessoa;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
+import br.ufrpe.sigava.negocio.beans.Login;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -24,6 +35,9 @@ import javafx.scene.layout.AnchorPane;
  * @author elive
  */
 public class Controller implements Initializable {
+    
+    public static boolean IS_ALUNO;
+    public static boolean IS_PROFESSOR;
 
     @FXML
     private AnchorPane pane_Login;
@@ -47,8 +61,26 @@ public class Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    public boolean isProfessor(Object o){
+        if(o.getClass().equals(Professor.class)){
+            IS_PROFESSOR = true;
+        }
+        return IS_PROFESSOR;
+    }
+    public boolean isAluno(Object o){
+        if(o.getClass().equals(Aluno.class)){
+            IS_ALUNO = true;
+        }
+        return IS_ALUNO;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        IServidorSigava servidor = ServidorSigava.getIstance();
+        String usuario, senha;
+        //Dimensionamento
+        
         Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         btn_login.setLayoutX(screenDimension.getWidth()/2);
         btn_login.setLayoutY(screenDimension.getHeight()/1.85);
@@ -64,6 +96,56 @@ public class Controller implements Initializable {
         icon_User.setLayoutY(screenDimension.getHeight()/2.3);
         icon_UserLock.setLayoutX(screenDimension.getWidth()/2.15);
         icon_UserLock.setLayoutY(screenDimension.getHeight()/2.05);
+        
+        //Funcionalidades
+        
+        usuario = txt_CPF.getText();
+        senha = txt_PASS.getText();
+        Login login = new Login(usuario, senha);
+        Aluno aluno;
+        Professor professor;
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Login ERROR");
+        Alert alertProf = new Alert(Alert.AlertType.INFORMATION);
+        alertProf.setTitle("Login ERROR PROF");
+        
+        try{
+            aluno = servidor.buscarAluno(usuario);
+            professor = servidor.buscarProfessor(usuario);
+            if(aluno.getLogin().equals(login)){
+                this.isAluno(aluno);
+            }else{
+                if(professor.getLogin().equals(login)){
+                    this.isProfessor(professor);
+                }
+            }
+        }catch(AlunoNaoExisteException e){
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+        }catch(ProfessorNaoExisteException e1){
+            alertProf.setHeaderText(null);
+            alertProf.setContentText(e1.getMessage());
+        }
+        
+        btn_login.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(!IS_ALUNO){
+                    alert.showAndWait();
+                }else if(!IS_PROFESSOR){
+                     alertProf.showAndWait();
+                }
+            }
+        });
+        
+        btn_CancelLogin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                txt_CPF.setText("");
+                txt_PASS.setText("");
+            }
+        });
     }    
     
 }

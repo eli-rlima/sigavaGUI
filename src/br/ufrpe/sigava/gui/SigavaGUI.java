@@ -21,7 +21,7 @@ public class SigavaGUI extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ADM.fxml"));
         /*Parent rootAluno = FXMLLoader.load(getClass().getResource("Aluno.fxml"));
         Scene sceneAluno = new Scene(rootAluno);
         

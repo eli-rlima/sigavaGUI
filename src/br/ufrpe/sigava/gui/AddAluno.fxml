@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="306.0" prefWidth="344.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.AddAlunoController">
+   <children>
+      <Pane prefHeight="36.0" prefWidth="347.0">
+         <children>
+            <Label alignment="BASELINE_CENTER" layoutY="1.0" prefHeight="36.0" prefWidth="347.0" text="Adicionar novo Aluno" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <GridPane layoutY="36.0" prefHeight="216.0" prefWidth="347.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="126.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="349.0" minWidth="10.0" prefWidth="221.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="47.0" prefWidth="157.0" text="Nome: " textFill="WHITE">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Email:" textFill="WHITE" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Sexo: " textFill="WHITE" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Nascimento:" textFill="WHITE" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="CPF: " textFill="WHITE" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Senha: " textFill="WHITE" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="calendar_AddAluno" onAction="#add_Aluno" prefHeight="35.0" prefWidth="128.0" promptText="Data de Nascimento" style="-fx-background-color: #0000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </DatePicker>
+            <JFXTextField fx:id="txt_EmailAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="8.0" prefWidth="349.0" promptText="Digite seu email" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="1.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_NomeAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="0.0" prefWidth="349.0" promptText="Digite o nome completo" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="1.0" />
+               </padding>
+            </JFXTextField>
+            <JFXPasswordField fx:id="passfield_SenhaAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="25.0" prefWidth="202.0" promptText="Digite a Senha" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="100.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </JFXPasswordField>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Senha:" textFill="WHITE" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXPasswordField fx:id="passfield_ConfSenhaAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="25.0" prefWidth="132.0" promptText="Confirme a Senha" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="5.0" right="100.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </JFXPasswordField>
+            <JFXComboBox fx:id="combobox_SexoAluno" accessibleRole="TEXT" focusColor="BLACK" onAction="#OnAction_SexoAluno" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </JFXComboBox>
+            <JFXTextField fx:id="txt_CPFAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" promptText="___.___.___-__" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="100.0" />
+               </GridPane.margin>
+            </JFXTextField>
+         </children>
+      </GridPane>
+      <HBox layoutX="150.0" layoutY="267.0" prefHeight="36.0" prefWidth="200.0">
+         <children>
+            <JFXButton fx:id="btn_Add" alignment="BASELINE_CENTER" onAction="#add_Aluno" prefHeight="36.0" prefWidth="103.0" text="Adicionar" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btn_Cancel" alignment="BASELINE_CENTER" onAction="#add_Aluno" prefHeight="39.0" prefWidth="112.0" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

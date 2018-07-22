@@ -25,9 +25,13 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Pessoa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.negocio.beans.Login;
+import br.ufrpe.sigava.gui.ADM;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,6 +42,8 @@ public class Controller implements Initializable {
     
     public static boolean IS_ALUNO;
     public static boolean IS_PROFESSOR;
+    private static final String USER_ADM = "admin";
+    private static final String LOCK_ADM = "admin";
 
     @FXML
     private AnchorPane pane_Login;
@@ -45,8 +51,6 @@ public class Controller implements Initializable {
     private JFXButton btn_login;
     @FXML
     private JFXButton btn_CancelLogin;
-    @FXML
-    private JFXButton btn_Cadastrar;
     @FXML
     private JFXTextField txt_CPF;
     @FXML
@@ -86,8 +90,6 @@ public class Controller implements Initializable {
         btn_login.setLayoutY(screenDimension.getHeight()/1.85);
         btn_CancelLogin.setLayoutX(screenDimension.getWidth()/1.8);
         btn_CancelLogin.setLayoutY(screenDimension.getHeight()/1.85);
-        btn_Cadastrar.setLayoutX(screenDimension.getWidth()/1.1);
-        btn_Cadastrar.setLayoutY(screenDimension.getHeight()/20);
         txt_CPF.setLayoutX(screenDimension.getWidth()/2);
         txt_CPF.setLayoutY(screenDimension.getHeight()/2.5);
         txt_PASS.setLayoutX(screenDimension.getWidth()/2);
@@ -119,7 +121,7 @@ public class Controller implements Initializable {
                 if(professor.getLogin().equals(login)){
                     this.isProfessor(professor);
                 }
-            }
+            }  
         }catch(AlunoNaoExisteException e){
             alert.setHeaderText(null);
             alert.setContentText(e.getMessage());
@@ -131,21 +133,37 @@ public class Controller implements Initializable {
         btn_login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(!IS_ALUNO){
-                    alert.showAndWait();
-                }else if(!IS_PROFESSOR){
-                     alertProf.showAndWait();
+                String usuario, senha;
+                ADM adm = new ADM();
+                usuario = txt_CPF.getText();
+                senha = txt_PASS.getText();
+                
+                if(usuario.equalsIgnoreCase(USER_ADM) && senha.equalsIgnoreCase(LOCK_ADM)){
+                    SigavaGUI.fechar();
+                    try {
+                        adm.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    if(!IS_ALUNO){
+                        alert.show();
+                    }else if(!IS_PROFESSOR){
+                        alertProf.show();
+                    }
                 }
+                
             }
         });
         
         btn_CancelLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                txt_CPF.setText("");
-                txt_PASS.setText("");
+                SigavaGUI.fechar();
             }
         });
+        
+        
     }    
     
 }

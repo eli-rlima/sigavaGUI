@@ -5,8 +5,7 @@
  */
 package br.ufrpe.sigava.gui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,24 +17,29 @@ import javafx.stage.Stage;
  * @author elive
  */
 public class SigavaGUI extends Application {
+    private static Stage stage;
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ADM.fxml"));
-        /*Parent rootAluno = FXMLLoader.load(getClass().getResource("Aluno.fxml"));
-        Scene sceneAluno = new Scene(rootAluno);
-        
-        if(Controller.IS_ALUNO){
-            stage.setScene(sceneAluno);
-        }*/
-        
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+        setStage(stage);
     }
-
+    
+    public static void fechar(){
+        stage.close();
+    }
+    
+    public static Stage getStage(){
+        return stage;
+    }
+    public static void setStage(Stage stage){
+        SigavaGUI.stage = stage;
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -20,7 +20,7 @@ public class ADM extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent rootADM = FXMLLoader.load(getClass().getResource("ADM.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("FXML/ADM.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
         primaryStage.setMaximized(true);

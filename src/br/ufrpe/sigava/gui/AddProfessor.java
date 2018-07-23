@@ -37,7 +37,7 @@ public class AddProfessor extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
-        Parent rootADM = FXMLLoader.load(getClass().getResource("AddProfessor.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("FXML/AddProfessor.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
         primaryStage.show();

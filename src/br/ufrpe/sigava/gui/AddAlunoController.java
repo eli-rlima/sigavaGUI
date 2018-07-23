@@ -13,11 +13,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -57,9 +59,6 @@ public class AddAlunoController implements Initializable {
 
     @FXML
     private void add_Aluno(ActionEvent event) {
-        if(event.getSource() == btn_Cancel){ 
-           System.exit(0);
-        } 
         
         if(event.getSource() == btn_Add){ 
           
@@ -70,6 +69,12 @@ public class AddAlunoController implements Initializable {
     @FXML
     private void OnAction_SexoAluno(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void cancel_Close(ActionEvent event) {
+        Stage stage = (Stage) btn_Cancel.getScene().getWindow();
+        stage.close();
     }
     
 }

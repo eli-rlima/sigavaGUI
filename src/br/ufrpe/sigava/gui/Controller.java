@@ -45,7 +45,7 @@ import javafx.stage.Stage;
  *
  * @author elive
  */
-public class LoginController implements Initializable {
+public class Controller implements Initializable {
     
     public static boolean IS_ALUNO;
     public static boolean IS_PROFESSOR;
@@ -150,7 +150,7 @@ public class LoginController implements Initializable {
                     try {
                         adm.start(new Stage());
                     } catch (Exception ex) {
-                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     if(!IS_ALUNO){

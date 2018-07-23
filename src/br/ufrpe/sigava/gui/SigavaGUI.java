@@ -21,10 +21,10 @@ public class SigavaGUI extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/Login.fxml"));
+        stage.resizableProperty().setValue(Boolean.FALSE);
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setMaximized(true);
         stage.show();
         setStage(stage);
     }

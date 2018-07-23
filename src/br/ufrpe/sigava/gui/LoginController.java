@@ -27,12 +27,17 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.negocio.beans.Login;
 import br.ufrpe.sigava.gui.ADM;
 import br.ufrpe.sigava.gui.ADM;
+import br.ufrpe.sigava.gui.ADM;
+import br.ufrpe.sigava.gui.SigavaGUI;
 import br.ufrpe.sigava.gui.SigavaGUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -40,7 +45,7 @@ import javafx.stage.Stage;
  *
  * @author elive
  */
-public class Controller implements Initializable {
+public class LoginController implements Initializable {
     
     public static boolean IS_ALUNO;
     public static boolean IS_PROFESSOR;
@@ -87,7 +92,7 @@ public class Controller implements Initializable {
         String usuario, senha;
         //Dimensionamento
         
-        Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+       /* Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         btn_login.setLayoutX(screenDimension.getWidth()/2);
         btn_login.setLayoutY(screenDimension.getHeight()/1.85);
         btn_CancelLogin.setLayoutX(screenDimension.getWidth()/1.8);
@@ -100,7 +105,7 @@ public class Controller implements Initializable {
         icon_User.setLayoutY(screenDimension.getHeight()/2.3);
         icon_UserLock.setLayoutX(screenDimension.getWidth()/2.15);
         icon_UserLock.setLayoutY(screenDimension.getHeight()/2.05);
-        
+        */
         //Funcionalidades
         
         usuario = txt_CPF.getText();
@@ -145,7 +150,7 @@ public class Controller implements Initializable {
                     try {
                         adm.start(new Stage());
                     } catch (Exception ex) {
-                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
                     if(!IS_ALUNO){
@@ -157,6 +162,7 @@ public class Controller implements Initializable {
                 
             }
         });
+                
         
         btn_CancelLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -167,5 +173,7 @@ public class Controller implements Initializable {
         
         
     }    
+
+
     
 }

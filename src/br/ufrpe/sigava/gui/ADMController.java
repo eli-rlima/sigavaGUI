@@ -5,6 +5,9 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.gui.AddAluno;
+import br.ufrpe.sigava.gui.AddProfessor;
+import br.ufrpe.sigava.gui.SigavaGUI;
 import com.jfoenix.controls.JFXButton;
 import java.awt.Dimension;
 import java.awt.Toolkit;

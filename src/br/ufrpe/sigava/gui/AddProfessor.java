@@ -5,8 +5,8 @@
  */
 package br.ufrpe.sigava.gui;
 
-import static br.ufrpe.sigava.gui.ADM.setStage;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,9 +15,11 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author elive
+ * @author helto
  */
-public class AddAluno extends Application{
+public class AddProfessor extends Application{
+    
+ 
     private static Stage stage;
 
     public static Stage getStage() {
@@ -25,7 +27,7 @@ public class AddAluno extends Application{
     }
 
     public static void setStage(Stage stage) {
-        AddAluno.stage = stage;
+        AddProfessor.stage = stage;
     }
     
     public static void fechar(){
@@ -35,7 +37,7 @@ public class AddAluno extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
-        Parent rootADM = FXMLLoader.load(getClass().getResource("AddAluno.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("AddProfessor.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
         primaryStage.show();
@@ -48,3 +50,5 @@ public class AddAluno extends Application{
     }
     
 }
+
+    

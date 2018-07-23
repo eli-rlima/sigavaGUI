@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -63,19 +64,19 @@ public class ADMController implements Initializable {
     @FXML
     private VBox vbox_Disciplina;
     @FXML
-    private JFXButton btn_Atualizar_Aluno11;
-    @FXML
-    private JFXButton btn_Buscar_Aluno11;
-    @FXML
-    private JFXButton btn_Cadastrar_Aluno11;
-    @FXML
-    private JFXButton btn_Remover_Aluno11;
-    @FXML
     private JFXButton btn_Ass_Aluno_Disc;
     @FXML
     private JFXButton btn_Ass_Prof_Disc;
     @FXML
     private Pane pane_Default;
+    @FXML
+    private JFXButton btn_Atualizar_Professor;
+    @FXML
+    private JFXButton btn_Buscar_Professor;
+    @FXML
+    private JFXButton btn_Cadastrar_Professor;
+    @FXML
+    private JFXButton btn_Remover_Professor;
 
     
     
@@ -92,7 +93,21 @@ public class ADMController implements Initializable {
                }
            }
        });
+       
+          btn_Cadastrar_Professor.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               AddProfessor addProfessor = new AddProfessor();
+               try {
+                   addProfessor.start(new Stage());
+                   
+               } catch (Exception ex) {
+                   Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       });
     }
+    
     @FXML
     public void handleClicks(ActionEvent event){ 
         if(event.getSource() == btn_Aluno){ 

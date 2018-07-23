@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -77,6 +78,8 @@ public class ADMController implements Initializable {
     private JFXButton btn_Cadastrar_Professor;
     @FXML
     private JFXButton btn_Remover_Professor;
+    @FXML
+    private JFXButton btn_Logout;
 
     
     
@@ -130,5 +133,19 @@ public class ADMController implements Initializable {
     @FXML
     private void handleClicks(MouseEvent event) {
     }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        
+        SigavaGUI sigava = new SigavaGUI();
+        Stage stage = (Stage) btn_Logout.getScene().getWindow();
+        stage.close();
+        try {
+            sigava.start(new Stage());
+        } catch (Exception ex) {
+            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 }

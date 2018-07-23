@@ -26,6 +26,8 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Pessoa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.negocio.beans.Login;
 import br.ufrpe.sigava.gui.ADM;
+import br.ufrpe.sigava.gui.ADM;
+import br.ufrpe.sigava.gui.SigavaGUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;

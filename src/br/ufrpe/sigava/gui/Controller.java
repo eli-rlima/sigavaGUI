@@ -38,6 +38,9 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 /**
@@ -72,6 +75,22 @@ public class Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    public static void AlteracaoCorMouse(JFXButton b){
+        b.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                b.setStyle("-fx-background-color: #808080;");
+            }
+        });
+        
+        b.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                b.setStyle("-fx-background-color: #000000;");
+            }
+        });
+    }
     
     public boolean isProfessor(Object o){
         if(o.getClass().equals(Professor.class)){
@@ -145,7 +164,7 @@ public class Controller implements Initializable {
                 usuario = txt_CPF.getText();
                 senha = txt_PASS.getText();
                 
-                if(usuario.equalsIgnoreCase(USER_ADM) && senha.equalsIgnoreCase(LOCK_ADM)){
+                if(usuario.equals(USER_ADM) && senha.equals(LOCK_ADM)){
                     SigavaGUI.fechar();
                     try {
                         adm.start(new Stage());
@@ -171,9 +190,7 @@ public class Controller implements Initializable {
             }
         });
         
-        
-    }    
-
-
-    
+        AlteracaoCorMouse(btn_login);
+        AlteracaoCorMouse(btn_CancelLogin);
+    }
 }

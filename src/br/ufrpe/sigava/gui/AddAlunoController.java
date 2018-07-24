@@ -54,7 +54,8 @@ public class AddAlunoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         combobox_SexoAluno.getItems().add(new Label ("Masculino"));
         combobox_SexoAluno.getItems().add(new Label ("Feminino"));
- 
+        Controller.AlteracaoCorMouse(btn_Add);
+        Controller.AlteracaoCorMouse(btn_Cancel);
     }    
 
     @FXML

@@ -201,13 +201,16 @@
       </VBox>
       <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
-      <JFXButton fx:id="btn_Logout" alignment="TOP_CENTER" layoutX="-2.0" layoutY="380.0" onAction="#logout" prefHeight="57.0" prefWidth="258.0" style="-fx-background-color: BLACK;" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="0.0">
+      <JFXButton fx:id="btn_Logout" alignment="CENTER" layoutX="-2.0" layoutY="380.0" onAction="#logout" prefHeight="57.0" prefWidth="258.0" style="-fx-background-color: BLACK;" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="0.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="25" textAlignment="CENTER" wrappingWidth="30.142857551574707" />
          </graphic>
          <font>
             <Font size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
    </children>
 </AnchorPane>

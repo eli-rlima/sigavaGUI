@@ -100,7 +100,7 @@ public class ADMController implements Initializable {
            }
        });
        
-          btn_Cadastrar_Professor.setOnAction(new EventHandler<ActionEvent>() {
+       btn_Cadastrar_Professor.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
                AddProfessor addProfessor = new AddProfessor();
@@ -112,6 +112,23 @@ public class ADMController implements Initializable {
                }
            }
        });
+       Controller.AlteracaoCorMouse(btn_Aluno);
+       Controller.AlteracaoCorMouse(btn_Ass_Aluno_Disc);
+       Controller.AlteracaoCorMouse(btn_Ass_Prof_Disc);
+       Controller.AlteracaoCorMouse(btn_Atualizar_Aluno);
+       Controller.AlteracaoCorMouse(btn_Atualizar_Disciplina);
+       Controller.AlteracaoCorMouse(btn_Atualizar_Professor);
+       Controller.AlteracaoCorMouse(btn_Buscar_Aluno);
+       Controller.AlteracaoCorMouse(btn_Buscar_Disciplina);
+       Controller.AlteracaoCorMouse(btn_Buscar_Professor);
+       Controller.AlteracaoCorMouse(btn_Cadastrar_Aluno);
+       Controller.AlteracaoCorMouse(btn_Cadastrar_Disciplina);
+       Controller.AlteracaoCorMouse(btn_Cadastrar_Professor);
+       Controller.AlteracaoCorMouse(btn_Disciplina);
+       Controller.AlteracaoCorMouse(btn_Logout);
+       Controller.AlteracaoCorMouse(btn_Remover_Aluno);
+       Controller.AlteracaoCorMouse(btn_Professor);
+       Controller.AlteracaoCorMouse(btn_Remover_Disciplina);
     }
     
     @FXML

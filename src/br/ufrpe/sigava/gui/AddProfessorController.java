@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import br.ufrpe.sigava.gui.Controller;
 
 /**
  * FXML Controller class
@@ -51,6 +52,8 @@ public class AddProfessorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         combobox_SexoProfessor.getItems().add(new String ("Masculino"));
         combobox_SexoProfessor.getItems().add(new String ("Feminino"));
+        Controller.AlteracaoCorMouse(btn_Add);
+        Controller.AlteracaoCorMouse(btn_Cancel);
     }    
 
     @FXML

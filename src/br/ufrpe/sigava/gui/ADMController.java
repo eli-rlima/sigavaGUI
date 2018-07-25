@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -32,7 +33,6 @@ import javafx.stage.StageStyle;
  * @author Thiago
  */
 public class ADMController implements Initializable {
-
     @FXML
     private Pane pane_Aluno;
     @FXML
@@ -83,6 +83,7 @@ public class ADMController implements Initializable {
     private JFXButton btn_Remover_Professor;
     @FXML
     private JFXButton btn_Logout;
+   
 
     
     

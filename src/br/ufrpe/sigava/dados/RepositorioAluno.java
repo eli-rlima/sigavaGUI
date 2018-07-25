@@ -5,11 +5,18 @@ import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class RepositorioAluno implements IRepositorioAluno{
+public class RepositorioAluno implements IRepositorioAluno, Serializable{
     private ArrayList<Aluno> repositorioAluno;
     private static RepositorioAluno instance;
 
@@ -161,5 +168,54 @@ public class RepositorioAluno implements IRepositorioAluno{
     public ArrayList<Disciplina> listarDisciplinas (Aluno aluno){
         return aluno.getDisciplinas();
     }
+    
+    private static RepositorioAluno lerDoArquivo() {
+    RepositorioAluno instanciaLocal = null;
+    File in = new File("Aluno.dat");
+    FileInputStream fis = null;
+    ObjectInputStream ois = null;
+    try {
+      fis = new FileInputStream(in);
+      ois = new ObjectInputStream(fis);
+      Object o = ois.readObject();
+      instanciaLocal = (RepositorioAluno) o;
+    } catch (Exception e) {
+      instanciaLocal =  new RepositorioAluno();
+    } finally {
+      if (ois != null) {
+        try {
+          ois.close();
+        } catch (IOException e) {/* Silent exception */
+        }
+      }
+    }
+
+    return instanciaLocal;
+  }
+      
+    @Override
+    public void salvarArquivo() {
+    if (instance == null) {
+      return;
+    }
+    File out = new File("Aluno.dat");
+    FileOutputStream fos = null;
+    ObjectOutputStream oos = null;
+
+    try {
+      fos = new FileOutputStream(out);
+      oos = new ObjectOutputStream(fos);
+      oos.writeObject(instance);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      if (oos != null) {
+        try {
+          oos.close();
+        } catch (IOException e) {
+          /* Silent */}
+      }
+    }
+  }
 
 }

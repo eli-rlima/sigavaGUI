@@ -1,11 +1,14 @@
 package br.ufrpe.sigava.negocio;
 
 import br.ufrpe.sigava.dados.IRepositorioDisciplina;
+import br.ufrpe.sigava.dados.RepositorioAluno;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.dados.RepositorioDisciplina;
+import br.ufrpe.sigava.dados.RepositorioProfessor;
+import br.ufrpe.sigava.dados.RepositorioTarefa;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
@@ -26,6 +29,7 @@ public class CadastroDisciplinas {
     public void cadastrar(Disciplina disciplina) throws DisciplinaJaExisteException{
         if (!this.repositorioDisciplina.existe(disciplina)){
            this.repositorioDisciplina.adicionar(disciplina);
+           this.repositorioDisciplina.salvarArquivo();
         }else{
             throw new DisciplinaJaExisteException();
         }
@@ -41,6 +45,7 @@ public class CadastroDisciplinas {
             Disciplina disciplina = new Disciplina(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
             if(!repositorioDisciplina.existe(disciplina)){
                 this.repositorioDisciplina.adicionar(disciplina);
+                this.repositorioDisciplina.salvarArquivo();
             }else{
                 throw new DisciplinaJaExisteException();
             }
@@ -51,7 +56,15 @@ public class CadastroDisciplinas {
 
     public void descadastrar(Disciplina disciplina) throws DisciplinaNaoExisteException{
         if(disciplina != null){
+            ArrayList<Aluno> alunos = disciplina.getAlunos();
+            for (int i = 0; i < alunos.size(); i++) {
+                alunos.get(i).removerDisciplina(disciplina);
+            }
+            RepositorioProfessor.getInstance().remover(disciplina.getProfessor());
             this.repositorioDisciplina.remover(disciplina);
+            this.repositorioDisciplina.salvarArquivo();
+            RepositorioAluno.getInstance().salvarArquivo();
+            RepositorioProfessor.getInstance().salvarArquivo();
         } else{
             throw new DisciplinaNaoExisteException();
         }
@@ -87,6 +100,8 @@ public class CadastroDisciplinas {
             if(professor != null){
                 disciplina.adicionarProfessor(professor);
                 professor.adicionar(disciplina);
+                this.repositorioDisciplina.salvarArquivo();
+                RepositorioProfessor.getInstance().salvarArquivo();
             }else throw new ProfessorNaoExisteException();
         }else throw new DisciplinaNaoExisteException();
     }
@@ -102,6 +117,8 @@ public class CadastroDisciplinas {
         if(aluno != null){
             disciplina.adicionarAluno(aluno);
             aluno.adicionarDisciplina(disciplina);
+            RepositorioAluno.getInstance().salvarArquivo();
+            this.repositorioDisciplina.salvarArquivo();
         }else throw new AlunoNaoExisteException();
     }
 
@@ -115,6 +132,8 @@ public class CadastroDisciplinas {
         }else throw new IllegalArgumentException("Argumento inválido");
         if(tarefa != null){
             disciplina.adicionarTarefa(tarefa);
+            this.repositorioDisciplina.salvarArquivo();
+            RepositorioTarefa.getInstance().salvarArquivo();
         }else throw new TarefaNaoExisteException();
     }
 }

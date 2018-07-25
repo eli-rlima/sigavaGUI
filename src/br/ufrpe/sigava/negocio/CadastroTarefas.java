@@ -1,6 +1,7 @@
 package br.ufrpe.sigava.negocio;
 
 import br.ufrpe.sigava.dados.IRepositorioTarefa;
+import br.ufrpe.sigava.dados.RepositorioDisciplina;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.dados.RepositorioTarefa;
@@ -35,6 +36,7 @@ public class CadastroTarefas {
             if(disciplina != null){
                 if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
                     this.repositorioTarefa.adicionar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
+                    this.repositorioTarefa.salvarArquivo();
                 }else{
                     throw new TarefaJaExisteException();
                 }
@@ -45,8 +47,11 @@ public class CadastroTarefas {
    }
 
     public void descadastrar(Tarefa tarefa) throws TarefaNaoExisteException{
-        if(tarefa != null){ 
+        if(tarefa != null){
+            tarefa.getDisciplina().removerTarefa(tarefa);
             this.repositorioTarefa.remover(tarefa);
+            this.repositorioTarefa.salvarArquivo();
+            RepositorioDisciplina.getInstance().salvarArquivo();
         } else throw new TarefaNaoExisteException();
     }
 

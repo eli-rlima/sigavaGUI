@@ -2,12 +2,13 @@ package br.ufrpe.sigava.negocio.beans.pessoa;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Login;
+import java.io.Serializable;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable{
     private String nome;
     private String email;
     private char sexo;

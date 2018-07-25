@@ -1,10 +1,11 @@
 package br.ufrpe.sigava.negocio.beans;
 
+import java.io.Serializable;
 import java.time.LocalDate; 
 import java.time.Period; 
 import java.time.format.DateTimeFormatter; 
  
-public class Tarefa { 
+public class Tarefa implements Serializable{ 
     private String descricao; 
     private LocalDate dataInicio; 
     private LocalDate dataTermino; 

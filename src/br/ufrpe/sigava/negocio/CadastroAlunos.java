@@ -25,6 +25,7 @@ public class CadastroAlunos {
     public void cadastrar(Aluno aluno) throws AlunoJaExisteException {
        if(!repositorioAluno.existe(aluno)){
            this.repositorioAluno.adicionar(aluno);
+           this.repositorioAluno.salvarArquivo();
         } else{ 
            throw new AlunoJaExisteException();
        }
@@ -37,6 +38,7 @@ public class CadastroAlunos {
             Aluno aluno = repositorioAluno.buscar(cpf);
             if (aluno == null) { //TODO
                  repositorioAluno.adicionar(nome, email, sexo, dataNascimento, senha, cpf);
+                 this.repositorioAluno.salvarArquivo();
             }else{
                 throw new AlunoJaExisteException();
             }
@@ -48,6 +50,7 @@ public class CadastroAlunos {
     public void descadastrar(Aluno aluno) throws AlunoNaoExisteException {
          if(aluno != null && repositorioAluno.existe(aluno)){
             this.repositorioAluno.remover(aluno);
+            this.repositorioAluno.salvarArquivo();
         }else{
              throw new AlunoNaoExisteException();
          }
@@ -100,6 +103,7 @@ public class CadastroAlunos {
                                 if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isAfter(dataTermino)){ //TODO
                                     marcacao = new Marcacao(codigoTarefa,dataTermino);
                                     retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);
+                                    this.repositorioAluno.salvarArquivo();
                                 }
                             }else{
                                 throw new TarefaNaoExisteException();
@@ -134,6 +138,7 @@ public class CadastroAlunos {
                         if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
                             marcacao = new Marcacao(codigoTarefa,dataTermino);
                             repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
+                            this.repositorioAluno.salvarArquivo();
                         }
                     }else{
                         throw new TarefaNaoExisteException();
@@ -155,6 +160,7 @@ public class CadastroAlunos {
             if(nomeCronograma != null){
                 if(aluno != null){
                     repositorioAluno.removerMarcacao(nomeCronograma, aluno, marcacao);
+                    this.repositorioAluno.salvarArquivo();
                 }else{
                     throw new AlunoNaoExisteException();
                 }
@@ -199,6 +205,7 @@ public class CadastroAlunos {
                                 if(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa())!= null){
                                     if(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getDataTermino().isAfter(aluno.getDisciplinas().get(j).procurarTarefa(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i).getCodigoTarefa()).getDataTermino())){
                                         aluno.buscarCronograma(nomeCronograma).remover(aluno.buscarCronograma(nomeCronograma).marcacoes().get(i));
+                                        this.repositorioAluno.salvarArquivo();
                                     }
                                 }else{
                                     throw new TarefaNaoExisteException();
@@ -247,6 +254,7 @@ public class CadastroAlunos {
                 if(aluno.buscarCronograma(nomeCronograma) == null){
                     cronograma = new Cronograma(nomeCronograma);
                     aluno.adicionarCronograma(cronograma);
+                    this.repositorioAluno.salvarArquivo();
                 }else{
                     throw new CronogramaNaoExisteException();
                 }
@@ -266,6 +274,7 @@ public class CadastroAlunos {
                 if(aluno.buscarCronograma(nomeCronograma) != null){
                     cronograma = aluno.buscarCronograma(nomeCronograma);
                     aluno.removerCronograma(cronograma);
+                    this.repositorioAluno.salvarArquivo();
                 }else{
                     throw new CronogramaNaoExisteException();
                 }

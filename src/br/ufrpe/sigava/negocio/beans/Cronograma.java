@@ -1,9 +1,10 @@
 package br.ufrpe.sigava.negocio.beans;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Cronograma {
+public class Cronograma implements Serializable{
     private ArrayList<Marcacao> marcacoes = new ArrayList<Marcacao>();
     private String nome;
     

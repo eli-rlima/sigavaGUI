@@ -1,6 +1,8 @@
 package br.ufrpe.sigava.negocio.beans;
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable{
 
     private String usuario;
     private String senha;

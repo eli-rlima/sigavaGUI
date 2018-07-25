@@ -1,11 +1,12 @@
 package br.ufrpe.sigava.negocio.beans;
 
 import br.ufrpe.sigava.negocio.CadastroTarefas;
+import java.io.Serializable;
 import java.lang.StringBuilder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Marcacao {
+public class Marcacao implements Serializable{
     private int codigoTarefa;
     private LocalDate dataTermino;
 

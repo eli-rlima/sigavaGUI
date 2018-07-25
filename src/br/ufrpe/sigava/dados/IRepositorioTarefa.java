@@ -67,5 +67,12 @@ public interface IRepositorioTarefa {
 
     ArrayList <Tarefa> listarTarefas();
 
-
+   /**
+   * Método responsável por Salvar todo o repositório em um arquivo específico,
+   * apagando o conteúdo salvo arteriormente no arquivo ou criando um novo
+   * arquivo se o mesmo não existir.
+   * 
+   */
+  void salvarArquivo();
+  
 }

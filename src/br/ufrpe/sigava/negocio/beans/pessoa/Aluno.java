@@ -2,11 +2,12 @@ package br.ufrpe.sigava.negocio.beans.pessoa;
 
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import java.io.Serializable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public  class Aluno extends Pessoa{
+public  class Aluno extends Pessoa implements Serializable{
     private ArrayList <Cronograma> cronogramas = new ArrayList<Cronograma>();
     private ArrayList <Disciplina> disciplinas = new ArrayList<Disciplina>();
 

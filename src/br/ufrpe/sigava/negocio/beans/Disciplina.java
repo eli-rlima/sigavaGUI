@@ -2,13 +2,14 @@ package br.ufrpe.sigava.negocio.beans;
 
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
+import java.io.Serializable;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Disciplina{
+public class Disciplina implements Serializable{
 
     private String nome;
     private Professor professor;
@@ -70,6 +71,10 @@ public class Disciplina{
     public ArrayList getAlunos() {
     return alunos;
     }
+    
+    public ArrayList getTarefas(){
+        return tarefas;
+    }
 
     public LocalDate getDataInicio() {
     return dataInicio;
@@ -123,6 +128,15 @@ public class Disciplina{
         if (aluno != null) {
               this.alunos.add(aluno);
               retorno = true;
+        }
+        return retorno;
+    }
+    
+    public boolean removerProfessor(Professor professor){
+        boolean retorno = false;
+        if (this.professor != null){
+            professor = null;
+            retorno = true;
         }
         return retorno;
     }

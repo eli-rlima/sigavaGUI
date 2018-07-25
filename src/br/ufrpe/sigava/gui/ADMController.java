@@ -112,6 +112,30 @@ public class ADMController implements Initializable {
                }
            }
        });
+       btn_Atualizar_Professor.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               AttProfessor attProfessor = new AttProfessor();
+               try {
+                   attProfessor.start(new Stage());
+               } catch (Exception ex) {
+                   Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       });
+       
+       btn_Atualizar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+               AttAluno attAluno = new AttAluno();
+               try {
+                   attAluno.start(new Stage());
+               } catch (Exception ex) {
+                   Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+       });
+       
        Biblioteca.AlteracaoCorMouse(btn_Aluno);
        Biblioteca.AlteracaoCorMouse(btn_Ass_Aluno_Disc);
        Biblioteca.AlteracaoCorMouse(btn_Ass_Prof_Disc);

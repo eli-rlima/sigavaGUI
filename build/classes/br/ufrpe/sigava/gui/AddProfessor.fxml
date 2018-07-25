@@ -90,14 +90,17 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <DatePicker fx:id="calendar_AddProfessor" prefHeight="35.0" prefWidth="128.0" promptText="Data de Nascimento" style="-fx-background-color: #0000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <JFXTextField fx:id="txt_NomeProfessor" focusColor="BLACK" prefHeight="0.0" prefWidth="349.0" promptText="Digite o nome completo" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1">
                <GridPane.margin>
-                  <Insets left="5.0" />
+                  <Insets left="5.0" right="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
                <padding>
-                  <Insets top="5.0" />
+                  <Insets right="1.0" />
                </padding>
-            </DatePicker>
+            </JFXTextField>
             <JFXTextField fx:id="txt_EmailProfessor" focusColor="BLACK" prefHeight="8.0" prefWidth="349.0" promptText="Digite seu email" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
@@ -109,16 +112,32 @@
                   <Insets right="1.0" />
                </padding>
             </JFXTextField>
-            <JFXTextField fx:id="txt_NomeProfessor" focusColor="BLACK" prefHeight="0.0" prefWidth="349.0" promptText="Digite o nome completo" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1">
+            <JFXComboBox fx:id="combobox_SexoProfessor" accessibleRole="TEXT" focusColor="BLACK" onAction="#OnAction_SexoProfessor" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
+                  <Insets left="5.0" />
                </GridPane.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </JFXComboBox>
+            <DatePicker fx:id="calendar_AddProfessor" prefHeight="35.0" prefWidth="128.0" promptText="Data de Nascimento" style="-fx-background-color: #0000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </DatePicker>
+            <JFXTextField fx:id="txt_CPFProfessor" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" promptText="___.___.___-__" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
                <padding>
-                  <Insets right="1.0" />
+                  <Insets right="5.0" />
                </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="100.0" />
+               </GridPane.margin>
             </JFXTextField>
             <JFXPasswordField fx:id="passfield_PassProfessor" focusColor="BLACK" prefHeight="25.0" prefWidth="202.0" promptText="Digite a Senha" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
@@ -131,14 +150,6 @@
                   <Insets right="5.0" />
                </padding>
             </JFXPasswordField>
-            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Senha:" textFill="WHITE" GridPane.rowIndex="6">
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <JFXPasswordField fx:id="passfield_ConfSenhaProfessor" focusColor="BLACK" prefHeight="25.0" prefWidth="132.0" promptText="Confirme a Senha" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="5.0" right="100.0" />
@@ -150,25 +161,14 @@
                   <Insets right="5.0" />
                </padding>
             </JFXPasswordField>
-            <JFXComboBox fx:id="combobox_SexoProfessor" accessibleRole="TEXT" focusColor="BLACK" onAction="#OnAction_SexoProfessor" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin>
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Senha:" textFill="WHITE" GridPane.rowIndex="6">
                <padding>
-                  <Insets left="5.0" />
+                  <Insets left="15.0" />
                </padding>
-            </JFXComboBox>
-            <JFXTextField fx:id="txt_CPFProfessor" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" promptText="___.___.___-__" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="5.0" right="100.0" />
-               </GridPane.margin>
-            </JFXTextField>
+            </Label>
          </children>
       </GridPane>
       <HBox layoutX="150.0" layoutY="267.0" prefHeight="36.0" prefWidth="200.0">

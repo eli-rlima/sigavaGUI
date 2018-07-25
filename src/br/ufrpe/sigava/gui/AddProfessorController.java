@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import br.ufrpe.sigava.gui.Controller;
 import br.ufrpe.sigava.negocio.IServidorSigava;
@@ -69,7 +68,7 @@ public class AddProfessorController implements Initializable {
 
     @FXML
     private void add_Aluno(ActionEvent event) {
-         IServidorSigava servidor = ServidorSigava.getIstance();
+        IServidorSigava servidor = ServidorSigava.getIstance();
         String nome, cpf, email;
         String senha = null;
         char sexo;
@@ -152,10 +151,6 @@ public class AddProfessorController implements Initializable {
                 }
             }
         } 
-    }
-
-    @FXML
-    private void add_Professor(ActionEvent event) {
     }
 
     @FXML

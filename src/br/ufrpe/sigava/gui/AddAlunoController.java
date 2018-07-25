@@ -69,8 +69,7 @@ public class AddAlunoController implements Initializable {
 
     @FXML
     private void add_Aluno(ActionEvent event) {
-        IServidorSigava servidor = ServidorSigava.getIstance();
-        Aluno aluno;        
+        IServidorSigava servidor = ServidorSigava.getIstance();        
         String nome, cpf, email;
         String senha = null;
         char sexo;
@@ -93,7 +92,7 @@ public class AddAlunoController implements Initializable {
                 }                              
                 Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
                 alertCadastro.setTitle("CADASTRO");
-                alertCadastro.setContentText("Deseja Cadastrar o aluno?");
+                alertCadastro.setContentText("Deseja Cadastrar o professor?");
                 Optional<ButtonType> result = alertCadastro.showAndWait();
                 AddAluno add = new AddAluno();
                 
@@ -101,7 +100,7 @@ public class AddAlunoController implements Initializable {
                     servidor.cadastrarAluno(nome, email, sexo, dataAniversario, senha, cpf);
                     Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
                     alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
-                    alertCadastrado.setContentText("Aluno cadastrado com sucesso!");
+                    alertCadastrado.setContentText("Professor cadastrado com sucesso!");
                     Optional<ButtonType> result1 = alertCadastrado.showAndWait();
                     
                     if(result1.get() == ButtonType.OK){
@@ -127,12 +126,30 @@ public class AddAlunoController implements Initializable {
                 Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
                 alertAlunoJaExiste.setTitle("ALUNO JÁ EXISTE");
                 alertAlunoJaExiste.setContentText(e.getMessage());
-                alertAlunoJaExiste.show();
+                Optional<ButtonType> result = alertAlunoJaExiste.showAndWait();
+                if(result.get() == ButtonType.OK){
+                    calendar_AddAluno.setValue(null);
+                    txt_CPFAluno.setText("");
+                    txt_EmailAluno.setText("");
+                    txt_NomeAluno.setText("");
+                    passfield_SenhaAluno.setText("");
+                    passfield_ConfSenhaAluno.setText("");
+                    combobox_SexoAluno.setValue(null);
+                }
             }catch(IllegalArgumentException e1){
                 Alert alertInvalido = new Alert(Alert.AlertType.ERROR);
                 alertInvalido.setTitle("Erro no cadastro");
                 alertInvalido.setContentText(e1.getMessage());
-                alertInvalido.show();
+                Optional<ButtonType> result1 = alertInvalido.showAndWait();
+                if(result1.get() == ButtonType.OK){
+                    calendar_AddAluno.setValue(null);
+                    txt_CPFAluno.setText("");
+                    txt_EmailAluno.setText("");
+                    txt_NomeAluno.setText("");
+                    passfield_SenhaAluno.setText("");
+                    passfield_ConfSenhaAluno.setText("");
+                    combobox_SexoAluno.setValue(null);
+                }
             }
         } 
     }

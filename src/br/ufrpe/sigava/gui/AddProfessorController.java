@@ -52,8 +52,8 @@ public class AddProfessorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         combobox_SexoProfessor.getItems().add(new String ("Masculino"));
         combobox_SexoProfessor.getItems().add(new String ("Feminino"));
-        Controller.AlteracaoCorMouse(btn_Add);
-        Controller.AlteracaoCorMouse(btn_Cancel);
+        Biblioteca.AlteracaoCorMouse(btn_Add);
+        Biblioteca.AlteracaoCorMouse(btn_Cancel);
     }    
 
     @FXML

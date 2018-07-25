@@ -150,7 +150,7 @@
                   <Insets right="5.0" />
                </padding>
             </JFXPasswordField>
-            <JFXComboBox fx:id="combobox_SexoAluno" accessibleRole="TEXT" focusColor="BLACK" onAction="#OnAction_SexoAluno" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <JFXComboBox fx:id="combobox_SexoAluno" accessibleRole="TEXT" focusColor="BLACK" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>

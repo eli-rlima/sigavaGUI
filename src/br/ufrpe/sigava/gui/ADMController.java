@@ -112,23 +112,23 @@ public class ADMController implements Initializable {
                }
            }
        });
-       Controller.AlteracaoCorMouse(btn_Aluno);
-       Controller.AlteracaoCorMouse(btn_Ass_Aluno_Disc);
-       Controller.AlteracaoCorMouse(btn_Ass_Prof_Disc);
-       Controller.AlteracaoCorMouse(btn_Atualizar_Aluno);
-       Controller.AlteracaoCorMouse(btn_Atualizar_Disciplina);
-       Controller.AlteracaoCorMouse(btn_Atualizar_Professor);
-       Controller.AlteracaoCorMouse(btn_Buscar_Aluno);
-       Controller.AlteracaoCorMouse(btn_Buscar_Disciplina);
-       Controller.AlteracaoCorMouse(btn_Buscar_Professor);
-       Controller.AlteracaoCorMouse(btn_Cadastrar_Aluno);
-       Controller.AlteracaoCorMouse(btn_Cadastrar_Disciplina);
-       Controller.AlteracaoCorMouse(btn_Cadastrar_Professor);
-       Controller.AlteracaoCorMouse(btn_Disciplina);
-       Controller.AlteracaoCorMouse(btn_Logout);
-       Controller.AlteracaoCorMouse(btn_Remover_Aluno);
-       Controller.AlteracaoCorMouse(btn_Professor);
-       Controller.AlteracaoCorMouse(btn_Remover_Disciplina);
+       Biblioteca.AlteracaoCorMouse(btn_Aluno);
+       Biblioteca.AlteracaoCorMouse(btn_Ass_Aluno_Disc);
+       Biblioteca.AlteracaoCorMouse(btn_Ass_Prof_Disc);
+       Biblioteca.AlteracaoCorMouse(btn_Atualizar_Aluno);
+       Biblioteca.AlteracaoCorMouse(btn_Atualizar_Disciplina);
+       Biblioteca.AlteracaoCorMouse(btn_Atualizar_Professor);
+       Biblioteca.AlteracaoCorMouse(btn_Buscar_Aluno);
+       Biblioteca.AlteracaoCorMouse(btn_Buscar_Disciplina);
+       Biblioteca.AlteracaoCorMouse(btn_Buscar_Professor);
+       Biblioteca.AlteracaoCorMouse(btn_Cadastrar_Aluno);
+       Biblioteca.AlteracaoCorMouse(btn_Cadastrar_Disciplina);
+       Biblioteca.AlteracaoCorMouse(btn_Cadastrar_Professor);
+       Biblioteca.AlteracaoCorMouse(btn_Disciplina);
+       Biblioteca.AlteracaoCorMouse(btn_Logout);
+       Biblioteca.AlteracaoCorMouse(btn_Remover_Aluno);
+       Biblioteca.AlteracaoCorMouse(btn_Professor);
+       Biblioteca.AlteracaoCorMouse(btn_Remover_Disciplina);
     }
     
     @FXML

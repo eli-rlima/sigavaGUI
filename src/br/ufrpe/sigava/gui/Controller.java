@@ -76,21 +76,6 @@ public class Controller implements Initializable {
      * Initializes the controller class.
      */
     
-    public static void AlteracaoCorMouse(JFXButton b){
-        b.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                b.setStyle("-fx-background-color: #808080;");
-            }
-        });
-        
-        b.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                b.setStyle("-fx-background-color: #000000;");
-            }
-        });
-    }
     
     public boolean isProfessor(Object o){
         if(o.getClass().equals(Professor.class)){
@@ -190,7 +175,7 @@ public class Controller implements Initializable {
             }
         });
         
-        AlteracaoCorMouse(btn_login);
-        AlteracaoCorMouse(btn_CancelLogin);
+        Biblioteca.AlteracaoCorMouse(btn_login);
+        Biblioteca.AlteracaoCorMouse(btn_CancelLogin);
     }
 }

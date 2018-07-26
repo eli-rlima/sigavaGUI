@@ -88,12 +88,14 @@ public class AddProfessorController implements Initializable {
                     alertSenhaIncorreta.show();
                     passfield_PassProfessor.setText("");
                     passfield_ConfSenhaProfessor.setText("");
-                }                              
-                Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
-                alertCadastro.setTitle("CADASTRO");
-                alertCadastro.setContentText("Deseja Cadastrar o aluno?");
-                Optional<ButtonType> result = alertCadastro.showAndWait();
-                AddAluno add = new AddAluno();
+                }
+                Optional<ButtonType> result = null;
+                if(passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
+                    Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
+                    alertCadastro.setTitle("CADASTRO");
+                    alertCadastro.setContentText("Deseja Cadastrar o aluno?");
+                    result = alertCadastro.showAndWait();
+                }
                 
                 if(result.get() == ButtonType.OK){
                     servidor.cadastrarProfessor(nome, email, sexo, dataAniversario, senha, cpf);

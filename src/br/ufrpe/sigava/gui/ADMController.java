@@ -115,16 +115,21 @@ public class ADMController implements Initializable {
     private TableColumn<?, ?> tb_CellCPFP;
     @FXML
     private TableColumn<?, ?> tb_CellDataNascP;
-    
-   
-
-    
+    @FXML
+    private JFXButton btn_AttLista;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tb_CellCPFA.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellNameA.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascA.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        
+        btn_AttLista.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                listaAlunos();
+            }
+        });
         
         btn_Cadastrar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -191,7 +196,7 @@ public class ADMController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Remover_Aluno);
         Biblioteca.AlteracaoCorMouse(btn_Professor);
         Biblioteca.AlteracaoCorMouse(btn_Remover_Disciplina);
-        //Biblioteca.AlteracaoCorMouse(btn_AttList);
+        Biblioteca.AlteracaoCorMouse(btn_AttLista);
     }
     
     public void listaAlunos(){

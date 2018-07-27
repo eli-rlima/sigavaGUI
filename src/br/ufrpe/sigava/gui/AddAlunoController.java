@@ -82,29 +82,33 @@ public class AddAlunoController implements Initializable {
                 sexo = 'm';
             }else sexo = 'f';
             try{
-                while(!passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
-                    Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
-                    alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
-                    alertSenhaIncorreta.setContentText("Senhas não conferem, digite novamente!");
-                    alertSenhaIncorreta.show();
-                    passfield_SenhaAluno.setText("");
-                    passfield_ConfSenhaAluno.setText("");
-                }
-                Optional<ButtonType> result = null;
-                if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
-                    Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
-                    alertCadastro.setTitle("CADASTRO");
-                    alertCadastro.setContentText("Deseja Cadastrar o professor?");
-                    result = alertCadastro.showAndWait();
-                }
-                if(result.get() == ButtonType.OK){
-                    servidor.cadastrarAluno(nome, email, sexo, dataAniversario, senha, cpf);
-                    Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
-                    alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
-                    alertCadastrado.setContentText("Professor cadastrado com sucesso!");
-                    Optional<ButtonType> result1 = alertCadastrado.showAndWait();
-                    
-                    if(result1.get() == ButtonType.OK){
+                if(!passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
+                    throw new IllegalAccessError("Senhas não conferem!");
+                }else{
+                    Optional<ButtonType> result = null;
+                    if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
+                        Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertCadastro.setTitle("CADASTRO");
+                        alertCadastro.setContentText("Deseja Cadastrar o aluno?");
+                        result = alertCadastro.showAndWait();
+                    }
+                    if(result.get() == ButtonType.OK){
+                        servidor.cadastrarAluno(nome, email, sexo, dataAniversario, senha, cpf);
+                        Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
+                        alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
+                        alertCadastrado.setContentText("Aluno cadastrado com sucesso!");
+                        Optional<ButtonType> result1 = alertCadastrado.showAndWait();
+
+                        if(result1.get() == ButtonType.OK){
+                            calendar_AddAluno.setValue(null);
+                            txt_CPFAluno.setText("");
+                            txt_EmailAluno.setText("");
+                            txt_NomeAluno.setText("");
+                            passfield_SenhaAluno.setText("");
+                            passfield_ConfSenhaAluno.setText("");
+                            combobox_SexoAluno.setValue(null);
+                        }
+                    }else{
                         calendar_AddAluno.setValue(null);
                         txt_CPFAluno.setText("");
                         txt_EmailAluno.setText("");
@@ -113,16 +117,7 @@ public class AddAlunoController implements Initializable {
                         passfield_ConfSenhaAluno.setText("");
                         combobox_SexoAluno.setValue(null);
                     }
-                }else{
-                    calendar_AddAluno.setValue(null);
-                    txt_CPFAluno.setText("");
-                    txt_EmailAluno.setText("");
-                    txt_NomeAluno.setText("");
-                    passfield_SenhaAluno.setText("");
-                    passfield_ConfSenhaAluno.setText("");
-                    combobox_SexoAluno.setValue(null);
                 }
-                
             }catch(AlunoJaExisteException e){
                 Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
                 alertAlunoJaExiste.setTitle("ALUNO JÁ EXISTE");
@@ -151,6 +146,13 @@ public class AddAlunoController implements Initializable {
                     passfield_ConfSenhaAluno.setText("");
                     combobox_SexoAluno.setValue(null);
                 }
+            }catch(IllegalAccessError e2){
+                Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
+                alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
+                alertSenhaIncorreta.setContentText(e2.getMessage());
+                alertSenhaIncorreta.show();
+                passfield_SenhaAluno.setText("");
+                passfield_ConfSenhaAluno.setText("");
             }
         } 
     }

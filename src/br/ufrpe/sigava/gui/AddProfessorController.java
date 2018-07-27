@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -43,7 +44,7 @@ public class AddProfessorController implements Initializable {
     @FXML
     private JFXPasswordField passfield_ConfSenhaProfessor;
     @FXML
-    private JFXComboBox<String> combobox_SexoProfessor;
+    private JFXComboBox<Label> combobox_SexoProfessor;
     @FXML
     private JFXTextField txt_CPFProfessor;
     @FXML
@@ -56,8 +57,8 @@ public class AddProfessorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        combobox_SexoProfessor.getItems().add(new String ("Masculino"));
-        combobox_SexoProfessor.getItems().add(new String ("Feminino"));
+        combobox_SexoProfessor.getItems().add(new Label ("Masculino"));
+        combobox_SexoProfessor.getItems().add(new Label ("Feminino"));
         Biblioteca.AlteracaoCorMouse(btn_Add);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
     }    
@@ -67,8 +68,8 @@ public class AddProfessorController implements Initializable {
     }
 
     @FXML
-    private void add_Aluno(ActionEvent event) {
-        IServidorSigava servidor = ServidorSigava.getIstance();
+    private void add_Professor(ActionEvent event) {
+        IServidorSigava servidor = ServidorSigava.getIstance();        
         String nome, cpf, email;
         String senha = null;
         char sexo;
@@ -77,63 +78,58 @@ public class AddProfessorController implements Initializable {
             nome = txt_NomeProfessor.getText();
             cpf = txt_CPFProfessor.getText();
             email = txt_EmailProfessor.getText();
-            if(combobox_SexoProfessor.getSelectionModel().getSelectedItem().equalsIgnoreCase("Masculino")){
+           if(combobox_SexoProfessor.getSelectionModel().getSelectedItem().getText().equalsIgnoreCase("Masculino")){
                 sexo = 'm';
             }else sexo = 'f';
             try{
-                while(!passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
-                    Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
-                    alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
-                    alertSenhaIncorreta.setContentText("Senhas não conferem, digite novamente!");
-                    alertSenhaIncorreta.show();
-                    passfield_PassProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
-                }
-                Optional<ButtonType> result = null;
-                if(passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
-                    Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
-                    alertCadastro.setTitle("CADASTRO");
-                    alertCadastro.setContentText("Deseja Cadastrar o aluno?");
-                    result = alertCadastro.showAndWait();
-                }
-                
-                if(result.get() == ButtonType.OK){
-                    servidor.cadastrarProfessor(nome, email, sexo, dataAniversario, senha, cpf);
-                    Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
-                    alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
-                    alertCadastrado.setContentText("Aluno cadastrado com sucesso!");
-                    Optional<ButtonType> result1 = alertCadastrado.showAndWait();
-                    
-                    if(result1.get() == ButtonType.OK){
+                if(!passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
+                    throw new VerifyError("Senhas não conferem!");
+                }else{
+                    Optional<ButtonType> result = null;
+                    if(passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
+                        Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertCadastro.setTitle("CADASTRO");
+                        alertCadastro.setContentText("Deseja Cadastrar o professor?");
+                        result = alertCadastro.showAndWait();
+                    }
+                    if(result.get() == ButtonType.OK){
+                        senha = passfield_PassProfessor.getText();
+                        servidor.cadastrarProfessor(nome, email, sexo, dataAniversario, senha, cpf);
+                        Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
+                        alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
+                        alertCadastrado.setContentText("Professor cadastrado com sucesso!");
+                        Optional<ButtonType> result1 = alertCadastrado.showAndWait();
+
+                        if(result1.get() == ButtonType.OK){
+                            calendar_AddProfessor.setValue(null);
+                            txt_CPFProfessor.setText("");
+                            txt_EmailProfessor.setText("");
+                            txt_NomeProfessor.setText("");
+                            passfield_PassProfessor.setText("");
+                            passfield_ConfSenhaProfessor.setText("");
+                            combobox_SexoProfessor.setValue(null);
+                        }
+                    }else{
                         calendar_AddProfessor.setValue(null);
                         txt_CPFProfessor.setText("");
                         txt_EmailProfessor.setText("");
                         txt_NomeProfessor.setText("");
-                        passfield_ConfSenhaProfessor.setText("");
+                        passfield_PassProfessor.setText("");
                         passfield_ConfSenhaProfessor.setText("");
                         combobox_SexoProfessor.setValue(null);
                     }
-                }else{
-                    calendar_AddProfessor.setValue(null);
-                    txt_CPFProfessor.setText("");
-                    txt_EmailProfessor.setText("");
-                    txt_NomeProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
-                    combobox_SexoProfessor.setValue(null);
                 }
-                
             }catch(ProfessorJaExisteException e){
-                Alert alertProfJaExiste = new Alert(Alert.AlertType.WARNING);
-                alertProfJaExiste.setTitle("ALUNO JÁ EXISTE");
-                alertProfJaExiste.setContentText(e.getMessage());
-                Optional<ButtonType> result = alertProfJaExiste.showAndWait();
+                Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
+                alertAlunoJaExiste.setTitle("PROFESSOR JÁ EXISTE");
+                alertAlunoJaExiste.setContentText(e.getMessage());
+                Optional<ButtonType> result = alertAlunoJaExiste.showAndWait();
                 if(result.get() == ButtonType.OK){
                     calendar_AddProfessor.setValue(null);
                     txt_CPFProfessor.setText("");
                     txt_EmailProfessor.setText("");
                     txt_NomeProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
+                    passfield_PassProfessor.setText("");
                     passfield_ConfSenhaProfessor.setText("");
                     combobox_SexoProfessor.setValue(null);
                 }
@@ -147,18 +143,29 @@ public class AddProfessorController implements Initializable {
                     txt_CPFProfessor.setText("");
                     txt_EmailProfessor.setText("");
                     txt_NomeProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
+                    passfield_PassProfessor.setText("");
                     passfield_ConfSenhaProfessor.setText("");
                     combobox_SexoProfessor.setValue(null);
                 }
+            }catch(VerifyError e2){
+                Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
+                alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
+                alertSenhaIncorreta.setContentText(e2.getMessage());
+                alertSenhaIncorreta.show();
+                passfield_PassProfessor.setText("");
+                passfield_ConfSenhaProfessor.setText("");
             }
-        } 
+        }
     }
 
     @FXML
     private void cancel_Close(ActionEvent event) {
         Stage stage = (Stage) btn_Cancel.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void add_Aluno(ActionEvent event) {
     }
     
 }

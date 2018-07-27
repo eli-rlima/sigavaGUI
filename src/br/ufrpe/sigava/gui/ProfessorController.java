@@ -39,7 +39,7 @@ public class ProfessorController implements Initializable {
     @FXML
     private JFXButton btn_Logout;
     @FXML
-    private TableView<?> table_View_Disc;
+    private TableView<String> table_View_Disc;
 
     /**
      * Initializes the controller class.

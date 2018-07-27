@@ -9,6 +9,7 @@ import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.gui.ADMController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -98,6 +99,8 @@ public class AddAlunoController implements Initializable {
                         alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
                         alertCadastrado.setContentText("Aluno cadastrado com sucesso!");
                         Optional<ButtonType> result1 = alertCadastrado.showAndWait();
+                        
+                        
 
                         if(result1.get() == ButtonType.OK){
                             calendar_AddAluno.setValue(null);

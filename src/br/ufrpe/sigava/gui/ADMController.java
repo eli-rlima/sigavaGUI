@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.text.TabableView;
 
 /**
  * FXML Controller class
@@ -92,22 +94,38 @@ public class ADMController implements Initializable {
     @FXML
     private JFXButton btn_Logout;
     @FXML
-    private TableColumn<Aluno, String> tb_CellName;
-    @FXML
-    private TableColumn<Aluno, String> tb_CellCPF;
-    @FXML
-    private TableColumn<Aluno, String> tb_CellSexo1;
-    @FXML
     private TableView<Aluno> table_AdmAluno;
+    @FXML
+    private TableColumn<Aluno, String> tb_CellNameA;
+    @FXML
+    private TableColumn<Aluno, String> tb_CellCPFA;
+    @FXML
+    private TableColumn<Aluno, LocalDate> tb_CellDataNascA;
+    @FXML
+    private TableView<?> table_AdmDisc;
+    @FXML
+    private TableColumn<?, ?> tb_CellCH;
+    @FXML
+    private TableColumn<?, ?> tb_CellNameD;
+    @FXML
+    private TableView<?> table_AdmProfessor;
+    @FXML
+    private TableColumn<?, ?> tb_CellNameP;
+    @FXML
+    private TableColumn<?, ?> tb_CellCPFP;
+    @FXML
+    private TableColumn<?, ?> tb_CellDataNascP;
+    
    
 
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tb_CellCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        tb_CellName.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tb_CellSexo1.setCellValueFactory(new PropertyValueFactory<>("data de nascimento"));
+        tb_CellCPFA.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tb_CellNameA.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellDataNascA.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        
         btn_Cadastrar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -173,31 +191,34 @@ public class ADMController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Remover_Aluno);
         Biblioteca.AlteracaoCorMouse(btn_Professor);
         Biblioteca.AlteracaoCorMouse(btn_Remover_Disciplina);
+        //Biblioteca.AlteracaoCorMouse(btn_AttList);
     }
     
-    private ObservableList<Aluno> listaAlunos(){
-        return FXCollections.observableArrayList(
-                new Aluno("Elivelton", "email", 'm', LocalDate.now(), "1234", "103.312.343-12")
-        );
+    public void listaAlunos(){
+        table_AdmAluno.getItems().clear();
+        IServidorSigava servidor = ServidorSigava.getIstance();
+        ArrayList<Aluno> alunos = servidor.listarAlunos();
+        table_AdmAluno.getItems().addAll(alunos);
     }
-    
     @FXML
     public void handleClicks(ActionEvent event){ 
         if(event.getSource() == btn_Aluno){ 
-           
             pane_Aluno.toFront(); 
             vbox_Aluno.toFront();
-            table_AdmAluno.setItems(listaAlunos());
+            table_AdmAluno.toFront();
+            listaAlunos();
         } 
         if(event.getSource() == btn_Professor){ 
             
             pane_Professor.toFront(); 
             vbox_Professor.toFront(); 
+            table_AdmProfessor.toFront();
         } 
         if(event.getSource() == btn_Disciplina){ 
             
             pane_Disciplina.toFront(); 
             vbox_Disciplina.toFront(); 
+            table_AdmDisc.toFront();
         } 
     }
 

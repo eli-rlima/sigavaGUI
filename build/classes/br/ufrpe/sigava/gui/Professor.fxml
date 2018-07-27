@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.ProfessorController">
+   <children>
+      <VBox prefHeight="380.0" prefWidth="250.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="158.0" prefWidth="250.0">
+               <children>
+                  <Text fill="WHITE" layoutX="80.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGAVA">
+                     <font>
+                        <Font name="Calibri Light Italic" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <JFXButton fx:id="btn_Disciplina" onAction="#handleClicks" onMouseClicked="#handleClicks" prefHeight="74.0" prefWidth="252.0" text="Disciplina" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <VBox fx:id="vbox_Professor" layoutX="260.0" layoutY="94.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
+         <children>
+            <JFXButton fx:id="btn_Atualizar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn_Buscar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn_Cadastrar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Cadastrar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn_Remover_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Remover" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
+      <Pane fx:id="pane_Professor" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
+      <JFXButton fx:id="btn_Logout" alignment="CENTER" layoutX="-2.0" layoutY="380.0" onAction="#logout" prefHeight="57.0" prefWidth="258.0" style="-fx-background-color: BLACK;" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="0.0">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="25" textAlignment="CENTER" wrappingWidth="30.142857551574707" />
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TableView fx:id="table_View_Disc" layoutX="388.0" layoutY="81.0" prefHeight="351.0" prefWidth="278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
+        <columns>
+          <TableColumn prefWidth="229.0" text="Disciplina" />
+          <TableColumn minWidth="9.0" prefWidth="48.0" text="Carga Horária" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -101,7 +102,6 @@
             </JFXButton>
          </children>
       </VBox>
-      <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
       <VBox fx:id="vbox_Professor" layoutX="260.0" layoutY="94.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_Atualizar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
@@ -203,6 +203,7 @@
          </children>
       </Pane>
       <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
       <JFXButton fx:id="btn_Logout" alignment="CENTER" layoutX="-2.0" layoutY="380.0" onAction="#logout" prefHeight="57.0" prefWidth="258.0" style="-fx-background-color: BLACK;" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="0.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="25" textAlignment="CENTER" wrappingWidth="30.142857551574707" />
@@ -214,12 +215,30 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <TableView fx:id="table_AdmAluno" layoutX="388.0" layoutY="81.0" prefHeight="351.0" prefWidth="279.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="387.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
-        <columns>
-          <TableColumn fx:id="tb_CellName" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tb_CellCPF" prefWidth="75.0" text="CPF" />
-            <TableColumn fx:id="tb_CellSexo1" prefWidth="128.0" text="Data de Nascimento" />
-        </columns>
-      </TableView>
+      <StackPane layoutX="387.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="387.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
+         <children>
+            <TableView fx:id="table_AdmAluno" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="279.0">
+               <columns>
+                  <TableColumn fx:id="tb_CellNameA" prefWidth="75.0" text="Nome" />
+                  <TableColumn fx:id="tb_CellCPFA" prefWidth="75.0" text="CPF" />
+                  <TableColumn fx:id="tb_CellDataNascA" prefWidth="128.0" text="Data de Nascimento" />
+               </columns>
+            </TableView>
+            <TableView fx:id="table_AdmDisc" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="279.0">
+               <columns>
+                  <TableColumn fx:id="tb_CellCH" prefWidth="75.0" text="CH" />
+                  <TableColumn fx:id="tb_CellNameD" prefWidth="75.0" text="Nome" />
+               </columns>
+            </TableView>
+            <TableView fx:id="table_AdmProfessor" prefHeight="351.0" prefWidth="279.0">
+              <columns>
+                <TableColumn fx:id="tb_CellNameP" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="tb_CellCPFP" prefWidth="75.0" text="CPF" />
+                  <TableColumn fx:id="tb_CellDataNascP" prefWidth="128.0" text="Data de Nascimento" />
+              </columns>
+            </TableView>
+            <Pane fx:id="pane_Default" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

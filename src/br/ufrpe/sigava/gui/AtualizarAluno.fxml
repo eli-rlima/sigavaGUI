@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -89,7 +90,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txt_NomeAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="0.0" prefWidth="349.0" style="-fx-background-color: white;" text="Nome Aluno" unFocusColor="BLACK" GridPane.columnIndex="1">
+            <JFXTextField fx:id="txt_NomeAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="0.0" prefWidth="349.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
@@ -100,7 +101,7 @@
                   <Insets right="1.0" />
                </padding>
             </JFXTextField>
-            <JFXTextField fx:id="txt_EmailAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="8.0" prefWidth="349.0" style="-fx-background-color: white;" text="Email Aluno" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXTextField fx:id="txt_EmailAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="8.0" prefWidth="349.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
@@ -127,7 +128,7 @@
                   <Insets top="5.0" />
                </padding>
             </DatePicker>
-            <JFXTextField fx:id="txt_CPFAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" text="Cpf Aluno" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <JFXTextField fx:id="txt_CPFAluno" disable="true" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
@@ -138,17 +139,24 @@
                   <Insets left="5.0" right="100.0" />
                </GridPane.margin>
             </JFXTextField>
-            <JFXTextField fx:id="txt_SenhaAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" text="Senha Aluno" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="157.0" text="Confirmar senha:" textFill="WHITE" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
                <font>
                   <Font size="14.0" />
                </font>
+            </Label>
+            <JFXPasswordField fx:id="passfield_SenhaAluno" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="5.0" right="100.0" />
                </GridPane.margin>
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-            </JFXTextField>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="passfield_ConfSenhaAluno" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="5.0" right="100.0" />
+               </GridPane.margin>
+            </JFXPasswordField>
          </children>
       </GridPane>
       <HBox layoutX="150.0" layoutY="267.0" prefHeight="36.0" prefWidth="200.0">

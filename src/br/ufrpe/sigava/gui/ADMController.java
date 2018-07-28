@@ -45,6 +45,7 @@ import javax.swing.text.TabableView;
  * @author Thiago
  */
 public class ADMController implements Initializable {
+    
     @FXML
     private Pane pane_Aluno;
     @FXML

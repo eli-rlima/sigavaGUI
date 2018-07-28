@@ -5,6 +5,10 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.negocio.IServidorSigava;
+import br.ufrpe.sigava.negocio.ServidorSigava;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -16,6 +20,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import com.jfoenix.controls.JFXPasswordField;
+import java.time.LocalDate;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -23,7 +33,7 @@ import javafx.stage.Stage;
  * @author helto
  */
 public class AtualizarAlunoController implements Initializable {
-
+    private Aluno aluno;
     @FXML
     private JFXTextField txt_NomeAluno;
     @FXML
@@ -35,11 +45,13 @@ public class AtualizarAlunoController implements Initializable {
     @FXML
     private JFXTextField txt_CPFAluno;
     @FXML
-    private JFXTextField txt_SenhaAluno;
-    @FXML
     private JFXButton btn_Att;
     @FXML
     private JFXButton btn_Cancel;
+    @FXML
+    private JFXPasswordField passfield_SenhaAluno;
+    @FXML
+    private JFXPasswordField passfield_ConfSenhaAluno;
 
     /**
      * Initializes the controller class.
@@ -54,6 +66,7 @@ public class AtualizarAlunoController implements Initializable {
 
     @FXML
     private void add_Aluno(ActionEvent event) {
+        
     }
 
     @FXML

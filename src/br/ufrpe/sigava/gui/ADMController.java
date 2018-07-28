@@ -10,7 +10,9 @@ import br.ufrpe.sigava.gui.AddProfessor;
 import br.ufrpe.sigava.gui.SigavaGUI;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import com.jfoenix.controls.JFXButton;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -102,32 +104,55 @@ public class ADMController implements Initializable {
     @FXML
     private TableColumn<Aluno, LocalDate> tb_CellDataNascA;
     @FXML
-    private TableView<?> table_AdmDisc;
+    private TableView<Disciplina> table_AdmDisc;
     @FXML
-    private TableColumn<?, ?> tb_CellCH;
+    private TableColumn<Disciplina, String> tb_CellCH;
     @FXML
-    private TableColumn<?, ?> tb_CellNameD;
+    private TableColumn<Disciplina, String> tb_CellNameD;
     @FXML
-    private TableView<?> table_AdmProfessor;
+    private TableView<Professor> table_AdmProfessor;
     @FXML
-    private TableColumn<?, ?> tb_CellNameP;
+    private TableColumn<Professor, String> tb_CellNameP;
     @FXML
-    private TableColumn<?, ?> tb_CellCPFP;
+    private TableColumn<Professor, String> tb_CellCPFP;
     @FXML
-    private TableColumn<?, ?> tb_CellDataNascP;
+    private TableColumn<Professor, String> tb_CellDataNascP;
     @FXML
     private JFXButton btn_AttLista;
+    @FXML
+    private JFXButton btn_AttListaD;
+    @FXML
+    private JFXButton btn_AttListaP;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tb_CellCPFA.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellNameA.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascA.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        tb_CellNameD.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellNameP.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellDataNascP.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        tb_CellCPFP.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         
         btn_AttLista.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 listaAlunos();
+            }
+        });
+        
+        btn_AttListaD.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                listaDisciplinas();
+            }
+        });
+        
+        btn_AttListaP.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                listaProfessores();
             }
         });
         
@@ -205,6 +230,21 @@ public class ADMController implements Initializable {
         ArrayList<Aluno> alunos = servidor.listarAlunos();
         table_AdmAluno.getItems().addAll(alunos);
     }
+    
+    public void listaProfessores(){
+        table_AdmProfessor.getItems().clear();
+        IServidorSigava servidor = ServidorSigava.getIstance();
+        ArrayList<Professor> professores = servidor.listarProfessores();
+        table_AdmProfessor.getItems().addAll(professores);
+    }
+    
+    public void listaDisciplinas(){
+        table_AdmDisc.getItems().clear();
+        IServidorSigava servidor = ServidorSigava.getIstance();
+        ArrayList<Disciplina> disciplinas = servidor.listarDisciplinas();
+        table_AdmDisc.getItems().addAll(disciplinas);
+    }
+    
     @FXML
     public void handleClicks(ActionEvent event){ 
         if(event.getSource() == btn_Aluno){ 
@@ -214,16 +254,16 @@ public class ADMController implements Initializable {
             listaAlunos();
         } 
         if(event.getSource() == btn_Professor){ 
-            
             pane_Professor.toFront(); 
             vbox_Professor.toFront(); 
             table_AdmProfessor.toFront();
+            listaProfessores();
         } 
         if(event.getSource() == btn_Disciplina){ 
-            
             pane_Disciplina.toFront(); 
             vbox_Disciplina.toFront(); 
             table_AdmDisc.toFront();
+            listaDisciplinas();
         } 
     }
 

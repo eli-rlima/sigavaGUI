@@ -5,30 +5,27 @@
  */
 package br.ufrpe.sigava.gui;
 
-import br.ufrpe.sigava.gui.AddAluno;
-import br.ufrpe.sigava.gui.AddProfessor;
-import br.ufrpe.sigava.gui.SigavaGUI;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import com.jfoenix.controls.JFXButton;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,8 +33,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javax.swing.text.TabableView;
 
 /**
  * FXML Controller class
@@ -224,6 +219,58 @@ public class ADMController implements Initializable {
                     attAluno.start(new Stage());
                 } catch (Exception ex) {
                     Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        btn_Remover_Aluno.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                IServidorSigava servidor = ServidorSigava.getIstance();
+                Aluno aluno = table_AdmAluno.getSelectionModel().getSelectedItem();
+                try{
+                    if(aluno != null){
+                        Alert alertConfRemover = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertConfRemover.setTitle("REMOVER ALUNO");
+                        alertConfRemover.setContentText("Deseja remover o aluno?");
+                        Optional<ButtonType> result = alertConfRemover.showAndWait();
+                        if(result.get() == ButtonType.OK){
+                            servidor.descadastrarAluno(aluno);
+                            Alert alertRemovido = new Alert(Alert.AlertType.INFORMATION);
+                            alertRemovido.setContentText("Aluno removido com sucesso");
+                            alertRemovido.show();
+                        }
+                    }
+                }catch(AlunoNaoExisteException e){
+                    Alert alertAlunoNaoEncontrado = new Alert(Alert.AlertType.INFORMATION);
+                    alertAlunoNaoEncontrado.setContentText(e.getMessage());
+                    alertAlunoNaoEncontrado.show();
+                }
+            }
+        });
+        
+        btn_Remover_Professor.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                IServidorSigava servidor = ServidorSigava.getIstance();
+                Professor professor = table_AdmProfessor.getSelectionModel().getSelectedItem();
+                try{
+                    if(professor != null){
+                        Alert alertConfRemover = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertConfRemover.setTitle("REMOVER PROFESSOR");
+                        alertConfRemover.setContentText("Deseja remover o professor?");
+                        Optional<ButtonType> result = alertConfRemover.showAndWait();
+                        if(result.get() == ButtonType.OK){
+                            servidor.descadastrarProfessor(professor);
+                            Alert alertRemovido = new Alert(Alert.AlertType.INFORMATION);
+                            alertRemovido.setContentText("Professor removido com sucesso");
+                            alertRemovido.show();
+                        }
+                    }
+                }catch(ProfessorNaoExisteException e){
+                    Alert alertAlunoNaoEncontrado = new Alert(Alert.AlertType.INFORMATION);
+                    alertAlunoNaoEncontrado.setContentText(e.getMessage());
+                    alertAlunoNaoEncontrado.show();
                 }
             }
         });

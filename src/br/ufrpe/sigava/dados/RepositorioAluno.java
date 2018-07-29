@@ -26,7 +26,7 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
 
     public static RepositorioAluno getInstance(){
         if (instance == null){
-            instance = new RepositorioAluno();
+            instance = lerDoArquivo();
         }
         return instance;
     }

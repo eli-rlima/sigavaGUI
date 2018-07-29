@@ -21,12 +21,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField fx:id="txt_CPF" layoutX="253.0" layoutY="181.0" prefHeight="32.0" prefWidth="156.0" promptText="___.___.___-__" style="-fx-background-color: WHITE;">
+      <JFXTextField fx:id="txt_CPF" layoutX="253.0" layoutY="181.0" prefHeight="32.0" prefWidth="156.0" promptText="___.___.___-__" style="-fx-background-color: WHITE;" text="admin">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="txt_PASS" layoutX="253.0" layoutY="226.0" prefHeight="32.0" prefWidth="156.0" promptText="********" style="-fx-background-color: WHITE;">
+      <JFXPasswordField fx:id="txt_PASS" layoutX="253.0" layoutY="226.0" prefHeight="32.0" prefWidth="156.0" promptText="********" style="-fx-background-color: WHITE;" text="admin">
          <font>
             <Font name="Calibri Light" size="15.0" />
          </font>

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class Professor extends Pessoa implements Serializable {
     private ArrayList<Disciplina> disciplinasCadastradas = new ArrayList<Disciplina>();
     public Professor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
@@ -37,4 +38,5 @@ public class Professor extends Pessoa implements Serializable {
     public boolean existeDisciplina(Disciplina disciplina){
         return this.disciplinasCadastradas.contains(disciplina);
     }
+
 }

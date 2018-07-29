@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,6 +15,72 @@
 
 <AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.ADMController">
    <children>
+      <Pane fx:id="pane_Aluno" layoutX="250.0" layoutY="-6.0" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="-1.0">
+         <children>
+            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aluno">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txt_ProcurarAluno" layoutX="137.0" layoutY="62.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Aluno" style="-fx-background-color: white;" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="393.0" layoutY="79.0" size="16" wrappingWidth="16.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_Disciplina" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disciplina">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txt_ProcurarDisciplina" layoutX="138.0" layoutY="62.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Disciplina" style="-fx-background-color: white;" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="394.0" layoutY="79.0" size="16" wrappingWidth="16.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_Professor" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="txt_ProcurarProfessor" layoutX="138.0" layoutY="62.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Professor" style="-fx-background-color: white;" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="394.0" layoutY="79.0" size="16" wrappingWidth="16.0" />
+         </children>
+      </Pane>
+      <VBox fx:id="vbox_Aluno" layoutX="250.0" layoutY="84.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
+         <children>
+            <JFXButton fx:id="btn_Atualizar_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn_Cadastrar_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Cadastrar" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn_Remover_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Remover" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn_AttLista" prefHeight="43.0" prefWidth="130.0" text="Atualizar Lista" textAlignment="CENTER" textFill="#fcfcfc">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </VBox>
       <VBox prefHeight="380.0" prefWidth="250.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="158.0" prefWidth="250.0">
@@ -51,34 +118,6 @@
             </JFXButton>
          </children>
       </VBox>
-      <Pane fx:id="pane_Disciplina" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disciplina">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane fx:id="pane_Aluno" layoutX="250.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aluno">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane fx:id="pane_Professor" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <JFXButton fx:id="btn_Logout" alignment="CENTER" layoutX="-2.0" layoutY="380.0" onAction="#logout" prefHeight="57.0" prefWidth="258.0" style="-fx-background-color: BLACK;" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="0.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="25" textAlignment="CENTER" wrappingWidth="30.142857551574707" />
@@ -90,83 +129,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <StackPane layoutX="387.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="387.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
-         <children>
-            <TableView fx:id="table_AdmAluno" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="279.0">
-               <columns>
-                  <TableColumn fx:id="tb_CellNameA" prefWidth="75.0" text="Nome" />
-                  <TableColumn fx:id="tb_CellCPFA" prefWidth="75.0" text="CPF" />
-                  <TableColumn fx:id="tb_CellDataNascA" prefWidth="128.0" text="Data de Nascimento" />
-               </columns>
-            </TableView>
-            <TableView fx:id="table_AdmDisc" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="279.0">
-               <columns>
-                  <TableColumn fx:id="tb_CellCH" prefWidth="75.0" text="CH" />
-                  <TableColumn fx:id="tb_CellNameD" prefWidth="75.0" text="Nome" />
-               </columns>
-            </TableView>
-            <TableView fx:id="table_AdmProfessor" prefHeight="351.0" prefWidth="279.0">
-              <columns>
-                <TableColumn fx:id="tb_CellNameP" prefWidth="75.0" text="Nome" />
-                <TableColumn fx:id="tb_CellCPFP" prefWidth="75.0" text="CPF" />
-                  <TableColumn fx:id="tb_CellDataNascP" prefWidth="128.0" text="Data de Nascimento" />
-              </columns>
-            </TableView>
-            <Pane fx:id="pane_Default" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
-         </children>
-      </StackPane>
-      <VBox fx:id="vbox_Aluno" layoutX="250.0" layoutY="84.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
-         <children>
-            <JFXButton fx:id="btn_Atualizar_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="btn_Buscar_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Buscar" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="btn_Cadastrar_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Cadastrar" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="btn_Remover_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Remover" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="btn_AttLista" prefHeight="43.0" prefWidth="130.0" text="Atualizar Lista" textAlignment="CENTER" textFill="#fcfcfc">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-         </children>
-      </VBox>
       <VBox fx:id="vbox_Disciplina" layoutX="270.0" layoutY="104.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_Atualizar_Disciplina" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="btn_Buscar_Disciplina" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -223,14 +188,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btn_Buscar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Buscar" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Light" size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
             <JFXButton fx:id="btn_Cadastrar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Cadastrar" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="14.0" />
@@ -255,5 +212,32 @@
          </children>
       </VBox>
       <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
+      <VBox layoutX="387.0" layoutY="81.0" prefWidth="279.0" />
+      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <StackPane layoutX="387.0" layoutY="84.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="387.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
+         <children>
+            <TableView fx:id="table_AdmProfessor" prefHeight="298.0" prefWidth="279.0">
+              <columns>
+                <TableColumn fx:id="tb_CellNameP" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="tb_CellCPFP" prefWidth="75.0" text="CPF" />
+                  <TableColumn fx:id="tb_CellDataNascP" prefWidth="128.0" text="Data de Nascimento" />
+              </columns>
+            </TableView>
+            <TableView fx:id="table_AdmDisc" layoutX="10.0" layoutY="10.0" prefHeight="351.0" prefWidth="279.0">
+               <columns>
+                  <TableColumn fx:id="tb_CellCH" prefWidth="75.0" text="CH" />
+                  <TableColumn fx:id="tb_CellNameD" prefWidth="75.0" text="Nome" />
+               </columns>
+            </TableView>
+            <TableView fx:id="table_AdmAluno" layoutX="10.0" layoutY="10.0" prefHeight="320.0" prefWidth="279.0">
+               <columns>
+                  <TableColumn fx:id="tb_CellNameA" prefWidth="75.0" text="Nome" />
+                  <TableColumn fx:id="tb_CellCPFA" prefWidth="75.0" text="CPF" />
+                  <TableColumn fx:id="tb_CellDataNascA" prefWidth="128.0" text="Data de Nascimento" />
+               </columns>
+            </TableView>
+            <Pane fx:id="pane_Default" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

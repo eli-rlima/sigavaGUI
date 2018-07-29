@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public  class Aluno extends Pessoa implements Serializable{
     private ArrayList <Cronograma> cronogramas = new ArrayList<Cronograma>();
     private ArrayList <Disciplina> disciplinas = new ArrayList<Disciplina>();
@@ -66,4 +67,5 @@ public  class Aluno extends Pessoa implements Serializable{
     public boolean existeCronograma(Cronograma cronograma){
         return cronogramas.contains(cronograma);
     }
+
 }

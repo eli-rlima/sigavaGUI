@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+
 public abstract class Pessoa implements Serializable{
     private String nome;
     private String email;
@@ -88,4 +89,5 @@ public abstract class Pessoa implements Serializable{
     public abstract ArrayList<Disciplina> getDisciplinas();
 
     public abstract Disciplina buscarDisciplina(String nomeDisciplina);
+
 }

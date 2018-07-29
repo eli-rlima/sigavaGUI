@@ -22,6 +22,8 @@ import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -133,6 +135,7 @@ public class AddProfessorController implements Initializable {
                     passfield_ConfSenhaProfessor.setText("");
                     combobox_SexoProfessor.setValue(null);
                 }
+                
             }catch(IllegalArgumentException e1){
                 Alert alertInvalido = new Alert(Alert.AlertType.ERROR);
                 alertInvalido.setTitle("Erro no cadastro");
@@ -163,7 +166,7 @@ public class AddProfessorController implements Initializable {
         Stage stage = (Stage) btn_Cancel.getScene().getWindow();
         stage.close();
     }
-
+    
     @FXML
     private void add_Aluno(ActionEvent event) {
     }

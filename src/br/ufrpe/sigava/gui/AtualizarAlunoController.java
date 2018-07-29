@@ -62,11 +62,97 @@ public class AtualizarAlunoController implements Initializable {
         combobox_SexoAluno.getItems().add(new String ("Feminino"));
         Biblioteca.AlteracaoCorMouse(btn_Att);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
+        
+        aluno = ADMController.getAluno();
+        txt_CPFAluno.setText(aluno.getCpf());
+        txt_EmailAluno.setText(aluno.getEmail());
+        txt_NomeAluno.setText(aluno.getNome());
+        if(aluno.getSexo() == 'm'){
+            combobox_SexoAluno.setValue("Masculino");
+        }else combobox_SexoAluno.setValue("Feminino");
+        calendar_AddAluno.setValue(aluno.getDataNascimento());
     }    
 
     @FXML
     private void add_Aluno(ActionEvent event) {
-        
+        IServidorSigava servidor = ServidorSigava.getIstance();        
+        String nome, cpf, email;
+        String senha = null;
+        char sexo;
+        if(event.getSource() == btn_Att){
+            LocalDate dataAniversario = calendar_AddAluno.getValue();
+            nome = txt_NomeAluno.getText();
+            cpf = txt_CPFAluno.getText();
+            email = txt_EmailAluno.getText();
+            if(combobox_SexoAluno.getSelectionModel().getSelectedItem().equalsIgnoreCase("Masculino")){
+                sexo = 'm';
+            }else sexo = 'f';
+            try{
+                if(!passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
+                    throw new IllegalAccessError("Senhas não conferem!");
+                }else{
+                    Optional<ButtonType> result = null;
+                    if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
+                        Alert alertConfAtualizado = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertConfAtualizado.setTitle("ATUALIZAÇÃO");
+                        alertConfAtualizado.setContentText("Deseja atualizar o aluno?");
+                        result = alertConfAtualizado.showAndWait();
+                    }
+                    if(result.get() == ButtonType.OK){
+                        senha = passfield_SenhaAluno.getText();
+                        servidor.descadastrarAluno(aluno);
+                        servidor.cadastrarAluno(nome, email, sexo, dataAniversario, senha, cpf);
+                        Alert alertAtualizado = new Alert(Alert.AlertType.INFORMATION);
+                        alertAtualizado.setTitle("CONFIRMAÇÃO DE ATUALIZAÇÃO");
+                        alertAtualizado.setContentText("Aluno atualizado com sucesso!");
+                        Optional<ButtonType> result1 = alertAtualizado.showAndWait();
+                        if(result1.get() == ButtonType.OK){
+                            calendar_AddAluno.setValue(null);
+                            txt_CPFAluno.setText("");
+                            txt_EmailAluno.setText("");
+                            txt_NomeAluno.setText("");
+                            passfield_SenhaAluno.setText("");
+                            passfield_ConfSenhaAluno.setText("");
+                            combobox_SexoAluno.setValue(null);
+                        }
+                    }else{
+                        calendar_AddAluno.setValue(null);
+                        txt_CPFAluno.setText("");
+                        txt_EmailAluno.setText("");
+                        txt_NomeAluno.setText("");
+                        passfield_SenhaAluno.setText("");
+                        passfield_ConfSenhaAluno.setText("");
+                        combobox_SexoAluno.setValue(null);
+                    }
+                }
+            }catch(AlunoJaExisteException e){
+                Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
+                alertAlunoJaExiste.setTitle("ALUNO JÁ EXISTE");
+                alertAlunoJaExiste.setContentText(e.getMessage());
+                Optional<ButtonType> result = alertAlunoJaExiste.showAndWait();
+                if(result.get() == ButtonType.OK){
+                    calendar_AddAluno.setValue(null);
+                    txt_CPFAluno.setText("");
+                    txt_EmailAluno.setText("");
+                    txt_NomeAluno.setText("");
+                    passfield_SenhaAluno.setText("");
+                    passfield_ConfSenhaAluno.setText("");
+                    combobox_SexoAluno.setValue(null);
+                }
+            }catch(AlunoNaoExisteException e1){
+                Alert alertAlunoNaoExiste = new Alert(Alert.AlertType.ERROR);
+                alertAlunoNaoExiste.setTitle("Aluno já existe");
+                alertAlunoNaoExiste.setContentText(e1.getMessage());
+                alertAlunoNaoExiste.show();
+            }catch(IllegalAccessError e2){
+                Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
+                alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
+                alertSenhaIncorreta.setContentText(e2.getMessage());
+                alertSenhaIncorreta.show();
+                passfield_SenhaAluno.setText("");
+                passfield_ConfSenhaAluno.setText("");
+            }
+        }
     }
 
     @FXML

@@ -45,7 +45,9 @@ import javax.swing.text.TabableView;
  * @author Thiago
  */
 public class ADMController implements Initializable {
-    
+    private static Aluno tbAluno;
+    private static Disciplina tbDisciplina;
+    private static Professor tbProfessor;
     @FXML
     private Pane pane_Aluno;
     @FXML
@@ -125,6 +127,25 @@ public class ADMController implements Initializable {
     @FXML
     private JFXButton btn_AttListaP;
     
+    public static void setAluno(Aluno aluno){
+        tbAluno = aluno;
+    }
+    public static Aluno getAluno(){
+        return tbAluno;
+    }
+    public static void setPofessor(Professor professor){
+        tbProfessor = professor;
+    }
+    public static Professor getProfessor(){
+        return tbProfessor;
+    }
+    public static void setDisciplina(Disciplina disciplina){
+        tbDisciplina = disciplina;
+    }
+    public static Disciplina getDisciplina(){
+        return tbDisciplina;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tb_CellCPFA.setCellValueFactory(new PropertyValueFactory<>("cpf"));
@@ -185,6 +206,7 @@ public class ADMController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 AttProfessor attProfessor = new AttProfessor();
+                setPofessor(table_AdmProfessor.getSelectionModel().getSelectedItem());
                 try {
                     attProfessor.start(new Stage());
                 } catch (Exception ex) {
@@ -197,6 +219,7 @@ public class ADMController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 AttAluno attAluno = new AttAluno();
+                setAluno(table_AdmAluno.getSelectionModel().getSelectedItem());
                 try {
                     attAluno.start(new Stage());
                 } catch (Exception ex) {

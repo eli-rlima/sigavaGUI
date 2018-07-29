@@ -90,7 +90,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txt_NomeAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="0.0" prefWidth="349.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1">
+            <JFXTextField fx:id="txt_NomeProf" focusColor="BLACK" prefHeight="0.0" prefWidth="349.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
@@ -101,7 +101,7 @@
                   <Insets right="1.0" />
                </padding>
             </JFXTextField>
-            <JFXTextField fx:id="txt_EmailAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="8.0" prefWidth="349.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXTextField fx:id="txt_EmailProf" focusColor="BLACK" prefHeight="8.0" prefWidth="349.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
@@ -120,7 +120,7 @@
                   <Insets left="5.0" />
                </padding>
             </JFXComboBox>
-            <DatePicker fx:id="calendar_AddAluno" onAction="#add_Aluno" prefHeight="35.0" prefWidth="127.0" promptText="Data de Nascimento" style="-fx-background-color: #0000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <DatePicker fx:id="calendar_AddProf" prefHeight="35.0" prefWidth="127.0" promptText="Data de Nascimento" style="-fx-background-color: #0000;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
@@ -128,7 +128,7 @@
                   <Insets top="5.0" />
                </padding>
             </DatePicker>
-            <JFXTextField fx:id="txt_CPFAluno" disable="true" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <JFXTextField fx:id="txt_CPFProf" disable="true" focusColor="BLACK" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
@@ -147,12 +147,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXPasswordField style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <JFXPasswordField fx:id="pass_Prof" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="5.0" right="100.0" />
                </GridPane.margin>
             </JFXPasswordField>
-            <JFXPasswordField style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <JFXPasswordField fx:id="pass_ConfProf" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="5.0" right="100.0" />
                </GridPane.margin>

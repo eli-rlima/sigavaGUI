@@ -5,20 +5,18 @@
  */
 package br.ufrpe.sigava.gui;
 
-import static br.ufrpe.sigava.gui.ADM.setStage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
  * @author elive
  */
-public class AddAluno extends Application{
-    static Stage stage;
+public class AddDisciplina extends Application{
+    private static Stage stage;
 
     public static Stage getStage() {
         return stage;
@@ -31,20 +29,18 @@ public class AddAluno extends Application{
     public static void fechar(){
         getStage().close();
     }
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
-        Parent rootADM = FXMLLoader.load(getClass().getResource("AddAluno.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("AddDisciplina.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
         primaryStage.show();
         setStage(stage);
-        
     }
     
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

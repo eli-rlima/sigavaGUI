@@ -300,6 +300,19 @@ public class ADMController implements Initializable {
                 }
             }
         });
+        
+        btn_Cadastrar_Disciplina.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AddDisciplina addDisciplina = new AddDisciplina();
+                try {
+                    addDisciplina.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
         btn_Atualizar_Professor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

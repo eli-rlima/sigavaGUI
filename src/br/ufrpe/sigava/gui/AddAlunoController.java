@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -66,8 +67,11 @@ public class AddAlunoController implements Initializable {
         combobox_SexoAluno.getItems().add(new Label ("Feminino"));
         Biblioteca.AlteracaoCorMouse(btn_Add);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
+        Biblioteca.MarcaraCPF(txt_CPFAluno);
     }    
-
+    
+    
+    
     @FXML
     private void add_Aluno(ActionEvent event) {
         IServidorSigava servidor = ServidorSigava.getIstance();        

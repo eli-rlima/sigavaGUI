@@ -36,7 +36,7 @@ public class Biblioteca {
     public static void MarcaraCPF(JFXTextField txt){
         txt.lengthProperty().addListener((ObservableValue<? extends Number> observableValue, Number number, Number number2) -> {
             String mascara = "###.###.###-##";
-            String alphaAndDigits = txt.getText().replaceAll("[\\-\\.]","");
+            String alphaAndDigits = txt.getText().replaceAll("[^\\d]", "");
             StringBuilder resultado = new StringBuilder();
             int i = 0;
             int quant = 0;

@@ -63,6 +63,7 @@ public class AddProfessorController implements Initializable {
         combobox_SexoProfessor.getItems().add(new Label ("Feminino"));
         Biblioteca.AlteracaoCorMouse(btn_Add);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
+        Biblioteca.MarcaraCPF(txt_CPFProfessor);
     }    
 
     @FXML

@@ -202,6 +202,8 @@ public class ADMController implements Initializable {
         tb_CellNameP.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascP.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
         tb_CellCPFP.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        table_AdmDisc.setItems(masterDataD);
+        
         
         //Professor
         
@@ -339,6 +341,19 @@ public class ADMController implements Initializable {
             }
         });
         
+        btn_Atualizar_Disciplina.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AttDisciplina attDisciplina = new AttDisciplina();
+                setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem());
+                try {
+                    attDisciplina.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
         btn_Remover_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -446,5 +461,5 @@ public class ADMController implements Initializable {
         }
     }
     
-    
+   
 }

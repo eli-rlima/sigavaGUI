@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+
+
+
 public class Disciplina implements Serializable{
 
     private String nome;
@@ -29,10 +32,6 @@ public class Disciplina implements Serializable{
         this.duracaoAula = duracaoAula;
         this.cargaHoraria = cargaHoraria;
         this.setDataFim(this.gerarDataFim());
-    }
-
-    public Disciplina() {
-
     }
 
     public String ListarAlunos (){
@@ -61,7 +60,7 @@ public class Disciplina implements Serializable{
     }
 
     public String getNome() {
-    return nome;
+    return this.nome;
     }
 
     public Professor getProfessor() {
@@ -294,4 +293,10 @@ public class Disciplina implements Serializable{
 
         return retorno;
       }
+    
+
+    public int compareTo (Disciplina e1, Disciplina e2){
+        return e1.getNome().compareTo(e2.getNome());
+    }
+
 }

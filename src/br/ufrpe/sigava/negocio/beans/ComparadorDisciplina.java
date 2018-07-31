@@ -11,11 +11,11 @@ import java.util.Comparator;
  *
  * @author elive
  */
-public class ComparadorDisciplina implements Comparator<Disciplina>{
+public class ComparadorDisciplina implements Comparator <Disciplina> {
 
     @Override
-    public int compare(Disciplina d1, Disciplina d2) {
-        return d1.getNome().compareTo(d2.getNome());
+    public int compare(Disciplina e1, Disciplina e2) {
+        return e1.getNome().compareTo(e2.getNome());
     }
     
 }

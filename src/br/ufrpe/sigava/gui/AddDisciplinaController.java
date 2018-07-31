@@ -6,20 +6,25 @@
 package br.ufrpe.sigava.gui;
 
 import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
+import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -76,6 +81,12 @@ public class AddDisciplinaController implements Initializable {
                 }
             }
         });
-    }    
+    }
+    
+    @FXML
+      private void cancel_Close(ActionEvent event) {
+          Stage stage = (Stage) btn_AddCancelDisc.getScene().getWindow();
+          stage.close();
+      }
     
 }

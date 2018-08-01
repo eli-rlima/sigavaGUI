@@ -60,7 +60,7 @@ public class AtualizarProfessorController implements Initializable {
         combobox_SexoProfessor.getItems().add(new String ("Feminino"));
         Biblioteca.AlteracaoCorMouse(btn_Att);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
-        
+        Biblioteca.MarcaraCPF(txt_CPFProf);
         professor = ADMController.getProfessor();
         txt_NomeProf.setText(professor.getNome());
         txt_EmailProf.setText(professor.getEmail());
@@ -87,10 +87,12 @@ public class AtualizarProfessorController implements Initializable {
             }else sexo = 'f';
             try{
                 if(!pass_Prof.getText().equals(pass_ConfProf.getText())){
-                    throw new IllegalAccessError("Senhas não conferem!");
+                    throw new IllegalAccessError("Senhas não conferem");
+                }else if(pass_Prof != null && pass_ConfProf != null){
+                    throw new IllegalAccessError("Senhas não informadas");
                 }else{
                     Optional<ButtonType> result = null;
-                    if(pass_Prof.getText().equals(pass_ConfProf.getText())){
+                    if(pass_Prof.getText().equals(pass_ConfProf.getText()) && pass_Prof != null && pass_ConfProf != null){
                         Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
                         alertCadastro.setTitle("ATUALIZAÇÃO");
                         alertCadastro.setContentText("Deseja atualizar o professor?");
@@ -144,7 +146,6 @@ public class AtualizarProfessorController implements Initializable {
                 alertProfNaoExiste.show();
             }catch(IllegalAccessError e2){
                 Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
-                alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
                 alertSenhaIncorreta.setContentText(e2.getMessage());
                 alertSenhaIncorreta.show();
                 pass_Prof.setText("");

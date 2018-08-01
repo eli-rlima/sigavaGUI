@@ -62,7 +62,7 @@ public class AtualizarAlunoController implements Initializable {
         combobox_SexoAluno.getItems().add(new String ("Feminino"));
         Biblioteca.AlteracaoCorMouse(btn_Att);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
-        
+        Biblioteca.MarcaraCPF(txt_CPFAluno);
         aluno = ADMController.getAluno();
         txt_CPFAluno.setText(aluno.getCpf());
         txt_EmailAluno.setText(aluno.getEmail());
@@ -90,6 +90,8 @@ public class AtualizarAlunoController implements Initializable {
             try{
                 if(!passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
                     throw new IllegalAccessError("Senhas não conferem!");
+                }else if(passfield_SenhaAluno != null && passfield_ConfSenhaAluno != null){
+                    throw new IllegalAccessError("Senhas não informadas!");
                 }else{
                     Optional<ButtonType> result = null;
                     if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){

@@ -128,7 +128,7 @@
                   <Insets top="5.0" />
                </padding>
             </DatePicker>
-            <JFXTextField fx:id="txt_CPFAluno" disable="true" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <JFXTextField fx:id="txt_CPFAluno" focusColor="BLACK" onAction="#add_Aluno" prefHeight="20.0" prefWidth="155.0" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>

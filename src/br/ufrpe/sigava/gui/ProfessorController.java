@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -25,14 +26,6 @@ public class ProfessorController implements Initializable {
     @FXML
     private VBox vbox_Professor;
     @FXML
-    private JFXButton btn_Atualizar_Professor;
-    @FXML
-    private JFXButton btn_Buscar_Professor;
-    @FXML
-    private JFXButton btn_Cadastrar_Professor;
-    @FXML
-    private JFXButton btn_Remover_Professor;
-    @FXML
     private Pane pane_Professor;
     @FXML
     private Pane pane_Default;
@@ -40,6 +33,12 @@ public class ProfessorController implements Initializable {
     private JFXButton btn_Logout;
     @FXML
     private TableView<String> table_View_Disc;
+    @FXML
+    private JFXButton btn_NovaTarefa;
+    @FXML
+    private JFXButton btn_ListarTarefas;
+    @FXML
+    private Label label_NomeProfessor;
 
     /**
      * Initializes the controller class.

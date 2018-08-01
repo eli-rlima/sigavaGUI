@@ -75,12 +75,15 @@ public class CadastroProfessor {
         return professor;
     }
     
-    public void atualizar(Professor p1, Professor p2) throws ProfessorNaoExisteException{
-        if(repositorioProfessor.buscar(p1.getNome())!= null){
-            repositorioProfessor.atualizar(p1, p2);
-            repositorioProfessor.salvarArquivo();
-        }
-        else{
+    public void atualizar(Professor antigoProfessor, String cpf, LocalDate dataNascimento, String email, String nome, String senha, char sexo) throws ProfessorNaoExisteException{
+        if(repositorioProfessor.buscar(antigoProfessor.getNome())!= null){
+            if(antigoProfessor != null && cpf != null && dataNascimento != null && email != null && nome != null && senha != null){
+                repositorioProfessor.atualizar(antigoProfessor, cpf, dataNascimento, email, nome, senha, sexo);
+                repositorioProfessor.salvarArquivo();
+            }else{
+                throw new IllegalArgumentException("Argumento(s) inválido(s)!");
+            }
+    }else{
             throw new ProfessorNaoExisteException();
         }
     }

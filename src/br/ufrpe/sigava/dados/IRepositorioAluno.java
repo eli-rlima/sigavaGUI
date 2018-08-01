@@ -98,7 +98,7 @@ public interface IRepositorioAluno {
      */
     boolean existeCronograma (Aluno aluno, String nomeCronograma);
     
-    void atualizar(Aluno antigoAluno, Aluno attAluno);
+    void atualizar(Aluno antigoAluno, String nome, String email, String cpf, String senha, char sexo, LocalDate dataNascimento);
     
     public Marcacao buscarMarcacao(String nome, Aluno aluno, int codigoTarefa);
     

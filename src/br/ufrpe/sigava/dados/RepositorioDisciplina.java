@@ -1,6 +1,7 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -61,12 +62,12 @@ public class RepositorioDisciplina implements IRepositorioDisciplina, Serializab
     }
     
     @Override
-    public void atualizar(Disciplina d1, Disciplina d2){
-        d1.setNome(d2.getNome());
-        d1.setDuracaoAula(d2.getDuracaoAula());
-        d1.setDiaAula(d2.getDiaAula());
-        d1.setDataInicio(d2.getDataInicio());
-        d1.setCargaHoraria(d2.getCargaHoraria());
+    public void atualizar(Disciplina antigaDisciplina, String nome, int duracaoAula, DayOfWeek diaAula, LocalDate dataInicio, int cargaHoraria){
+        antigaDisciplina.setNome(nome);
+        antigaDisciplina.setDuracaoAula(duracaoAula);
+        antigaDisciplina.setDiaAula(diaAula);
+        antigaDisciplina.setDataInicio(dataInicio);
+        antigaDisciplina.setCargaHoraria(cargaHoraria);
     }
     
     @Override
@@ -122,6 +123,12 @@ public class RepositorioDisciplina implements IRepositorioDisciplina, Serializab
       }
     }
   }
+    
+     @Override 
+     public boolean existeAluno(Disciplina disciplina, Aluno aluno){
+         return disciplina.existeAluno(aluno);
+    }
+ 
       
       
 }

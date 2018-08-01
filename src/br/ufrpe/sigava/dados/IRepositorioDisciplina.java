@@ -1,6 +1,7 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public interface IRepositorioDisciplina {
      */
     Disciplina buscar(String nome);
     
-    void atualizar(Disciplina d1, Disciplina d2);
+    void atualizar(Disciplina antigaDisciplina, String nome, int duracaoAula, DayOfWeek diaAula, LocalDate dataInicio, int cargaHoraria);
 
     /**
      * Verifica se existe a disciplina no repositório
@@ -76,5 +77,8 @@ public interface IRepositorioDisciplina {
    * 
    */
   void salvarArquivo();
+  
+  public boolean existeAluno(Disciplina disciplina, Aluno aluno);
+ 
 
 }

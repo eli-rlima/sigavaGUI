@@ -14,11 +14,10 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author helto
+ * @author elive
  */
-public class AttProfessor extends Application{
-    
-    static Stage stage;
+public class ProfessorTela extends Application{
+    private static Stage stage;
 
     public static Stage getStage() {
         return stage;
@@ -35,9 +34,10 @@ public class AttProfessor extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
-        Parent rootADM = FXMLLoader.load(getClass().getResource("AtualizarProfessor.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("Professor.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
+        primaryStage.setMaximized(true);
         primaryStage.show();
         setStage(stage);
         
@@ -46,6 +46,4 @@ public class AttProfessor extends Application{
     public static void main(String[] args) {
         launch(args);
     }
-
-    
 }

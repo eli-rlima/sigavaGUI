@@ -49,11 +49,14 @@ import javafx.stage.Stage;
  * @author elive
  */
 public class Controller implements Initializable {
-    
+    private static Aluno alunoC;
+    private static Professor professorC;
     public static boolean IS_ALUNO;
     public static boolean IS_PROFESSOR;
     private static final String USER_ADM = "admin";
     private static final String LOCK_ADM = "admin";
+    private static final String USER_PROF = "prof";
+    private static final String LOCK_PROF = "prof";
 
     @FXML
     private AnchorPane pane_Login;
@@ -76,6 +79,21 @@ public class Controller implements Initializable {
      * Initializes the controller class.
      */
     
+    public static Aluno getAluno(){
+        return alunoC;
+    }
+    
+    public static void setAluno(Aluno aluno){
+        alunoC = aluno;
+    }
+    
+    public static Professor getProfessor(){
+        return professorC;
+    }
+    
+    public static void setProfessor(Professor professor){
+        professorC = professor;
+    }
     
     public boolean isProfessor(Object o){
         if(o.getClass().equals(Professor.class)){
@@ -94,22 +112,6 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         IServidorSigava servidor = ServidorSigava.getIstance();
         String usuario, senha;
-        //Dimensionamento
-        
-       /* Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        btn_login.setLayoutX(screenDimension.getWidth()/2);
-        btn_login.setLayoutY(screenDimension.getHeight()/1.85);
-        btn_CancelLogin.setLayoutX(screenDimension.getWidth()/1.8);
-        btn_CancelLogin.setLayoutY(screenDimension.getHeight()/1.85);
-        txt_CPF.setLayoutX(screenDimension.getWidth()/2);
-        txt_CPF.setLayoutY(screenDimension.getHeight()/2.5);
-        txt_PASS.setLayoutX(screenDimension.getWidth()/2);
-        txt_PASS.setLayoutY(screenDimension.getHeight()/2.2);
-        icon_User.setLayoutX(screenDimension.getWidth()/2.15);
-        icon_User.setLayoutY(screenDimension.getHeight()/2.3);
-        icon_UserLock.setLayoutX(screenDimension.getWidth()/2.15);
-        icon_UserLock.setLayoutY(screenDimension.getHeight()/2.05);
-        */
         //Funcionalidades
         
         usuario = txt_CPF.getText();
@@ -125,28 +127,25 @@ public class Controller implements Initializable {
         
         try{
             aluno = servidor.buscarAluno(usuario);
-            professor = servidor.buscarProfessor(usuario);
             if(aluno.getLogin().equals(login)){
                 this.isAluno(aluno);
-            }else{
-                if(professor.getLogin().equals(login)){
-                    this.isProfessor(professor);
-                }
-            }  
+                setAluno(aluno);
+            }
         }catch(AlunoNaoExisteException e){
             alert.setHeaderText(null);
             alert.setContentText(e.getMessage());
-        }catch(ProfessorNaoExisteException e1){
-            alertProf.setHeaderText(null);
-            alertProf.setContentText(e1.getMessage());
         }
+        
         
         btn_login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Professor professor = null;
                 String usuario, senha;
                 ADM adm = new ADM();
+                ProfessorTela prof = new ProfessorTela();
                 usuario = txt_CPF.getText();
+                System.out.println(usuario);
                 senha = txt_PASS.getText();
                 
                 if(usuario.equals(USER_ADM) && senha.equals(LOCK_ADM)){
@@ -156,14 +155,30 @@ public class Controller implements Initializable {
                     } catch (Exception ex) {
                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
-                    if(!IS_ALUNO){
-                        alert.show();
-                    }else if(!IS_PROFESSOR){
-                        alertProf.show();
+                }
+                if(usuario.equals(USER_PROF) && senha.equals(LOCK_PROF)){
+                    SigavaGUI.fechar();
+                    try {
+                        prof.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                
+                try{
+                    professor = servidor.buscarProfessor(usuario);
+                    setProfessor(professor);
+                }catch(ProfessorNaoExisteException e1){
+                    alertProf.setHeaderText(null);
+                    alertProf.setContentText(e1.getMessage());
+                }
+                if(professor != null){
+                    SigavaGUI.fechar();
+                    try {
+                        prof.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         });
                 

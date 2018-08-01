@@ -68,7 +68,7 @@ public class CadastroProfessor {
     public Professor procurar (String cpf) throws ProfessorNaoExisteException,IllegalArgumentException{
         Professor professor = null;
         if (cpf != null){
-            if(repositorioProfessor.buscar(cpf)!= null){
+            if(repositorioProfessor.buscarCpf(cpf)!= null){
                 professor = this.repositorioProfessor.buscarCpf(cpf);
             }else throw new ProfessorNaoExisteException();
         }else throw new IllegalArgumentException("Argumento inválido!");        

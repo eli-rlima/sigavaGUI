@@ -83,8 +83,8 @@ public class ServidorSigava implements IServidorSigava{
     }
     
     @Override
-    public void atualizarAluno(Aluno antigoAluno, Aluno attAluno) throws AlunoNaoExisteException{
-        this.alunos.atualizar(antigoAluno, attAluno);
+    public void atualizarAluno(Aluno antigoAluno, String nome, String email, String cpf, String senha, char sexo, LocalDate dataNascimento) throws AlunoNaoExisteException{
+        this.alunos.atualizar(antigoAluno, nome, email, cpf, senha, sexo, dataNascimento);
     }
     
     @Override
@@ -168,8 +168,8 @@ public class ServidorSigava implements IServidorSigava{
     }
     
     @Override    
-    public void atualizarDisciplina(Disciplina antigaDisciplina, Disciplina attDisciplina) throws DisciplinaNaoExisteException{
-        this.disciplinas.atualizar(antigaDisciplina, attDisciplina);
+    public void atualizarDisciplina(Disciplina antigaDisciplina, String nome, int duracaoAula, DayOfWeek diaAula, LocalDate dataInicio, int cargaHoraria) throws DisciplinaNaoExisteException{
+        this.disciplinas.atualizar(antigaDisciplina, nome, duracaoAula, diaAula, dataInicio, cargaHoraria);
     }
 
     @Override
@@ -217,8 +217,8 @@ public class ServidorSigava implements IServidorSigava{
     
     
     @Override
-    public void atualizarProfessor(Professor antigoProfessor, Professor attProfessor) throws ProfessorNaoExisteException{
-        this.professores.atualizar(antigoProfessor, attProfessor);
+    public void atualizarProfessor(Professor antigoProfessor, String cpf, LocalDate dataNascimento, String email, String nome, String senha, char sexo) throws ProfessorNaoExisteException{
+        this.professores.atualizar(antigoProfessor, cpf, dataNascimento, email, nome, senha, sexo);
     }
 
     @Override
@@ -248,8 +248,8 @@ public class ServidorSigava implements IServidorSigava{
     }
     
     @Override
-    public void atualizarTarefa(Tarefa antigaTarefa, Tarefa attTarefa) throws TarefaNaoExisteException{
-        this.tarefas.atualizar(antigaTarefa, attTarefa);
+    public void atualizarTarefa(Tarefa antigaTarefa, String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa) throws TarefaNaoExisteException{
+        this.tarefas.atualizar(antigaTarefa, descricao, dataInicio, dataTermino, codigoTarefa);
     }
 
     @Override

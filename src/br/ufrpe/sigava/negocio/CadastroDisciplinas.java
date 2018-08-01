@@ -80,11 +80,15 @@ public class CadastroDisciplinas {
         return disciplina;
     }
     
-    public void atualizar(Disciplina d1, Disciplina d2) throws DisciplinaNaoExisteException{
-        if(this.repositorioDisciplina.buscar(d1.getNome()) != null){
-            this.repositorioDisciplina.atualizar(d1, d2);
+    public void atualizar(Disciplina antigaDisciplina, String nome, int duracaoAula, DayOfWeek diaAula, LocalDate dataInicio, int cargaHoraria) throws DisciplinaNaoExisteException{
+        if(this.repositorioDisciplina.buscar(antigaDisciplina.getNome()) != null){
+            if(antigaDisciplina != null && nome != null && diaAula != null && dataInicio != null){
+            this.repositorioDisciplina.atualizar(antigaDisciplina, nome, duracaoAula, diaAula, dataInicio, cargaHoraria);
             this.repositorioDisciplina.salvarArquivo();
         }else{
+            throw new IllegalArgumentException("Argumento(s) inválido(s)");
+        }
+    }else{
             throw new DisciplinaNaoExisteException();
         }
     }

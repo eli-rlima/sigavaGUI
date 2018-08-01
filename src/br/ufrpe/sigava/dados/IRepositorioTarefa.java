@@ -55,7 +55,7 @@ public interface IRepositorioTarefa {
      */
      Tarefa buscar(int codigo);
      
-     void atualizar(Tarefa t1, Tarefa t2);
+     void atualizar(Tarefa antigaTarefa, String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa);
 
     /**
      * Verifica se a tarefa existe

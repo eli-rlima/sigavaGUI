@@ -31,7 +31,7 @@ public interface IServidorSigava {
 
     void descadastrarAluno(Aluno aluno) throws AlunoNaoExisteException;
     
-    void atualizarAluno(Aluno antigoAluno, Aluno attAluno) throws AlunoNaoExisteException;
+    void atualizarAluno(Aluno antigoAluno, String nome, String email, String cpf, String senha, char sexo, LocalDate dataNascimento) throws AlunoNaoExisteException;
 
     boolean existeAluno(Aluno aluno) throws IllegalArgumentException;
     
@@ -87,9 +87,9 @@ public interface IServidorSigava {
 
     Professor buscarProfessor(String cpf) throws ProfessorNaoExisteException, IllegalArgumentException;
     
-    void atualizarProfessor(Professor antigoProfessor, Professor attProfessor) throws ProfessorNaoExisteException;
+    void atualizarProfessor(Professor antigoProfessor, String cpf, LocalDate dataNascimento, String email, String nome, String senha, char sexo) throws ProfessorNaoExisteException;
     
-    void atualizarDisciplina(Disciplina antigaDisciplina, Disciplina attDisciplina) throws DisciplinaNaoExisteException;
+    void atualizarDisciplina(Disciplina antigaDisciplina, String nome, int duracaoAula, DayOfWeek diaAula, LocalDate dataInicio, int cargaHorariaa) throws DisciplinaNaoExisteException;
 
     boolean existeProfessor(Professor professor);
 
@@ -102,7 +102,7 @@ public interface IServidorSigava {
 
     Tarefa buscarTarefa(int codigo) throws TarefaNaoExisteException, IllegalArgumentException;
     
-    void atualizarTarefa(Tarefa antigaTarefa, Tarefa attTarefa) throws TarefaNaoExisteException;
+    void atualizarTarefa(Tarefa antigaTarefa, String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa) throws TarefaNaoExisteException;
 
     boolean existeTarefa(Tarefa tarefa)throws TarefaNaoExisteException;
 

@@ -55,7 +55,7 @@ public interface IRepositorioDisciplina {
      */
     Disciplina buscar(String nome);
     
-    void atualizar(Disciplina d1, Disciplina d2);
+    void atualizar(Disciplina antigaDisciplina, String nome, int duracaoAula, DayOfWeek diaAula, LocalDate dataInicio, int cargaHoraria);
 
     /**
      * Verifica se existe a disciplina no repositório

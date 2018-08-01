@@ -2,6 +2,7 @@ package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.Login;
 import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
@@ -63,13 +64,14 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
         return aluno;
     }
     @Override
-    public void atualizar(Aluno antigoAluno, Aluno attAluno){
-        antigoAluno.setNome(attAluno.getNome());
-        antigoAluno.setEmail(attAluno.getEmail());
-        antigoAluno.setDataNascimento(attAluno.getDataNascimento());
-        antigoAluno.setLogin(attAluno.getLogin());
-        antigoAluno.setSexo(attAluno.getSexo());
-        antigoAluno.setCpf(attAluno.getCpf());
+    public void atualizar(Aluno antigoAluno, String nome, String email, String cpf, String senha, char sexo, LocalDate dataNascimento){
+        antigoAluno.setNome(nome);
+        antigoAluno.setEmail(email);
+        antigoAluno.setDataNascimento(dataNascimento);
+        Login novoLogin = new Login(cpf, senha);
+        antigoAluno.setLogin(novoLogin);
+        antigoAluno.setSexo(sexo);
+        antigoAluno.setCpf(cpf);
     }
 
     @Override

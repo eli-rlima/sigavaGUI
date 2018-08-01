@@ -76,13 +76,17 @@ public class CadastroAlunos {
         return aluno;
     }
     
-    public void atualizar (Aluno antigoAluno, Aluno attAluno) throws AlunoNaoExisteException{
+    public void atualizar (Aluno antigoAluno, String nome, String email, String cpf, String senha, char sexo, LocalDate dataNascimento) throws AlunoNaoExisteException{
         if(repositorioAluno.buscar(antigoAluno.getCpf()) != null){
-            repositorioAluno.atualizar(antigoAluno, attAluno);
-            repositorioAluno.salvarArquivo();
+            if(antigoAluno != null && nome != null && email != null && cpf != null && senha!= null && dataNascimento != null){
+              repositorioAluno.atualizar(antigoAluno, nome, email, cpf, senha, sexo, dataNascimento);
+              repositorioAluno.salvarArquivo();  
+            }else{
+                throw new IllegalArgumentException("Argumento(s) inválido(s)!"); 
+            }
         }else{
-            throw new AlunoNaoExisteException();
-        }
+                throw new AlunoNaoExisteException();
+            }
     }
 
     public boolean existe(Aluno aluno) throws IllegalArgumentException{

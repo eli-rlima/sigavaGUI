@@ -56,7 +56,7 @@ public interface IRepositorioProfessor {
      */
     public Professor buscar (String nome);
     
-    void atualizar(Professor p1, Professor p2);
+    void atualizar(Professor antigoProfessor, String cpf, LocalDate dataNascimento, String email, String nome, String senha, char sexo);
 
     public Professor buscarCpf (String cpf);
 

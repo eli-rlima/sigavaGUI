@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.dados;
 
+import br.ufrpe.sigava.negocio.beans.Login;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,13 +60,14 @@ public class RepositorioProfessor implements IRepositorioProfessor, Serializable
     }
     
     @Override
-    public void atualizar(Professor p1, Professor p2){
-        p1.setCpf(p2.getCpf());
-        p1.setDataNascimento(p2.getDataNascimento());
-        p1.setEmail(p2.getEmail());
-        p1.setNome(p2.getNome());
-        p1.setLogin(p2.getLogin());
-        p1.setSexo(p2.getSexo());
+    public void atualizar(Professor antigoProfessor, String cpf, LocalDate dataNascimento, String email, String nome, String senha, char sexo){
+        antigoProfessor.setCpf(cpf);
+        antigoProfessor.setDataNascimento(dataNascimento);
+        antigoProfessor.setEmail(email);
+        antigoProfessor.setNome(nome);
+        Login novoLogin = new Login(cpf, senha);
+        antigoProfessor.setLogin(novoLogin);
+        antigoProfessor.setSexo(sexo);
     }
 
     public Professor buscarCpf (String cpf){

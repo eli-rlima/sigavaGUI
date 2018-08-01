@@ -55,6 +55,8 @@ public interface IRepositorioProfessor {
      * @return o professor encontrado
      */
     public Professor buscar (String nome);
+    
+    void atualizar(Professor p1, Professor p2);
 
     public Professor buscarCpf (String cpf);
 

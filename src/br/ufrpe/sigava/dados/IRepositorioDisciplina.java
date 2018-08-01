@@ -54,6 +54,8 @@ public interface IRepositorioDisciplina {
      * @return a disciplina encontrada
      */
     Disciplina buscar(String nome);
+    
+    void atualizar(Disciplina d1, Disciplina d2);
 
     /**
      * Verifica se existe a disciplina no repositório

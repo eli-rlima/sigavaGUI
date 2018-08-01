@@ -62,6 +62,15 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
         }
         return aluno;
     }
+    @Override
+    public void atualizar(Aluno antigoAluno, Aluno attAluno){
+        antigoAluno.setNome(attAluno.getNome());
+        antigoAluno.setEmail(attAluno.getEmail());
+        antigoAluno.setDataNascimento(attAluno.getDataNascimento());
+        antigoAluno.setLogin(attAluno.getLogin());
+        antigoAluno.setSexo(attAluno.getSexo());
+        antigoAluno.setCpf(attAluno.getCpf());
+    }
 
     @Override
     public boolean existe (Aluno aluno) {

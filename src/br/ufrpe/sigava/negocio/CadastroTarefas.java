@@ -68,7 +68,16 @@ public class CadastroTarefas {
         }
         return tarefa;
     }
-
+    
+    public void atualizar(Tarefa t1, Tarefa t2) throws TarefaNaoExisteException{
+        if(this.repositorioTarefa.buscar(t1.getCodigoTarefa()) != null){
+            this.repositorioTarefa.atualizar(t1, t2);
+            this.repositorioTarefa.salvarArquivo();
+        }else{
+            throw new TarefaNaoExisteException();
+        }
+    }
+    
     public boolean existe(Tarefa tarefa) throws TarefaNaoExisteException{
         boolean retorno = false;
         if (tarefa != null){ 

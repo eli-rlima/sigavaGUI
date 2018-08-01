@@ -68,8 +68,6 @@
             <Pane fx:id="pane_Default" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
          </children>
       </StackPane>
-      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
       <VBox fx:id="vbox_Professor" layoutX="260.0" layoutY="94.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_NovaTarefa" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Nova Tarefa" textFill="WHITE">
@@ -105,5 +103,7 @@
             </Label>
          </children>
       </Pane>
+      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
    </children>
 </AnchorPane>

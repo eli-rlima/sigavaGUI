@@ -59,6 +59,16 @@ public class RepositorioDisciplina implements IRepositorioDisciplina, Serializab
         }
         return disciplina;
     }
+    
+    @Override
+    public void atualizar(Disciplina d1, Disciplina d2){
+        d1.setNome(d2.getNome());
+        d1.setDuracaoAula(d2.getDuracaoAula());
+        d1.setDiaAula(d2.getDiaAula());
+        d1.setDataInicio(d2.getDataInicio());
+        d1.setCargaHoraria(d2.getCargaHoraria());
+    }
+    
     @Override
     public boolean existe(Disciplina disciplina){
         return this.repositorioDisciplina.contains(disciplina);

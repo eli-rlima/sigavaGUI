@@ -74,6 +74,16 @@ public class CadastroProfessor {
         }else throw new IllegalArgumentException("Argumento inválido!");        
         return professor;
     }
+    
+    public void atualizar(Professor p1, Professor p2) throws ProfessorNaoExisteException{
+        if(repositorioProfessor.buscar(p1.getNome())!= null){
+            repositorioProfessor.atualizar(p1, p2);
+            repositorioProfessor.salvarArquivo();
+        }
+        else{
+            throw new ProfessorNaoExisteException();
+        }
+    }
 
     public boolean existe(Professor professor) throws IllegalArgumentException {
         boolean retorno = false;

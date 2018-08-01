@@ -79,6 +79,15 @@ public class CadastroDisciplinas {
         }else throw new IllegalArgumentException("Argumento inválido");
         return disciplina;
     }
+    
+    public void atualizar(Disciplina d1, Disciplina d2) throws DisciplinaNaoExisteException{
+        if(this.repositorioDisciplina.buscar(d1.getNome()) != null){
+            this.repositorioDisciplina.atualizar(d1, d2);
+            this.repositorioDisciplina.salvarArquivo();
+        }else{
+            throw new DisciplinaNaoExisteException();
+        }
+    }
 
     public boolean existe(Disciplina disciplina) throws IllegalArgumentException{
         boolean retorno = false;

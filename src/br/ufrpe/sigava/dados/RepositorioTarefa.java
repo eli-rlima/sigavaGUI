@@ -62,6 +62,15 @@ public class RepositorioTarefa implements IRepositorioTarefa, Serializable {
         }
         return tarefa;
     }
+    
+    @Override
+    public void atualizar(Tarefa t1, Tarefa t2){
+        t1.setCodigoTarefa(t2.getCodigoTarefa());
+        t1.setDataInicio(t2.getDataInicio());
+        t1.setDataTermino(t2.getDataTermino());
+        t1.setDescricao(t2.getDescricao());
+    }
+    
     @Override
     public boolean existe(Tarefa tarefa){
         return this.repositorioTarefas.contains(tarefa);

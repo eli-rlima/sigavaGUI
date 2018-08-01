@@ -75,6 +75,15 @@ public class CadastroAlunos {
         }
         return aluno;
     }
+    
+    public void atualizar (Aluno antigoAluno, Aluno attAluno) throws AlunoNaoExisteException{
+        if(repositorioAluno.buscar(antigoAluno.getCpf()) != null){
+            repositorioAluno.atualizar(antigoAluno, attAluno);
+            repositorioAluno.salvarArquivo();
+        }else{
+            throw new AlunoNaoExisteException();
+        }
+    }
 
     public boolean existe(Aluno aluno) throws IllegalArgumentException{
         boolean retorno = false;

@@ -30,9 +30,17 @@ public abstract class Pessoa implements Serializable{
         this.cpf = cpf;
     }
     public Pessoa(){}
-
+    
+    public void setLogin(Login login){
+        this.login = login;
+    }
+    
     public String getCpf() {
         return cpf;
+    }
+    
+    public void setCpf(String cpf){
+        this.cpf = cpf;
     }
 
     public String getNome() {

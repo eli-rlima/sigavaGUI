@@ -18,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import com.jfoenix.controls.JFXPasswordField;

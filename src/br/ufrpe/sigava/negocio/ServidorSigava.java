@@ -83,6 +83,11 @@ public class ServidorSigava implements IServidorSigava{
     }
     
     @Override
+    public void atualizarAluno(Aluno antigoAluno, Aluno attAluno) throws AlunoNaoExisteException{
+        this.alunos.atualizar(antigoAluno, attAluno);
+    }
+    
+    @Override
     public boolean existeAluno(Aluno aluno) throws IllegalArgumentException{
         return this.alunos.existe(aluno);
     }
@@ -161,6 +166,11 @@ public class ServidorSigava implements IServidorSigava{
     public Disciplina buscarDisciplina(String nome)throws DisciplinaNaoExisteException, IllegalArgumentException{
         return this.disciplinas.procurar(nome);
     }
+    
+    @Override    
+    public void atualizarDisciplina(Disciplina antigaDisciplina, Disciplina attDisciplina) throws DisciplinaNaoExisteException{
+        this.disciplinas.atualizar(antigaDisciplina, attDisciplina);
+    }
 
     @Override
     public boolean existeDisciplina(Disciplina disciplina) throws IllegalArgumentException{
@@ -204,6 +214,12 @@ public class ServidorSigava implements IServidorSigava{
     public Professor buscarProfessor(String cpf) throws ProfessorNaoExisteException, IllegalArgumentException{
         return this.professores.procurar(cpf);
     }
+    
+    
+    @Override
+    public void atualizarProfessor(Professor antigoProfessor, Professor attProfessor) throws ProfessorNaoExisteException{
+        this.professores.atualizar(antigoProfessor, attProfessor);
+    }
 
     @Override
     public boolean existeProfessor(Professor professor){
@@ -229,6 +245,11 @@ public class ServidorSigava implements IServidorSigava{
     @Override
     public Tarefa buscarTarefa(int codigo) throws TarefaNaoExisteException, IllegalArgumentException{
         return this.tarefas.procurar(codigo);
+    }
+    
+    @Override
+    public void atualizarTarefa(Tarefa antigaTarefa, Tarefa attTarefa) throws TarefaNaoExisteException{
+        this.tarefas.atualizar(antigaTarefa, attTarefa);
     }
 
     @Override

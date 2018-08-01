@@ -54,6 +54,8 @@ public interface IRepositorioTarefa {
      * @return a tarefa procurada
      */
      Tarefa buscar(int codigo);
+     
+     void atualizar(Tarefa t1, Tarefa t2);
 
     /**
      * Verifica se a tarefa existe

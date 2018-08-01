@@ -6,6 +6,7 @@
 package br.ufrpe.sigava.gui;
 
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
@@ -402,6 +403,32 @@ public class ADMController implements Initializable {
                     Alert alertAlunoNaoEncontrado = new Alert(Alert.AlertType.INFORMATION);
                     alertAlunoNaoEncontrado.setContentText(e.getMessage());
                     alertAlunoNaoEncontrado.show();
+                }
+            }
+        });
+        
+        btn_Remover_Disciplina.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                IServidorSigava servidor = ServidorSigava.getIstance();
+                Disciplina disciplina = table_AdmDisc.getSelectionModel().getSelectedItem();
+                try{
+                    if(disciplina != null){
+                        Alert alertConfRemover = new Alert(Alert.AlertType.CONFIRMATION);
+                        alertConfRemover.setTitle("REMOVER DISCIPLINA");
+                        alertConfRemover.setContentText("Deseja remover a disciplina?");
+                        Optional<ButtonType> result = alertConfRemover.showAndWait();
+                        if(result.get() == ButtonType.OK){
+                            servidor.descadastrarDisciplina(disciplina);
+                            Alert alertRemovido = new Alert(Alert.AlertType.INFORMATION);
+                            alertRemovido.setContentText("Disciplina removida com sucesso");
+                            alertRemovido.show();
+                        }
+                    }
+                }catch(DisciplinaNaoExisteException e){
+                   Alert alertDisciplinaNaoEncontrada = new Alert(Alert.AlertType.INFORMATION);
+                   alertDisciplinaNaoEncontrada.setContentText(e.getMessage());
+                   alertDisciplinaNaoEncontrada.show();
                 }
             }
         });

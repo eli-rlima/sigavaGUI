@@ -8,38 +8,38 @@ package br.ufrpe.sigava.gui;
 import br.ufrpe.sigava.exceptions.ProfessorNaoExisteException;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
-import com.jfoenix.controls.JFXPasswordField;
-import java.time.LocalDate;
-import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author helto
+ * @author elive
  */
-public class AtualizarProfessorController implements Initializable {
-    private Professor professor;
-    @FXML
-    private JFXButton btn_Att;
-    @FXML
-    private JFXButton btn_Cancel;
-    @FXML
-    private JFXComboBox<String> combobox_SexoProfessor;
+public class AttProfController implements Initializable {
+    
+    private static Professor professor;
+
     @FXML
     private JFXTextField txt_NomeProf;
+    @FXML
+    private JFXTextField txt_EmailProf;
+    @FXML
+    private JFXComboBox<String> combobox_SexoProfessor;
     @FXML
     private DatePicker calendar_AddProf;
     @FXML
@@ -49,8 +49,18 @@ public class AtualizarProfessorController implements Initializable {
     @FXML
     private JFXPasswordField pass_ConfProf;
     @FXML
-    private JFXTextField txt_EmailProf;
-
+    private JFXButton btn_Att;
+    @FXML
+    private JFXButton btn_Cancel;
+    
+    public static Professor getProfessor(){
+        return professor;
+    }
+    
+    public static void setProfessor(Professor prof){
+        professor = prof;
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -61,7 +71,7 @@ public class AtualizarProfessorController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Att);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
         Biblioteca.MarcaraCPF(txt_CPFProf);
-        professor = ADMController.getProfessor();
+        professor = Controller.getProfessor();
         txt_NomeProf.setText(professor.getNome());
         txt_EmailProf.setText(professor.getEmail());
         txt_CPFProf.setText(professor.getCpf());
@@ -101,6 +111,7 @@ public class AtualizarProfessorController implements Initializable {
                     if(result.get() == ButtonType.OK){
                         senha = pass_Prof.getText();
                         servidor.atualizarProfessor(professor, cpf, dataAniversario, email, nome, senha, sexo);
+                        setProfessor(professor);
                         Alert alertAtualizado = new Alert(Alert.AlertType.INFORMATION);
                         alertAtualizado.setTitle("CONFIRMAÇÃO DE ATUALIZAÇÃO");
                         alertAtualizado.setContentText("Professor atualizado com sucesso!");

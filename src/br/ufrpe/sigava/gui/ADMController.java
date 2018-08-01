@@ -129,7 +129,7 @@ public class ADMController implements Initializable {
     public static Aluno getAluno(){
         return tbAluno;
     }
-    public static void setPofessor(Professor professor){
+    public static void setProfessor(Professor professor){
         tbProfessor = professor;
     }
     public static Professor getProfessor(){
@@ -317,7 +317,7 @@ public class ADMController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 AttProfessor attProfessor = new AttProfessor();
-                setPofessor(table_AdmProfessor.getSelectionModel().getSelectedItem());
+                setProfessor(table_AdmProfessor.getSelectionModel().getSelectedItem());
                 try {
                     attProfessor.start(new Stage());
                 } catch (Exception ex) {

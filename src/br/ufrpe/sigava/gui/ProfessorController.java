@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -63,6 +64,18 @@ public class ProfessorController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_AttCad);
         professor = Controller.getProfessor();
         txt_NomeProf.setText("Bem vindo, " + professor.getNome());
+        
+        btn_AttCad.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AttProf attProf = new AttProf();
+                try {
+                    attProf.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }    
 
     @FXML

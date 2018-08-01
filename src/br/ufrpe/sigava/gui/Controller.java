@@ -53,7 +53,7 @@ public class Controller implements Initializable {
     private static Professor professorC;
     public static boolean IS_ALUNO;
     public static boolean IS_PROFESSOR;
-    private static final String USER_ADM = "admin";
+    private static final String USER_ADM = "000.000.000-00";
     private static final String LOCK_ADM = "admin";
     private static final String USER_PROF = "prof";
     private static final String LOCK_PROF = "prof";
@@ -112,6 +112,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         IServidorSigava servidor = ServidorSigava.getIstance();
         String usuario, senha;
+        Biblioteca.MarcaraCPF(txt_CPF);
         //Funcionalidades
         
         usuario = txt_CPF.getText();

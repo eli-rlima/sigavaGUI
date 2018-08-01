@@ -265,7 +265,7 @@ public class Disciplina implements Serializable, Comparable{
 
     public String toString() {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-      return "Nome da Disciplina: " + this.getNome() +  "\n"
+      return "Nome da Disciplina: " + this.getNome() + "" + "\nProfessor:" + this.getProfessor().getNome()+ "\n"
           + "Inicio da disciplina: " + this.getDataInicio().format(formatter) + "\nData termino da disciplina: "
           + this.getDataFim().format(formatter) + "\nDia que ocorre a aula:" + this.getDiaAula().toString()
           + "\nCarga Horaria: " + this.getCargaHoraria();

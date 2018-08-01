@@ -1,7 +1,6 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
-import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -73,11 +72,6 @@ public class RepositorioDisciplina implements IRepositorioDisciplina, Serializab
     @Override
     public boolean existe(Disciplina disciplina){
         return this.repositorioDisciplina.contains(disciplina);
-    }
-    
-    @Override 
-    public boolean existeAluno(Disciplina disciplina, Aluno aluno){
-        return disciplina.existeAluno(aluno);
     }
     
     private static RepositorioDisciplina lerDoArquivo() {

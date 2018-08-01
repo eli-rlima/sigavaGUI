@@ -149,13 +149,4 @@ public class CadastroDisciplinas {
             RepositorioTarefa.getInstance().salvarArquivo();
         }else throw new TarefaNaoExisteException();
     }
-    
-    public boolean existeAluno(Disciplina disciplina, Aluno aluno){
-        boolean retorno = false;
-        if (disciplina != null && aluno != null){
-            retorno = repositorioDisciplina.existeAluno(disciplina, aluno);
-        }else throw new IllegalArgumentException("Argumento(s) inválido(s).");
-        return retorno;
-    }
-    
 }

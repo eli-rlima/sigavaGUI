@@ -339,35 +339,19 @@ public class ADMController implements Initializable {
             }
         });
         
-        btn_Atualizar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
+        btn_Atualizar_Disciplina.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                AttAluno attAluno = new AttAluno();
-                setAluno(table_AdmAluno.getSelectionModel().getSelectedItem());
+                AttDisciplina attDisciplina = new AttDisciplina();
+                setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem());
                 try {
-                    attAluno.start(new Stage());
+                    attDisciplina.start(new Stage());
                 } catch (Exception ex) {
                     Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-        
-        btn_Ass_Aluno_Disc.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem());
-                AssociarAlunos assAlunos = new AssociarAlunos();
-                if (table_AdmDisc.getSelectionModel().getSelectedItem() != null){
-                        try {
-                            assAlunos.start(new Stage());
-                        } catch (Exception ex) {
-                            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                }
-            }
-        });
-        
-        //************CHAMADAS DOS STAGES PARA REMOVER*************
+                //************CHAMADAS DOS STAGES PARA REMOVER*************
         btn_Remover_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -475,6 +459,23 @@ public class ADMController implements Initializable {
             sigava.start(new Stage());
         } catch (Exception ex) {
             Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    @FXML
+    private void disciplina(ActionEvent event) {
+        if (event.getSource() == btn_Ass_Aluno_Disc){
+            AssociarAlunos assAlunos = new AssociarAlunos();
+                try {
+                    assAlunos.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        
+        if (event.getSource() == btn_Ass_Prof_Disc){
+            
         }
     }
 

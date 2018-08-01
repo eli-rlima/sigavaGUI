@@ -256,10 +256,5 @@ public class ServidorSigava implements IServidorSigava{
     public boolean existeTarefa(Tarefa tarefa) throws TarefaNaoExisteException{
         return this.tarefas.existe(tarefa);
     }
-    
-    @Override
-    public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws IllegalArgumentException{
-        return this.disciplinas.existeAluno(disciplina, aluno);
-    }
 
 }

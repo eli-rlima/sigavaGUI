@@ -18,7 +18,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -145,15 +144,9 @@ public class ADMController implements Initializable {
     @FXML
     private JFXTextField txt_ProcurarProfessor;
     @FXML
-    private Button btn_ProcurarProfessor;
-    @FXML
     private JFXTextField txt_ProcurarDisciplina;
     @FXML
-    private Button btn_ProcurarDisciplina;
-    @FXML
     private JFXTextField txt_ProcurarAluno;
-    @FXML
-    private Button btn_ProcurarAluno;
     
     private ObservableList<Professor> masterData =
             FXCollections.observableArrayList();
@@ -164,33 +157,21 @@ public class ADMController implements Initializable {
      private ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
     
+    //***********FUNÇÕES AUXILIARES PARA LISTAR**************
     public void listaAlunos(){
         masterDataA.clear();
         masterDataA.addAll(ServidorSigava.getIstance().listarAlunos());
-        /*table_AdmAluno.getItems().clear();
-        IServidorSigava servidor = ServidorSigava.getIstance();
-        ArrayList<Aluno> alunos = servidor.listarAlunos();
-        table_AdmAluno.getItems().addAll(alunos);*/
     }
     
     public void listaProfessores(){
         masterData.clear();
         masterData.addAll(ServidorSigava.getIstance().listarProfessores());
-        /*
-        table_AdmProfessor.getItems().clear();
-        IServidorSigava servidorSigava = ServidorSigava.getIstance();
-        table_AdmProfessor.getItems().addAll(servidorSigava.listarProfessores());*/
     }
 
     
     public void listaDisciplinas(){
         masterDataD.clear();
         masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
-        
-      /*table_AdmDisc.getItems().clear();
-        IServidorSigava servidor = ServidorSigava.getIstance();
-        ArrayList<Disciplina> disciplinas = servidor.listarDisciplinas();
-        table_AdmDisc.getItems().addAll(disciplinas);*/
     }
     
     @Override
@@ -203,11 +184,31 @@ public class ADMController implements Initializable {
         tb_CellNameP.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascP.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
         tb_CellCPFP.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        table_AdmDisc.setItems(masterDataD);
-        
-        
+       
+        //***********LISTENER'S PARA PROCURAR**************
+        masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
+        FilteredList <Disciplina> filteredDataD = new FilteredList<>(masterDataD, d -> true);
+            txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{
+                filteredDataD.setPredicate(d -> {
+                    // Se não houver filtro, retorna toda a lista.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                        String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (d.getNome().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filtro no nome.
+                    } else if (d.getProfessor() != null &&
+                            d.getProfessor().getNome().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filtro pelo o nome do Professor.
+                    }
+                    return false; // Se não houve filtro.
+                });
+            });
+        SortedList <Disciplina> sortedDataD = new SortedList<>(filteredDataD);
+        table_AdmDisc.setItems(sortedDataD.sorted());
+                
         //Professor
-        
         masterData.addAll(ServidorSigava.getIstance().listarProfessores());
         FilteredList <Professor> filteredData = new FilteredList<>(masterData, p -> true);
             txt_ProcurarProfessor.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -226,14 +227,11 @@ public class ADMController implements Initializable {
                 return false; // Se não houve filtro.
             });
         });
-
         SortedList<Professor> sortedData = new SortedList<>(filteredData);
         sortedData.setComparator(new ComparadorPessoa());
         table_AdmProfessor.setItems(sortedData.sorted());
-    
-    
+        
         //Aluno
-    
         masterDataA.addAll(ServidorSigava.getIstance().listarAlunos());
         FilteredList <Aluno> filteredDataA = new FilteredList<>(masterDataA, p -> true);
             txt_ProcurarAluno.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -255,9 +253,8 @@ public class ADMController implements Initializable {
         SortedList <Aluno> sortedDataA = new SortedList<>(filteredDataA);
         sortedDataA.setComparator(new ComparadorPessoa());
         table_AdmAluno.setItems(sortedDataA.sorted());
-          
-    
         
+        //***********ATUALIZAR LISTA**************
         btn_AttLista.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -278,7 +275,7 @@ public class ADMController implements Initializable {
                 listaProfessores();
             }
         });
-        
+        //***********CADASTRO**************
         btn_Cadastrar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -328,7 +325,7 @@ public class ADMController implements Initializable {
                 }
             }
         });
-
+        //************CHAMADAS DOS STAGES PARA ATUALIZAR*************
         btn_Atualizar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -354,7 +351,7 @@ public class ADMController implements Initializable {
                 }
             }
         });
-        
+                //************CHAMADAS DOS STAGES PARA REMOVER*************
         btn_Remover_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -450,11 +447,40 @@ public class ADMController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_AttLista);
         Biblioteca.AlteracaoCorMouse(btn_AttListaD);
         Biblioteca.AlteracaoCorMouse(btn_AttListaP);
-
     }
     
     @FXML
-    public void handleClicks(ActionEvent event){ 
+    private void logout(ActionEvent event) {
+        
+        SigavaGUI sigava = new SigavaGUI();
+        Stage stage = (Stage) btn_Logout.getScene().getWindow();
+        stage.close();
+        try {
+            sigava.start(new Stage());
+        } catch (Exception ex) {
+            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    @FXML
+    private void disciplina(ActionEvent event) {
+        if (event.getSource() == btn_Ass_Aluno_Disc){
+            AssociarAlunos assAlunos = new AssociarAlunos();
+                try {
+                    assAlunos.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        
+        if (event.getSource() == btn_Ass_Prof_Disc){
+            
+        }
+    }
+
+    @FXML
+    private void clicks(ActionEvent event) {
         if(event.getSource() == btn_Aluno){ 
             pane_Aluno.toFront(); 
             vbox_Aluno.toFront();
@@ -472,21 +498,10 @@ public class ADMController implements Initializable {
             vbox_Disciplina.toFront(); 
             table_AdmDisc.toFront();
             listaDisciplinas();
-        } 
-    }
-
-    @FXML
-    private void logout(ActionEvent event) {
-        
-        SigavaGUI sigava = new SigavaGUI();
-        Stage stage = (Stage) btn_Logout.getScene().getWindow();
-        stage.close();
-        try {
-            sigava.start(new Stage());
-        } catch (Exception ex) {
-            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
     
    
 }

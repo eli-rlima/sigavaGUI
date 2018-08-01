@@ -26,7 +26,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="393.0" layoutY="79.0" size="16" wrappingWidth="16.0" />
          </children>
       </Pane>
-      <Pane fx:id="pane_Disciplina" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
+      <Pane fx:id="pane_Disciplina" layoutX="249.0" layoutY="-6.0" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disciplina">
                <font>
@@ -37,7 +37,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="394.0" layoutY="79.0" size="16" wrappingWidth="16.0" />
          </children>
       </Pane>
-      <Pane fx:id="pane_Professor" layoutX="249.0" layoutY="-6.0" onMouseClicked="#handleClicks" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
+      <Pane fx:id="pane_Professor" layoutX="249.0" layoutY="-6.0" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Text fill="WHITE" layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor">
                <font>
@@ -48,7 +48,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="394.0" layoutY="79.0" size="16" wrappingWidth="16.0" />
          </children>
       </Pane>
-      <VBox fx:id="vbox_Aluno" layoutX="250.0" layoutY="84.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
+      <VBox fx:id="vbox_Aluno" layoutX="250.0" layoutY="84.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_Atualizar_Aluno" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
                <font>
@@ -92,7 +92,7 @@
                   </Text>
                </children>
             </Pane>
-            <JFXButton fx:id="btn_Aluno" onAction="#handleClicks" onMouseClicked="#handleClicks" prefHeight="74.0" prefWidth="252.0" text="Aluno" textFill="WHITE">
+            <JFXButton fx:id="btn_Aluno" onAction="#clicks" prefHeight="74.0" prefWidth="252.0" text="Aluno" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
@@ -100,7 +100,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btn_Disciplina" onAction="#handleClicks" onMouseClicked="#handleClicks" prefHeight="74.0" prefWidth="252.0" text="Disciplina" textFill="WHITE">
+            <JFXButton fx:id="btn_Disciplina" onAction="#clicks" prefHeight="74.0" prefWidth="252.0" text="Disciplina" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
@@ -108,7 +108,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btn_Professor" onAction="#handleClicks" onMouseClicked="#handleClicks" prefHeight="74.0" prefWidth="250.0" text="Professor" textFill="WHITE">
+            <JFXButton fx:id="btn_Professor" onAction="#clicks" prefHeight="74.0" prefWidth="250.0" text="Professor" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
@@ -129,7 +129,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <VBox fx:id="vbox_Disciplina" layoutX="270.0" layoutY="104.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
+      <VBox fx:id="vbox_Disciplina" layoutX="270.0" layoutY="104.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_Atualizar_Disciplina" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
                <font>
@@ -155,7 +155,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btn_Ass_Aluno_Disc" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Ass. Aluno - Disc" textFill="WHITE">
+            <JFXButton fx:id="btn_Ass_Aluno_Disc" onAction="#disciplina" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Ass. Aluno - Disc" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -163,7 +163,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btn_Ass_Prof_Disc" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Ass. Prof - Disc" textFill="WHITE">
+            <JFXButton fx:id="btn_Ass_Prof_Disc" onAction="#disciplina" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Ass. Prof - Disc" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>
@@ -178,7 +178,7 @@
             </JFXButton>
          </children>
       </VBox>
-      <VBox fx:id="vbox_Professor" layoutX="260.0" layoutY="94.0" onMouseClicked="#handleClicks" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
+      <VBox fx:id="vbox_Professor" layoutX="260.0" layoutY="94.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_Atualizar_Professor" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Atualizar" textFill="WHITE">
                <font>

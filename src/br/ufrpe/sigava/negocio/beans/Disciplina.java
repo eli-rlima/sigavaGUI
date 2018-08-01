@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 
-public class Disciplina implements Serializable{
+public class Disciplina implements Serializable, Comparable{
 
     private String nome;
     private Professor professor;
@@ -294,9 +294,10 @@ public class Disciplina implements Serializable{
         return retorno;
       }
     
-
-    public int compareTo (Disciplina e1, Disciplina e2){
-        return e1.getNome().compareTo(e2.getNome());
+    @Override
+    public int compareTo (Object o){
+        Disciplina d = (Disciplina) o;
+        return this.getNome().compareTo(d.getNome());
     }
 
 }

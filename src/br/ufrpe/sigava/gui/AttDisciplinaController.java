@@ -5,14 +5,22 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
+import br.ufrpe.sigava.negocio.IServidorSigava;
+import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
@@ -50,6 +58,23 @@ public class AttDisciplinaController implements Initializable {
         cal_AttDataInicioDisc.setValue(disciplina.getDataInicio());
         txt_AttDuracaoAulaDisc.setText(Integer.toString(disciplina.getDuracaoAula()));
         txt_AttCargaHorariaDisc.setText(Integer.toString(disciplina.getCargaHoraria()));
+        
+        btn_AttDisc.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                IServidorSigava servidor = ServidorSigava.getIstance();
+                String nome;
+                int cargaHoraria, duracaoAula;
+                DayOfWeek diaAula;
+                LocalDate dataInicio;
+                nome = txt_AttNomeDisc.getText();
+                cargaHoraria = Integer.parseInt(txt_AttCargaHorariaDisc.getText());
+                duracaoAula = Integer.parseInt(txt_AttDuracaoAulaDisc.getText());
+                dataInicio = cal_AttDataInicioDisc.getValue();
+                diaAula = dataInicio.getDayOfWeek();
+                //Aqui vai ficar a função do atualizar 
+            }     
+        });
     }    
 
     @FXML

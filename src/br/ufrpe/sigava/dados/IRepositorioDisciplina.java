@@ -1,6 +1,7 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -76,5 +77,8 @@ public interface IRepositorioDisciplina {
    * 
    */
   void salvarArquivo();
+  
+  public boolean existeAluno(Disciplina disciplina, Aluno aluno);
+ 
 
 }

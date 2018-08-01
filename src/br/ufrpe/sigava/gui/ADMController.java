@@ -351,6 +351,23 @@ public class ADMController implements Initializable {
                 }
             }
         });
+        
+         btn_Ass_Aluno_Disc.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem()); 
+                AssociarAlunos assAlunos = new AssociarAlunos(); 
+                if (table_AdmDisc.getSelectionModel().getSelectedItem() != null){
+                    System.out.println("ENTROU!");
+                        try { 
+                            assAlunos.start(new Stage()); 
+                        } catch (Exception ex) { 
+                            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex); 
+                        } 
+                } 
+            } 
+        }); 
+        
                 //************CHAMADAS DOS STAGES PARA REMOVER*************
         btn_Remover_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -462,22 +479,6 @@ public class ADMController implements Initializable {
         }
     }
 
-
-    @FXML
-    private void disciplina(ActionEvent event) {
-        if (event.getSource() == btn_Ass_Aluno_Disc){
-            AssociarAlunos assAlunos = new AssociarAlunos();
-                try {
-                    assAlunos.start(new Stage());
-                } catch (Exception ex) {
-                    Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }
-        
-        if (event.getSource() == btn_Ass_Prof_Disc){
-            
-        }
-    }
 
     @FXML
     private void clicks(ActionEvent event) {

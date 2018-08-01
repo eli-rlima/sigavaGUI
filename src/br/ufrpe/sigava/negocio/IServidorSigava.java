@@ -114,5 +114,6 @@ public interface IServidorSigava {
 
     ArrayList <Disciplina> listarDisciplinas ();
 
-
+    public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws IllegalArgumentException;
+  
 }

@@ -54,7 +54,7 @@ public class CadastroProfessor {
                 
                 ArrayList <Disciplina> disciplinas = professor.getDisciplinas();
                 for (int i = 0; i < disciplinas.size() ; i++) {
-                    professor.getDisciplinas().get(i).removerProfessor(professor);
+                    professor.getDisciplinas().get(i).removerProfessor();
                 }
                 
                 RepositorioDisciplina.getInstance().salvarArquivo();

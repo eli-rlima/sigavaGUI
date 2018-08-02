@@ -84,6 +84,8 @@ public interface IRepositorioDisciplina {
   public boolean existeProfessor(Disciplina disciplina, Professor professor);
   
   public boolean removerAlunoDisciplina (Disciplina disciplina, Aluno aluno);
+  
+  public boolean removerProfessorDisciplina (Disciplina disciplina);
 
  
 

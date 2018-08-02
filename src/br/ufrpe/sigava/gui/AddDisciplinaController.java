@@ -74,6 +74,8 @@ public class AddDisciplinaController implements Initializable {
                     Alert alertDiscCadastrada = new Alert(Alert.AlertType.INFORMATION);
                     alertDiscCadastrada.setContentText("Disciplina cadastrada com sucesso!");
                     alertDiscCadastrada.show();
+                    Stage stage = (Stage) btn_AddCancelDisc.getScene().getWindow();
+                    stage.close();
                     ADMController.listaDisciplinas();
                 }catch(DisciplinaJaExisteException e){
                     Alert alertDiscJaExiste = new Alert(Alert.AlertType.ERROR);

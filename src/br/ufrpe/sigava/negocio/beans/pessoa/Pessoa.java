@@ -78,12 +78,7 @@ public abstract class Pessoa implements Serializable{
 
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Nome = " + this.getNome() +
-                "\nE-mail = " + this.getEmail() +
-                "\nSexo = " + this.getSexo() +
-                "\nData de nascimento = " + this.getDataNascimento().format(formatter) +
-                "\nCPF = " + this.getCpf();
-
+        return this.getNome();
     }
 
     public boolean equals(Pessoa anotherPessoa){

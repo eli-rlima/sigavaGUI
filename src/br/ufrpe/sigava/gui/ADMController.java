@@ -41,6 +41,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 /**
  * FXML Controller class
  *
@@ -128,8 +129,23 @@ public class ADMController implements Initializable {
     private JFXTextField txt_ProcurarDisciplina;
     @FXML
     private JFXTextField txt_ProcurarAluno;
-     @FXML
+    @FXML
     private JFXButton btn_Listar;
+    @FXML
+    private JFXButton btn_Remover_ProfessorD;
+    @FXML
+    private TableColumn<Professor, String> tb_CellEmailP;
+    @FXML
+    private TableColumn<Disciplina, Professor> tb_CellNameProf;
+    @FXML
+    private TableColumn<Disciplina, Integer> tb_CellQnt;
+    @FXML
+    private TableColumn<Disciplina, LocalDate> tb_CellDataInicio;
+    @FXML
+    private TableColumn<Disciplina, LocalDate> tb_CellDataFim;
+    @FXML
+    private TableColumn<Aluno, String> tb_CellEmail;
+
     
     public static void setAluno(Aluno aluno){
         tbAluno = aluno;
@@ -159,6 +175,8 @@ public class ADMController implements Initializable {
     
      private ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
+    
+
    
     
     //***********FUNÇÕES AUXILIARES PARA LISTAR**************
@@ -184,11 +202,17 @@ public class ADMController implements Initializable {
         tb_CellCPFA.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellNameA.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascA.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        tb_CellEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tb_CellQnt.setCellValueFactory(new PropertyValueFactory<>("duracaoAula"));
         tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
-        tb_CellNameD.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellDataFim.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+        tb_CellDataInicio.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+        tb_CellNameProf.setCellValueFactory(new PropertyValueFactory<>("professor"));
+        tb_CellNameD.setCellValueFactory(new PropertyValueFactory("nome"));
         tb_CellNameP.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascP.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
         tb_CellCPFP.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tb_CellEmailP.setCellValueFactory(new PropertyValueFactory<>("email"));
        
         //***********LISTENER'S PARA PROCURAR**************
         masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
@@ -427,6 +451,7 @@ public class ADMController implements Initializable {
                 }
             }
         });
+        
         
         btn_Remover_Professor.setOnAction(new EventHandler<ActionEvent>() {
             @Override

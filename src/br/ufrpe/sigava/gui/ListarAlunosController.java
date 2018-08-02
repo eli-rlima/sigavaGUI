@@ -6,6 +6,7 @@
 package br.ufrpe.sigava.gui;
 
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteNaDisciplinaException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import br.ufrpe.sigava.negocio.ServidorSigava;
@@ -104,18 +105,16 @@ public class ListarAlunosController implements Initializable {
             Disciplina disciplina = ADMController.getDisciplina();
             for (int i = 0; i < alunos.size(); i++) {
                 try{
-                    if (ServidorSigava.getIstance().existeAlunoDiscilina(disciplina, alunos.get(i))){
-                            //ServidorSigava.getIstance().
-                            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                            alerta.setContentText("Aluno "+alunos.get(i).getNome()+"cadastrado!");
-                            alerta.show();
-                    }else{
-                            Alert alerta = new Alert(Alert.AlertType.ERROR);
-                            alerta.setContentText("Aluno "+alunos.get(i).getNome()+" já cadastrado!");
-                            alerta.show();
-                    }
-                }catch(DisciplinaNaoExisteException | AlunoNaoExisteException e){
+                    ServidorSigava.getIstance().RemoverAluno(disciplina, alunos.get(i));
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setContentText("Aluno "+alunos.get(i).getNome()+" removido da disciplina "+disciplina.getNome()+"!");
+                    alerta.show();
+                }catch(DisciplinaNaoExisteException | AlunoNaoExisteException  e){
                     //Silent
+                }catch (AlunoNaoExisteNaDisciplinaException e2){
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setContentText("Aluno "+alunos.get(i).getNome()+" não existe na disciplina "+disciplina.getNome()+"!");
+                    alerta.show();
                 }                
             }       
         }    

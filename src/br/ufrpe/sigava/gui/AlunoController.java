@@ -66,6 +66,10 @@ public class AlunoController implements Initializable {
     private StackPane stck_Disc;
     @FXML
     private StackPane stck_Crono;
+    @FXML
+    private Pane pane_PesqCrono;
+    @FXML
+    private JFXTextField txt_ProcurarCrono;
 
     /**
      * Initializes the controller class.
@@ -79,7 +83,6 @@ public class AlunoController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Logout);
         Biblioteca.AlteracaoCorMouse(btn_NovaTarefa);
         Biblioteca.AlteracaoCorMouse(btn_RemoveCrono);
-        pane_Default.toFront();
     }    
 
     @FXML
@@ -90,11 +93,10 @@ public class AlunoController implements Initializable {
             vbox_Disciplina.toFront();
         }
         if(event.getSource() == btn_Cronograma){
-            stck_Disc.toBack();
-            pane_Pesquisar.toBack();
             vbox_Cronograma.toFront();
             stck_Crono.toFront();
             table_Cronograma.toFront();
+            pane_PesqCrono.toFront();
         }
     }
 

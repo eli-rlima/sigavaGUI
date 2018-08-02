@@ -112,13 +112,12 @@
          </children>
       </VBox>
       <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
-      <Pane fx:id="pane_Pesquisar" layoutX="249.0" layoutY="-6.0" prefHeight="90.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0">
+      <Pane fx:id="pane_Pesquisar" layoutX="249.0" layoutY="-6.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXTextField fx:id="txt_ProcurarDisciplina" layoutX="140.0" layoutY="51.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Disciplina" style="-fx-background-color: white;" />
             <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="388.0" layoutY="69.0" size="16" wrappingWidth="16.0" />
          </children>
       </Pane>
-      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <StackPane fx:id="stck_Crono" layoutX="398.0" layoutY="91.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
             <TableView fx:id="table_Cronograma" prefHeight="351.0" prefWidth="278.0">
@@ -130,5 +129,12 @@
             <Pane fx:id="pane_DefaultDIsc" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
          </children>
       </StackPane>
+      <Pane fx:id="pane_PesqCrono" layoutX="259.0" layoutY="10.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="txt_ProcurarCrono" layoutX="139.0" layoutY="45.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Cronograma" style="-fx-background-color: white;" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="387.0" layoutY="63.0" size="16" wrappingWidth="16.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

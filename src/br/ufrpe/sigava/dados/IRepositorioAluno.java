@@ -129,7 +129,8 @@ public interface IRepositorioAluno {
    * arquivo se o mesmo não existir.
    * 
    */
-  void salvarArquivo();
+   public boolean removerDisciplina (Disciplina disciplina, Aluno aluno);
+   void salvarArquivo();
   
 
 }

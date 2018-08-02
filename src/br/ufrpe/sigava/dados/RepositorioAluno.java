@@ -176,6 +176,11 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
     }
     
     @Override
+    public boolean removerDisciplina (Disciplina disciplina, Aluno aluno){
+        return aluno.removerDisciplina(disciplina);
+    }
+    
+    @Override
     public ArrayList<Disciplina> listarDisciplinas (Aluno aluno){
         return aluno.getDisciplinas();
     }

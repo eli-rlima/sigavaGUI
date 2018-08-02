@@ -90,7 +90,8 @@ public class ListarDisciplinasAlunoController implements Initializable {
     }    
 
     @FXML
-    private void remover(ActionEvent event) {
+    private void remover(ActionEvent event) {   
+        
     }
 
     @FXML

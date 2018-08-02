@@ -12,6 +12,7 @@ import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.MarcacaoNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
+import br.ufrpe.sigava.gui.SigavaGUI;
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import java.time.LocalDate;
@@ -326,5 +327,22 @@ public class CadastroAlunos {
             throw new AlunoNaoExisteException();
         }
         return cronograma;
+    }
+    
+    public boolean removerDisciplina (Disciplina disciplina, Aluno aluno) throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException{
+        boolean retorno = false;
+        if(disciplina != null){
+            if (aluno != null){
+                try{
+                    ServidorSigava.getIstance().RemoverAluno(disciplina, aluno);
+                    retorno = repositorioAluno.removerDisciplina(disciplina, aluno);
+                    repositorioAluno.salvarArquivo();
+                    repositorioAluno.salvarArquivo();
+                }catch(AlunoNaoExisteNaDisciplinaException e){
+                    //silent
+                }                
+            }else throw new AlunoNaoExisteException();
+        }else throw new DisciplinaNaoExisteException();
+        return retorno;
     }
 }

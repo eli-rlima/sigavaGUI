@@ -277,6 +277,9 @@ public class ServidorSigava implements IServidorSigava{
     public boolean removerProfessor (Disciplina disciplina) throws DisciplinaNaoExisteException {
         return this.disciplinas.removerProfessor(disciplina);
     }
+    public boolean removerAlunoDisciplina (Disciplina disciplina, Aluno aluno) throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException{
+        return alunos.removerDisciplina(disciplina, aluno);
+    }
  
 
 }

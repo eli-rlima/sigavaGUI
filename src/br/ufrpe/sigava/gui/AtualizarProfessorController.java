@@ -105,23 +105,8 @@ public class AtualizarProfessorController implements Initializable {
                         alertAtualizado.setTitle("CONFIRMAÇÃO DE ATUALIZAÇÃO");
                         alertAtualizado.setContentText("Professor atualizado com sucesso!");
                         Optional<ButtonType> result1 = alertAtualizado.showAndWait();
-                        if(result1.get() == ButtonType.OK){
-                            calendar_AddProf.setValue(null);
-                            txt_CPFProf.setText("");
-                            txt_EmailProf.setText("");
-                            txt_NomeProf.setText("");
-                            pass_Prof.setText("");
-                            pass_ConfProf.setText("");
-                            combobox_SexoProfessor.setValue(null);
-                        }
-                    }else{
-                        calendar_AddProf.setValue(null);
-                        txt_CPFProf.setText("");
-                        txt_EmailProf.setText("");
-                        txt_NomeProf.setText("");
-                        pass_Prof.setText("");
-                        pass_ConfProf.setText("");
-                        combobox_SexoProfessor.setValue(null);
+                        Stage stage = (Stage) btn_Cancel.getScene().getWindow();
+                        stage.close();
                     }
                 }
             }catch(ProfessorNaoExisteException e1){

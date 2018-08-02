@@ -101,44 +101,14 @@ public class AtualizarAlunoController implements Initializable {
                     }
                     if(result.get() == ButtonType.OK){
                         senha = passfield_SenhaAluno.getText();
-                        servidor.descadastrarAluno(aluno);
-                        servidor.cadastrarAluno(nome, email, sexo, dataAniversario, senha, cpf);
+                        servidor.atualizarAluno(aluno, nome, email, cpf, senha, sexo, dataAniversario);                        
                         Alert alertAtualizado = new Alert(Alert.AlertType.INFORMATION);
                         alertAtualizado.setTitle("CONFIRMAÇÃO DE ATUALIZAÇÃO");
                         alertAtualizado.setContentText("Aluno atualizado com sucesso!");
                         Optional<ButtonType> result1 = alertAtualizado.showAndWait();
-                        if(result1.get() == ButtonType.OK){
-                            calendar_AddAluno.setValue(null);
-                            txt_CPFAluno.setText("");
-                            txt_EmailAluno.setText("");
-                            txt_NomeAluno.setText("");
-                            passfield_SenhaAluno.setText("");
-                            passfield_ConfSenhaAluno.setText("");
-                            combobox_SexoAluno.setValue(null);
-                        }
-                    }else{
-                        calendar_AddAluno.setValue(null);
-                        txt_CPFAluno.setText("");
-                        txt_EmailAluno.setText("");
-                        txt_NomeAluno.setText("");
-                        passfield_SenhaAluno.setText("");
-                        passfield_ConfSenhaAluno.setText("");
-                        combobox_SexoAluno.setValue(null);
+                        Stage stage = (Stage) btn_Cancel.getScene().getWindow();
+                        stage.close();
                     }
-                }
-            }catch(AlunoJaExisteException e){
-                Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
-                alertAlunoJaExiste.setTitle("ALUNO JÁ EXISTE");
-                alertAlunoJaExiste.setContentText(e.getMessage());
-                Optional<ButtonType> result = alertAlunoJaExiste.showAndWait();
-                if(result.get() == ButtonType.OK){
-                    calendar_AddAluno.setValue(null);
-                    txt_CPFAluno.setText("");
-                    txt_EmailAluno.setText("");
-                    txt_NomeAluno.setText("");
-                    passfield_SenhaAluno.setText("");
-                    passfield_ConfSenhaAluno.setText("");
-                    combobox_SexoAluno.setValue(null);
                 }
             }catch(AlunoNaoExisteException e1){
                 Alert alertAlunoNaoExiste = new Alert(Alert.AlertType.ERROR);

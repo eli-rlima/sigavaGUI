@@ -95,19 +95,6 @@ public class Controller implements Initializable {
         professorC = professor;
     }
     
-    public boolean isProfessor(Object o){
-        if(o.getClass().equals(Professor.class)){
-            IS_PROFESSOR = true;
-        }
-        return IS_PROFESSOR;
-    }
-    public boolean isAluno(Object o){
-        if(o.getClass().equals(Aluno.class)){
-            IS_ALUNO = true;
-        }
-        return IS_ALUNO;
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         IServidorSigava servidor = ServidorSigava.getIstance();
@@ -126,25 +113,15 @@ public class Controller implements Initializable {
         Alert alertProf = new Alert(Alert.AlertType.INFORMATION);
         alertProf.setTitle("Login ERROR PROF");
         
-        try{
-            aluno = servidor.buscarAluno(usuario);
-            if(aluno.getLogin().equals(login)){
-                this.isAluno(aluno);
-                setAluno(aluno);
-            }
-        }catch(AlunoNaoExisteException e){
-            alert.setHeaderText(null);
-            alert.setContentText(e.getMessage());
-        }
-        
-        
         btn_login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Professor professor = null;
+                Aluno aluno = null;
                 String usuario, senha;
                 ADM adm = new ADM();
                 ProfessorTela prof = new ProfessorTela();
+                AlunoTela alun = new AlunoTela();
                 usuario = txt_CPF.getText();
                 System.out.println(usuario);
                 senha = txt_PASS.getText();
@@ -164,10 +141,24 @@ public class Controller implements Initializable {
                     alertProf.setHeaderText(null);
                     alertProf.setContentText(e1.getMessage());
                 }
+                try{
+                    aluno = servidor.buscarAluno(usuario);
+                    setAluno(aluno);
+                }catch(AlunoNaoExisteException e){
+                    alert.setHeaderText(null);
+                    alert.setContentText(e.getMessage());
+                }
                 if(professor != null){
                     SigavaGUI.fechar();
                     try {
                         prof.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else if(aluno != null){
+                    SigavaGUI.fechar();
+                    try {
+                        alun.start(new Stage());
                     } catch (Exception ex) {
                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }

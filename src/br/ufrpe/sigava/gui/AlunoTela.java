@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author elive
  */
-public class ProfessorTela extends Application{
+public class AlunoTela extends Application{
     private static Stage stage;
 
     public static Stage getStage() {
@@ -34,7 +34,7 @@ public class ProfessorTela extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
-        Parent rootADM = FXMLLoader.load(getClass().getResource("Professor.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("Aluno.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
         primaryStage.setMaximized(true);

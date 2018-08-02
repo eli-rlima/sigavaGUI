@@ -68,6 +68,8 @@ public class ProfessorController implements Initializable {
             FXCollections.observableArrayList();
     @FXML
     private JFXTextField txt_ProcurarDisciplina;
+    @FXML
+    private JFXButton btn_NovaTarefa;
     
     public void listaDisciplinas(){
         masterDataD.clear();

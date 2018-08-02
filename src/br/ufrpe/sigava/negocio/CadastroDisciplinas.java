@@ -176,4 +176,13 @@ public class CadastroDisciplinas {
             }else throw new DisciplinaNaoExisteException();
             return retorno;
         }
+        
+        public boolean removerProfessor (Disciplina disciplina) throws DisciplinaNaoExisteException{
+            boolean retorno = false;
+            if (disciplina != null){
+                disciplina.removerProfessor();
+                retorno = true;
+            }else throw new DisciplinaNaoExisteException();
+            return retorno;
+        }
 }

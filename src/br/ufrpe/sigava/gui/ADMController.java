@@ -501,6 +501,24 @@ public class ADMController implements Initializable {
             }
         });
         
+        btn_Remover_ProfessorD.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Disciplina disciplina = table_AdmDisc.getSelectionModel().getSelectedItem();
+                if (disciplina != null){
+                    try{
+                        ServidorSigava.getIstance().removerProfessor(disciplina);
+                        ADMController.listaDisciplinas();
+                    }catch(DisciplinaNaoExisteException e){
+                        Alert alerta = new Alert(Alert.AlertType.ERROR);
+                        alerta.setContentText("Disciplina não existe!");
+                        alerta.show();
+                    }
+                
+                }
+            }
+        });
+        
         
         
         Biblioteca.AlteracaoCorMouse(btn_Aluno);

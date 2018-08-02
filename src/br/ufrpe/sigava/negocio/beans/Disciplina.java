@@ -123,10 +123,10 @@ public class Disciplina implements Serializable, Comparable{
         return retorno;
     }
     
-    public boolean removerProfessor(Professor professor){
+    public boolean removerProfessor(){
         boolean retorno = false;
         if (this.professor != null){
-            professor = null;
+            this.professor = null;
             retorno = true;
         }
         return retorno;

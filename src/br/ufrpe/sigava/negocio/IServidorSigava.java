@@ -121,4 +121,5 @@ public interface IServidorSigava {
     
     public boolean RemoverAluno (Disciplina disciplina, Aluno aluno) 
                 throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException;
+    public boolean removerProfessor (Disciplina disciplina) throws DisciplinaNaoExisteException;
 }

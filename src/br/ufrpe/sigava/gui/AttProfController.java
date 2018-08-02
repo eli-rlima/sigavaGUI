@@ -82,7 +82,7 @@ public class AttProfController implements Initializable {
     }    
 
     @FXML
-    private void add_Aluno(ActionEvent event) {
+    private void add_Aluno(ActionEvent event) throws Exception {
         IServidorSigava servidor = ServidorSigava.getIstance();        
         String nome, cpf, email;
         String senha = null;
@@ -132,6 +132,9 @@ public class AttProfController implements Initializable {
                 pass_Prof.setText("");
                 pass_ConfProf.setText("");
             }
+            ProfessorTela.fechar();
+            ProfessorTela profTela = new ProfessorTela();
+            profTela.start(new Stage());
         }
     }
 

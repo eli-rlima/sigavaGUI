@@ -61,7 +61,9 @@ public class CadastroDisciplinas {
             for (int i = 0; i < alunos.size(); i++) {
                 alunos.get(i).removerDisciplina(disciplina);
             }
-            RepositorioProfessor.getInstance().remover(disciplina.getProfessor());
+            if (disciplina.getProfessor() != null){
+                disciplina.getProfessor().remover(disciplina);
+            }
             this.repositorioDisciplina.remover(disciplina);
             this.repositorioDisciplina.salvarArquivo();
             RepositorioAluno.getInstance().salvarArquivo();

@@ -14,8 +14,10 @@
    <children>
       <TableView fx:id="table_Professor" layoutX="18.0" layoutY="34.0" prefHeight="298.0" prefWidth="556.0">
          <columns>
-            <TableColumn fx:id="tb_CellName" editable="false" prefWidth="348.0" text="Nome" />
-            <TableColumn fx:id="tb_CellCPF" editable="false" prefWidth="207.0" text="CPF" />
+            <TableColumn fx:id="tb_CellName" editable="false" prefWidth="191.0" text="Nome" /> 
+            <TableColumn fx:id="tb_CellEmail" editable="false" prefWidth="163.0" text="Email" /> 
+            <TableColumn fx:id="tb_CellCPF" editable="false" prefWidth="112.0" text="CPF" /> 
+            <TableColumn fx:id="tb_CellDataNasc" editable="false" prefWidth="92.0" text="Nascimento" /> 
          </columns>
       </TableView>
       <JFXTextField fx:id="txt_ProcurarProfessor" layoutX="20.0" layoutY="5.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Professor" style="-fx-background-color: white;" />

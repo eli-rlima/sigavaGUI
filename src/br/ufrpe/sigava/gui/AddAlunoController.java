@@ -89,6 +89,8 @@ public class AddAlunoController implements Initializable {
             try{
                 if(!passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
                     throw new IllegalAccessError("Senhas não conferem!");
+                }else if(passfield_SenhaAluno.getText().equals("") || passfield_ConfSenhaAluno.getText().equals("")){
+                    throw new IllegalAccessError("Senhas não informadas!");
                 }else{
                     Optional<ButtonType> result = null;
                     if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
@@ -103,19 +105,6 @@ public class AddAlunoController implements Initializable {
                         alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
                         alertCadastrado.setContentText("Aluno cadastrado com sucesso!");
                         Optional<ButtonType> result1 = alertCadastrado.showAndWait();
-                        
-                        
-
-                        if(result1.get() == ButtonType.OK){
-                            calendar_AddAluno.setValue(null);
-                            txt_CPFAluno.setText("");
-                            txt_EmailAluno.setText("");
-                            txt_NomeAluno.setText("");
-                            passfield_SenhaAluno.setText("");
-                            passfield_ConfSenhaAluno.setText("");
-                            combobox_SexoAluno.setValue(null);
-                        }
-                    }else{
                         calendar_AddAluno.setValue(null);
                         txt_CPFAluno.setText("");
                         txt_EmailAluno.setText("");
@@ -123,6 +112,7 @@ public class AddAlunoController implements Initializable {
                         passfield_SenhaAluno.setText("");
                         passfield_ConfSenhaAluno.setText("");
                         combobox_SexoAluno.setValue(null);
+                        ADMController.listaAlunos();
                     }
                 }
             }catch(AlunoJaExisteException e){

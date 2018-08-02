@@ -72,7 +72,15 @@ public class AttDisciplinaController implements Initializable {
                 duracaoAula = Integer.parseInt(txt_AttDuracaoAulaDisc.getText());
                 dataInicio = cal_AttDataInicioDisc.getValue();
                 diaAula = dataInicio.getDayOfWeek();
-                //Aqui vai ficar a função do atualizar 
+                try{
+                    ServidorSigava.getIstance().atualizarDisciplina(disciplina, nome, duracaoAula, diaAula, dataInicio, cargaHoraria);
+                    ADMController.listaDisciplinas();
+                    Stage stage = (Stage) btn_AttCancelDisc.getScene().getWindow();
+                    stage.close();
+                }catch(DisciplinaNaoExisteException e){
+                    //
+                }
+                  
             }     
         });
     }    

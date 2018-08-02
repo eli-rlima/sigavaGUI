@@ -7,11 +7,13 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.dados.RepositorioAluno;
 import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteNaDisciplinaException;
 import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.MarcacaoNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import br.ufrpe.sigava.negocio.beans.Cronograma;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -49,6 +51,14 @@ public class CadastroAlunos {
     
     public void descadastrar(Aluno aluno) throws AlunoNaoExisteException {
          if(aluno != null && repositorioAluno.existe(aluno)){
+             ArrayList<Disciplina> disciplinas = aluno.getDisciplinas();
+             for (int i = 0; i < disciplinas.size(); i++) {
+                 try{
+                    ServidorSigava.getIstance().RemoverAluno(disciplinas.get(i), aluno);
+                 }catch(AlunoNaoExisteException | AlunoNaoExisteNaDisciplinaException | DisciplinaNaoExisteException e){
+                  //silent
+                 }                
+             }
             this.repositorioAluno.remover(aluno);
             this.repositorioAluno.salvarArquivo();
         }else{

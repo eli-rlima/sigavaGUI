@@ -114,6 +114,7 @@ public class AssociarAlunosController implements Initializable {
                         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                         alerta.setContentText("Aluno "+alunos.get(i).getNome()+"cadastrado na disciplina "+disciplina.getNome()+"!");
                         alerta.show();
+                        ADMController.listaDisciplinas();
                     }else{
                         Alert alerta = new Alert(Alert.AlertType.ERROR);
                         alerta.setContentText("Aluno "+alunos.get(i).getNome()+" já cadastrado "+disciplina.getNome()+"!");

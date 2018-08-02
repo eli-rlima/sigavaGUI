@@ -86,7 +86,9 @@ public class AddProfessorController implements Initializable {
             }else sexo = 'f';
             try{
                 if(!passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
-                    throw new VerifyError("Senhas não conferem!");
+                    throw new IllegalAccessError("Senhas não conferem!");
+                }else if(passfield_PassProfessor.getText().equals("") || passfield_ConfSenhaProfessor.getText().equals("")){
+                    throw new IllegalAccessError("Senhas não informadas!");
                 }else{
                     Optional<ButtonType> result = null;
                     if(passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
@@ -102,17 +104,6 @@ public class AddProfessorController implements Initializable {
                         alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
                         alertCadastrado.setContentText("Professor cadastrado com sucesso!");
                         Optional<ButtonType> result1 = alertCadastrado.showAndWait();
-
-                        if(result1.get() == ButtonType.OK){
-                            calendar_AddProfessor.setValue(null);
-                            txt_CPFProfessor.setText("");
-                            txt_EmailProfessor.setText("");
-                            txt_NomeProfessor.setText("");
-                            passfield_PassProfessor.setText("");
-                            passfield_ConfSenhaProfessor.setText("");
-                            combobox_SexoProfessor.setValue(null);
-                        }
-                    }else{
                         calendar_AddProfessor.setValue(null);
                         txt_CPFProfessor.setText("");
                         txt_EmailProfessor.setText("");
@@ -120,6 +111,8 @@ public class AddProfessorController implements Initializable {
                         passfield_PassProfessor.setText("");
                         passfield_ConfSenhaProfessor.setText("");
                         combobox_SexoProfessor.setValue(null);
+                        ADMController.listaProfessores();
+                        
                     }
                 }
             }catch(ProfessorJaExisteException e){

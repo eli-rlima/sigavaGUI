@@ -16,6 +16,7 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,11 +52,18 @@ public class AssociarProfessorController implements Initializable {
     private TableView<Professor> table_Professor;
  
     private ObservableList<Professor> masterData = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Professor, String> tb_CellEmail;
+    @FXML
+    private TableColumn<Professor, LocalDate> tb_CellDataNasc;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tb_CellCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellName.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellDataNasc.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
+        tb_CellEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        
         masterData.addAll(ServidorSigava.getIstance().listarProfessores());
         FilteredList <Professor> filteredData = new FilteredList<>(masterData, p -> true);
             txt_ProcurarProfessor.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -94,6 +102,7 @@ public class AssociarProfessorController implements Initializable {
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setContentText("Professor "+professor.getNome()+" cadastrado na disciplina "+disciplina.getNome()+"!");
                     alerta.show();
+                    ADMController.listaDisciplinas();
                 }else{
                     Alert alerta = new Alert(Alert.AlertType.ERROR);
                     alerta.setContentText("Professor "+professor.getNome()+" já cadastrado!");

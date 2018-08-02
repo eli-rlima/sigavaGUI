@@ -167,31 +167,31 @@ public class ADMController implements Initializable {
     }
     
     
-    private ObservableList<Professor> masterData =
+    private static ObservableList<Professor> masterData =
             FXCollections.observableArrayList();
     
-    private ObservableList<Aluno> masterDataA =
+    private static ObservableList<Aluno> masterDataA =
             FXCollections.observableArrayList();
     
-     private ObservableList<Disciplina> masterDataD =
+     private static ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
     
 
    
     
     //***********FUNÇÕES AUXILIARES PARA LISTAR**************
-    public void listaAlunos(){
+    public static void listaAlunos(){
         masterDataA.clear();
         masterDataA.addAll(ServidorSigava.getIstance().listarAlunos());
     }
     
-    public void listaProfessores(){
+    public static void listaProfessores(){
         masterData.clear();
         masterData.addAll(ServidorSigava.getIstance().listarProfessores());
     }
 
     
-    public void listaDisciplinas(){
+    public static void listaDisciplinas(){
         masterDataD.clear();
         masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
     }
@@ -304,6 +304,7 @@ public class ADMController implements Initializable {
                 listaProfessores();
             }
         });
+        
         //***********CADASTRO**************
         btn_Cadastrar_Aluno.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -442,6 +443,7 @@ public class ADMController implements Initializable {
                             Alert alertRemovido = new Alert(Alert.AlertType.INFORMATION);
                             alertRemovido.setContentText("Aluno removido com sucesso");
                             alertRemovido.show();
+                            ADMController.listaAlunos();
                         }
                     }
                 }catch(AlunoNaoExisteException e){
@@ -469,12 +471,32 @@ public class ADMController implements Initializable {
                             Alert alertRemovido = new Alert(Alert.AlertType.INFORMATION);
                             alertRemovido.setContentText("Professor removido com sucesso");
                             alertRemovido.show();
+                            ADMController.listaProfessores();
                         }
                     }
                 }catch(ProfessorNaoExisteException e){
                     Alert alertAlunoNaoEncontrado = new Alert(Alert.AlertType.INFORMATION);
                     alertAlunoNaoEncontrado.setContentText(e.getMessage());
                     alertAlunoNaoEncontrado.show();
+                }
+            }
+        });
+        
+        
+        btn_Remover_Disciplina.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Disciplina disciplina = table_AdmDisc.getSelectionModel().getSelectedItem();
+                if (disciplina != null){
+                    try{
+                        ServidorSigava.getIstance().descadastrarDisciplina(disciplina);
+                        ADMController.listaDisciplinas();
+                    }catch(DisciplinaNaoExisteException e){
+                        Alert alerta = new Alert(Alert.AlertType.ERROR);
+                        alerta.setContentText("Disciplina não existe!");
+                        alerta.show();
+                    }
+                
                 }
             }
         });
@@ -536,6 +558,8 @@ public class ADMController implements Initializable {
             listaDisciplinas();
         }
     }
+
+
 
 
     

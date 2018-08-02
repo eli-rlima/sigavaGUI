@@ -87,9 +87,10 @@ public class AtualizarAlunoController implements Initializable {
                 sexo = 'm';
             }else sexo = 'f';
             try{
+                
                 if(!passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
                     throw new IllegalAccessError("Senhas não conferem!");
-                }else if(passfield_SenhaAluno != null && passfield_ConfSenhaAluno != null){
+                }else if(passfield_SenhaAluno.getText().equals("") || passfield_ConfSenhaAluno.getText().equals("")){
                     throw new IllegalAccessError("Senhas não informadas!");
                 }else{
                     Optional<ButtonType> result = null;
@@ -108,6 +109,7 @@ public class AtualizarAlunoController implements Initializable {
                         Optional<ButtonType> result1 = alertAtualizado.showAndWait();
                         Stage stage = (Stage) btn_Cancel.getScene().getWindow();
                         stage.close();
+                        ADMController.listaAlunos();
                     }
                 }
             }catch(AlunoNaoExisteException e1){

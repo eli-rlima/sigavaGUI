@@ -109,6 +109,9 @@ public class ListarAlunosController implements Initializable {
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setContentText("Aluno "+alunos.get(i).getNome()+" removido da disciplina "+disciplina.getNome()+"!");
                     alerta.show();
+                    ADMController.listaDisciplinas();
+                    masterData.clear();
+                    masterData.addAll(ADMController.getDisciplina().getAlunos());
                 }catch(DisciplinaNaoExisteException | AlunoNaoExisteException  e){
                     //Silent
                 }catch (AlunoNaoExisteNaDisciplinaException e2){

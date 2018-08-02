@@ -118,6 +118,7 @@ public class AttProfController implements Initializable {
                         alertAtualizado.show();
                         Stage stage = (Stage) btn_Cancel.getScene().getWindow();
                         stage.close();
+                        ADMController.listaProfessores();
                     }
                 }
             }catch(ProfessorNaoExisteException e1){

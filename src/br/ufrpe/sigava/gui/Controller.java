@@ -157,14 +157,6 @@ public class Controller implements Initializable {
                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                if(usuario.equals(USER_PROF) && senha.equals(LOCK_PROF)){
-                    SigavaGUI.fechar();
-                    try {
-                        prof.start(new Stage());
-                    } catch (Exception ex) {
-                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
                 try{
                     professor = servidor.buscarProfessor(usuario);
                     setProfessor(professor);

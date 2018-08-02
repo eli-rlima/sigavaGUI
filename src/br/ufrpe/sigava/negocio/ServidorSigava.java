@@ -2,6 +2,7 @@ package br.ufrpe.sigava.negocio;
 
 import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteNaDisciplinaException;
 import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
@@ -178,21 +179,21 @@ public class ServidorSigava implements IServidorSigava{
     }
     
     @Override
-    public void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor)throws DisciplinaNaoExisteException,
-            ProfessorNaoExisteException, IllegalArgumentException{
-         this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
+    public void cadastrarProfessorDisciplina(Disciplina disciplina, Professor professor)throws DisciplinaNaoExisteException,
+            ProfessorNaoExisteException{
+         this.disciplinas.cadastrarProfessor(disciplina, professor);
     }
 
     @Override
-    public void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException,
+    public void cadastrarAlunoDisciplina(Disciplina disciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException,
             IllegalArgumentException{
-         this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
+         this.disciplinas.cadastrarAluno(disciplina, aluno);
     }
     
     @Override
-    public void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa)throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
+    public void cadastrarTarefaDisciplina(Disciplina disciplina, Tarefa tarefa)throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
             IllegalArgumentException{
-         this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
+         this.disciplinas.cadastrarTarefa(disciplina, tarefa);
     }
 
     @Override
@@ -258,13 +259,19 @@ public class ServidorSigava implements IServidorSigava{
     }
     
     @Override
-    public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws IllegalArgumentException{
+    public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException{
         return this.disciplinas.existeAluno(disciplina, aluno);
     }
     
     @Override
-    public boolean existeProfessorDisciplina(Disciplina disciplina, Professor professor) throws IllegalArgumentException{
+    public boolean existeProfessorDisciplina(Disciplina disciplina, Professor professor) throws DisciplinaNaoExisteException, ProfessorNaoExisteException{
         return this.disciplinas.existeProfessor(disciplina, professor);
+    }
+    
+    @Override
+    public boolean RemoverAluno (Disciplina disciplina, Aluno aluno) 
+                throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException{
+        return this.disciplinas.RemoverAluno(disciplina, aluno);
     }
  
 

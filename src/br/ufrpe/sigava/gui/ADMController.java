@@ -122,6 +122,14 @@ public class ADMController implements Initializable {
     private JFXButton btn_AttListaD;
     @FXML
     private JFXButton btn_AttListaP;
+    @FXML
+    private JFXTextField txt_ProcurarProfessor;
+    @FXML
+    private JFXTextField txt_ProcurarDisciplina;
+    @FXML
+    private JFXTextField txt_ProcurarAluno;
+     @FXML
+    private JFXButton btn_Listar;
     
     public static void setAluno(Aluno aluno){
         tbAluno = aluno;
@@ -141,12 +149,7 @@ public class ADMController implements Initializable {
     public static Disciplina getDisciplina(){
         return tbDisciplina;
     }
-    @FXML
-    private JFXTextField txt_ProcurarProfessor;
-    @FXML
-    private JFXTextField txt_ProcurarDisciplina;
-    @FXML
-    private JFXTextField txt_ProcurarAluno;
+    
     
     private ObservableList<Professor> masterData =
             FXCollections.observableArrayList();
@@ -156,6 +159,7 @@ public class ADMController implements Initializable {
     
      private ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
+   
     
     //***********FUNÇÕES AUXILIARES PARA LISTAR**************
     public void listaAlunos(){
@@ -176,6 +180,7 @@ public class ADMController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         tb_CellCPFA.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellNameA.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNascA.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
@@ -294,7 +299,6 @@ public class ADMController implements Initializable {
                 AddProfessor addProfessor = new AddProfessor();
                 try {
                     addProfessor.start(new Stage());
-
                 } catch (Exception ex) {
                     Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -355,12 +359,41 @@ public class ADMController implements Initializable {
          btn_Ass_Aluno_Disc.setOnAction(new EventHandler<ActionEvent>() { 
             @Override 
             public void handle(ActionEvent event) { 
-                setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem()); 
-                AssociarAlunos assAlunos = new AssociarAlunos(); 
                 if (table_AdmDisc.getSelectionModel().getSelectedItem() != null){
-                    System.out.println("ENTROU!");
+                    setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem()); 
+                    AssociarAlunos assAlunos = new AssociarAlunos(); 
                         try { 
                             assAlunos.start(new Stage()); 
+                        } catch (Exception ex) { 
+                            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex); 
+                        } 
+                } 
+            } 
+        }); 
+         
+         btn_Ass_Prof_Disc.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+               if(table_AdmDisc.getSelectionModel().getSelectedItem() != null){
+                    setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem());
+                    AssociarProfessor assProf = new AssociarProfessor();
+                    try { 
+                        assProf.start(new Stage()); 
+                    } catch (Exception ex) { 
+                        Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex); 
+                    } 
+               }
+            }
+        });
+
+         btn_Listar.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                if (table_AdmDisc.getSelectionModel().getSelectedItem() != null){
+                    setDisciplina(table_AdmDisc.getSelectionModel().getSelectedItem());
+                    ListarAlunos listarAlunos = new ListarAlunos(); 
+                        try { 
+                            listarAlunos.start(new Stage()); 
                         } catch (Exception ex) { 
                             Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex); 
                         } 
@@ -421,31 +454,7 @@ public class ADMController implements Initializable {
             }
         });
         
-        btn_Remover_Disciplina.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                IServidorSigava servidor = ServidorSigava.getIstance();
-                Disciplina disciplina = table_AdmDisc.getSelectionModel().getSelectedItem();
-                try{
-                    if(disciplina != null){
-                        Alert alertConfRemover = new Alert(Alert.AlertType.CONFIRMATION);
-                        alertConfRemover.setTitle("REMOVER DISCIPLINA");
-                        alertConfRemover.setContentText("Deseja remover a disciplina?");
-                        Optional<ButtonType> result = alertConfRemover.showAndWait();
-                        if(result.get() == ButtonType.OK){
-                            servidor.descadastrarDisciplina(disciplina);
-                            Alert alertRemovido = new Alert(Alert.AlertType.INFORMATION);
-                            alertRemovido.setContentText("Disciplina removida com sucesso");
-                            alertRemovido.show();
-                        }
-                    }
-                }catch(DisciplinaNaoExisteException e){
-                   Alert alertDisciplinaNaoEncontrada = new Alert(Alert.AlertType.INFORMATION);
-                   alertDisciplinaNaoEncontrada.setContentText(e.getMessage());
-                   alertDisciplinaNaoEncontrada.show();
-                }
-            }
-        });
+        
         
         Biblioteca.AlteracaoCorMouse(btn_Aluno);
         Biblioteca.AlteracaoCorMouse(btn_Ass_Aluno_Disc);

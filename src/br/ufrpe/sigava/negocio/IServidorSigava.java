@@ -2,6 +2,7 @@ package br.ufrpe.sigava.negocio;
 
 import br.ufrpe.sigava.exceptions.AlunoJaExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteNaDisciplinaException;
 import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaJaExisteException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
@@ -70,13 +71,13 @@ public interface IServidorSigava {
 
     boolean existeDisciplina(Disciplina disciplina) throws IllegalArgumentException;
 
-    void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor)throws DisciplinaNaoExisteException,
-            ProfessorNaoExisteException, IllegalArgumentException;
+    void cadastrarProfessorDisciplina(Disciplina disciplina, Professor professor)throws DisciplinaNaoExisteException,
+            ProfessorNaoExisteException;
 
-    void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException,
+    void cadastrarAlunoDisciplina(Disciplina disciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException,
             IllegalArgumentException;
 
-    void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa)throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
+    void cadastrarTarefaDisciplina(Disciplina disciplina, Tarefa tarefa)throws DisciplinaNaoExisteException, TarefaNaoExisteException, 
             IllegalArgumentException;
 
     void cadastrarProfessor(Professor professor) throws ProfessorJaExisteException;
@@ -114,8 +115,10 @@ public interface IServidorSigava {
 
     ArrayList <Disciplina> listarDisciplinas ();
 
-    public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws IllegalArgumentException;
+    public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws DisciplinaNaoExisteException, AlunoNaoExisteException;
     
-    public boolean existeProfessorDisciplina(Disciplina disciplina, Professor professor) throws IllegalArgumentException;
-  
+    public boolean existeProfessorDisciplina(Disciplina disciplina, Professor professor) throws DisciplinaNaoExisteException, ProfessorNaoExisteException;
+    
+    public boolean RemoverAluno (Disciplina disciplina, Aluno aluno) 
+                throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException;
 }

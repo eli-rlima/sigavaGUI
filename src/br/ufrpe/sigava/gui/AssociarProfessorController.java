@@ -56,7 +56,6 @@ public class AssociarProfessorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         tb_CellCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellName.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        
         masterData.addAll(ServidorSigava.getIstance().listarProfessores());
         FilteredList <Professor> filteredData = new FilteredList<>(masterData, p -> true);
             txt_ProcurarProfessor.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -84,36 +83,31 @@ public class AssociarProfessorController implements Initializable {
         Stage stage = (Stage) btn_Cancel.getScene().getWindow();
         stage.close();
     }
-    
-        private void adicionar(ActionEvent event) {
-            
-            if(event.getSource() == btn_Add){
-                ObservableList<Professor> professor = table_Professor.getSelectionModel().getSelectedItems();
-                Disciplina disciplina = ADMController.getDisciplina();
-                for (int i = 0; i < professor.size(); i++) {
-                try{
-                    if (!ServidorSigava.getIstance().existeProfessorDisciplina(disciplina, professor.get(i))){
-                        ServidorSigava.getIstance().cadastrarProfessorDisciplina(disciplina.getNome(), professor.get(i));
-                        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                        alerta.setContentText("Aluno "+professor.get(i).getNome()+"cadastrado!");
-                        alerta.show();
-                    }else{
-                        Alert alerta = new Alert(Alert.AlertType.ERROR);
-                        alerta.setContentText("Aluno "+professor.get(i).getNome()+" já cadastrado!");
-                        alerta.show();
-                    }
+    @FXML
+    private void adicionar(ActionEvent event) { 
+        if(event.getSource() == btn_Add){
+            Professor professor = table_Professor.getSelectionModel().getSelectedItem();
+            Disciplina disciplina = ADMController.getDisciplina();
+            try{
+                if (!ServidorSigava.getIstance().existeProfessorDisciplina(disciplina, professor)){
+                    ServidorSigava.getIstance().cadastrarProfessorDisciplina(disciplina, professor);
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setContentText("Professor "+professor.getNome()+" cadastrado na disciplina "+disciplina.getNome()+"!");
+                    alerta.show();
+                }else{
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setContentText("Professor "+professor.getNome()+" já cadastrado!");
+                    alerta.show();
                 }
-                catch (ProfessorNaoExisteException e){
-                     //silent
-                 }catch (DisciplinaNaoExisteException e1){
-                     //silent
-                 }catch (IllegalArgumentException e2){
-                     //silent
-                 }
-             }
+            }
+            catch (DisciplinaNaoExisteException e){
+                
+            }catch (ProfessorNaoExisteException e2){
+                
+            }
         }
-     }
-        
-}        
+    }
+}
+            
     
 

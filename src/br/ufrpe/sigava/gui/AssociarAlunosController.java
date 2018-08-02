@@ -110,21 +110,19 @@ public class AssociarAlunosController implements Initializable {
             for (int i = 0; i < alunos.size(); i++) {
                 try{
                     if (!ServidorSigava.getIstance().existeAlunoDiscilina(disciplina, alunos.get(i))){
-                        ServidorSigava.getIstance().cadastrarAlunoDisciplina(disciplina.getNome(), alunos.get(i));
+                        ServidorSigava.getIstance().cadastrarAlunoDisciplina(disciplina, alunos.get(i));
                         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                        alerta.setContentText("Aluno "+alunos.get(i).getNome()+"cadastrado!");
+                        alerta.setContentText("Aluno "+alunos.get(i).getNome()+"cadastrado na disciplina "+disciplina.getNome()+"!");
                         alerta.show();
                     }else{
                         Alert alerta = new Alert(Alert.AlertType.ERROR);
-                        alerta.setContentText("Aluno "+alunos.get(i).getNome()+" já cadastrado!");
+                        alerta.setContentText("Aluno "+alunos.get(i).getNome()+" já cadastrado "+disciplina.getNome()+"!");
                         alerta.show();
                     }
                 }
-                catch (AlunoNaoExisteException e){
+                catch (DisciplinaNaoExisteException e1){
                      //silent
-                 }catch (DisciplinaNaoExisteException e1){
-                     //silent
-                 }catch (IllegalArgumentException e2){
+                }catch (AlunoNaoExisteException e2){
                      //silent
                  }
              }

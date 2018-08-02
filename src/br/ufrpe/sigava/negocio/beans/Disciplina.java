@@ -164,7 +164,7 @@ public class Disciplina implements Serializable, Comparable{
     
     public boolean existeProfessor (Professor professor){
         boolean retorno = false;
-        if (professor.equals(professor)){
+        if (this.professor != null && this.professor.equals(professor)){
             retorno = true;
         }
         return retorno;

@@ -134,6 +134,11 @@ public class RepositorioDisciplina implements IRepositorioDisciplina, Serializab
      public boolean existeProfessor(Disciplina disciplina, Professor professor){
          return disciplina.existeProfessor(professor);
      }
+     
+     @Override
+     public boolean removerAlunoDisciplina (Disciplina disciplina, Aluno aluno){
+         return disciplina.removerAluno(aluno);
+     }
  
       
       

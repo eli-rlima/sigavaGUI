@@ -53,7 +53,7 @@ public class AddDisciplinaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         IServidorSigava servidor = ServidorSigava.getIstance();
         Biblioteca.MascaraInteiro(txt_CargaHorariaDisc);
-        Biblioteca.MascaraInteiro(txt_DuracaoAulaDisc);
+        Biblioteca.MascaraInteiro1(txt_DuracaoAulaDisc);
         Biblioteca.AlteracaoCorMouse(btn_AddDisc);
         Biblioteca.AlteracaoCorMouse(btn_AddCancelDisc);
         btn_AddDisc.setOnAction(new EventHandler<ActionEvent>() {

@@ -261,6 +261,11 @@ public class ServidorSigava implements IServidorSigava{
     public boolean existeAlunoDiscilina(Disciplina disciplina, Aluno aluno)throws IllegalArgumentException{
         return this.disciplinas.existeAluno(disciplina, aluno);
     }
+    
+    @Override
+    public boolean existeProfessorDisciplina(Disciplina disciplina, Professor professor) throws IllegalArgumentException{
+        return this.disciplinas.existeProfessor(disciplina, professor);
+    }
  
 
 }

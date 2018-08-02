@@ -158,4 +158,12 @@ public class CadastroDisciplinas {
          }else throw new IllegalArgumentException("Argumento(s) inválido(s).");
          return retorno;
      }
+        
+        public boolean existeProfessor(Disciplina disciplina, Professor professor){
+        boolean retorno = false;
+         if (disciplina != null && professor != null){
+             retorno = repositorioDisciplina.existeProfessor(disciplina, professor);
+         }else throw new IllegalArgumentException("Argumento(s) inválido(s).");
+         return retorno;
+     }
 }

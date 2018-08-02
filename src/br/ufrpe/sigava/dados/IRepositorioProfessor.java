@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.dados;
 
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 
 import java.time.LocalDate;
@@ -69,7 +70,8 @@ public interface IRepositorioProfessor {
      * @return true ou false, caso seja encontrado true, caso não false.
      */
     public boolean existe (Professor professor);
-
+    public boolean existeProfessor(Disciplina disciplina, Professor professor);
+    
     ArrayList<Professor> listarProfessores();
     
    /**

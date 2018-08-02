@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.dados;
 
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Login;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import java.io.File;

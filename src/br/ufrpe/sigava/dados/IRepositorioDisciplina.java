@@ -2,6 +2,7 @@ package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ public interface IRepositorioDisciplina {
   void salvarArquivo();
   
   public boolean existeAluno(Disciplina disciplina, Aluno aluno);
+  public boolean existeProfessor(Disciplina disciplina, Professor professor);
  
 
 }

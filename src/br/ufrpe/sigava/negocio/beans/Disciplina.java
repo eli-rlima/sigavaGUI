@@ -34,20 +34,12 @@ public class Disciplina implements Serializable, Comparable{
         this.setDataFim(this.gerarDataFim());
     }
 
-    public String ListarAlunos (){
-        StringBuilder retorno = new StringBuilder();
-        for (int i = 0; i < alunos.size(); i++){
-            retorno.append("\n" + alunos.get(i).toString());
-        }
-        return retorno.toString();
+    public ArrayList ListarAlunos (){
+        return alunos;
     }
 
-    public String ListarTarefas (){
-        StringBuilder retorno = new StringBuilder();
-        for (int i = 0; i < tarefas.size(); i++){
-            retorno.append("\n" + tarefas.get(i).toString());
-        }
-        return retorno.toString();
+    public ArrayList ListarTarefas (){
+        return tarefas;
     }
 
     public int getDuracaoAula() {
@@ -169,6 +161,15 @@ public class Disciplina implements Serializable, Comparable{
         }
         return retorno;
     }
+    
+    public boolean existeProfessor (Professor professor){
+        boolean retorno = false;
+        if (professor.equals(professor)){
+            retorno = true;
+        }
+        return retorno;
+    }
+    
 
     public boolean adicionarProfessor(Professor professor) {
     boolean retorno = false;

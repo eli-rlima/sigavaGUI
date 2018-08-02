@@ -70,7 +70,7 @@ public interface IRepositorioProfessor {
      * @return true ou false, caso seja encontrado true, caso não false.
      */
     public boolean existe (Professor professor);
-    public boolean existeProfessor(Disciplina disciplina, Professor professor);
+    
     
     ArrayList<Professor> listarProfessores();
     

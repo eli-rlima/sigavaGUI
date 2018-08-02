@@ -80,7 +80,9 @@ public interface IRepositorioDisciplina {
   void salvarArquivo();
   
   public boolean existeAluno(Disciplina disciplina, Aluno aluno);
+  
   public boolean existeProfessor(Disciplina disciplina, Professor professor);
+
  
 
 }

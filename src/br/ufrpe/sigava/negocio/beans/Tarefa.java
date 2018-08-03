@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate; 
 import java.time.Period; 
 import java.time.format.DateTimeFormatter; 
+
  
-public class Tarefa implements Serializable{ 
+public class Tarefa implements Serializable, Comparable{ 
     private String descricao; 
     private LocalDate dataInicio; 
     private LocalDate dataTermino; 
@@ -88,4 +89,16 @@ public class Tarefa implements Serializable{
         } 
         return equals; 
     } 
+    
+    @Override
+    public int compareTo(Object o){
+        Tarefa d = (Tarefa) o;
+        int retorno;
+        if(this.getCodigoTarefa() == (d.getCodigoTarefa())){
+            retorno = 0;
+        }else if(this.getCodigoTarefa() < (d.getCodigoTarefa())){
+            retorno = -1;
+        }else retorno = 1;
+        return retorno;
+    }
 } 

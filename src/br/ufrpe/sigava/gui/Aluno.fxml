@@ -101,7 +101,7 @@
       </StackPane>
       <VBox fx:id="vbox_Disciplina" layoutX="260.0" layoutY="94.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
-            <JFXButton fx:id="btn_NovaTarefa" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Listar Tarefas" textFill="WHITE">
+            <JFXButton fx:id="btn_ListarTarefas" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Listar Tarefas" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="14.0" />
                </font>

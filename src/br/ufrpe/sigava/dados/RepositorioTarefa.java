@@ -45,6 +45,7 @@ public class RepositorioTarefa implements IRepositorioTarefa, Serializable {
     public boolean adicionar (String descricao, LocalDate dataInicio,
                               LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
         Tarefa tarefa = new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa,disciplina);
+        disciplina.adicionarTarefa(tarefa);
         return adicionar(tarefa);
     }
 

@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SortEvent;
@@ -40,7 +41,7 @@ import javafx.stage.Stage;
  */
 public class AlunoController implements Initializable {
     private static Aluno aluno;
-
+    private static Disciplina disciplina;
     @FXML
     private AnchorPane anchor_Prof;
     @FXML
@@ -51,8 +52,6 @@ public class AlunoController implements Initializable {
     private JFXButton btn_Logout;
     @FXML
     private Pane pane_Default;
-    @FXML
-    private JFXButton btn_NovaTarefa;
     @FXML
     private VBox vbox_Cronograma;
     @FXML
@@ -87,6 +86,8 @@ public class AlunoController implements Initializable {
     private TableColumn<Disciplina, String> tb_CellCH;
     @FXML
     private TableColumn<Disciplina, String> tb_CellCrono;
+    @FXML
+    private JFXButton btn_ListarTarefas;
     
     private static ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
@@ -96,6 +97,14 @@ public class AlunoController implements Initializable {
         masterDataD.addAll(Controller.getAluno().getDisciplinas());
     }
     
+    public static void setDisciplina(Disciplina disc){
+        disciplina = disc;
+    }
+    
+    public static Disciplina getDisciplina(){
+        return disciplina;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Biblioteca.AlteracaoCorMouse(btn_AttCad);
@@ -103,9 +112,9 @@ public class AlunoController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Cronograma);
         Biblioteca.AlteracaoCorMouse(btn_Disciplina);
         Biblioteca.AlteracaoCorMouse(btn_Logout);
-        Biblioteca.AlteracaoCorMouse(btn_NovaTarefa);
+        Biblioteca.AlteracaoCorMouse(btn_ListarTarefas);
         Biblioteca.AlteracaoCorMouse(btn_RemoveCrono);
-        aluno = Controller.getAluno();
+        aluno = Controller.getAluno();        
         tb_CellDisc.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellCrono.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
@@ -128,6 +137,21 @@ public class AlunoController implements Initializable {
             });
         SortedList <Disciplina> sortedDataD = new SortedList<>(filteredDataD);
         table_DiscAluno.setItems(sortedDataD.sorted());
+        
+        btn_ListarTarefas.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TarefasAluno tar = new TarefasAluno();
+                setDisciplina(table_DiscAluno.getSelectionModel().getSelectedItem());
+                if(getDisciplina() != null){
+                    try {
+                        tar.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
     }    
 
     @FXML

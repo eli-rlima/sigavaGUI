@@ -9,6 +9,7 @@ import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
 import br.ufrpe.sigava.exceptions.AlunoNaoExisteNaDisciplinaException;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
+import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
@@ -60,12 +61,12 @@ public class ListarAlunosController implements Initializable {
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+           
         tb_CellCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         tb_CellName.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellDataNasc.setCellValueFactory(new PropertyValueFactory<>("dataNascimento"));
         tb_CellEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        table_Aluno.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        masterData.clear();
         masterData.addAll(ADMController.getDisciplina().getAlunos());
         FilteredList <Aluno> filteredData = new FilteredList<>(masterData, p -> true);
             txt_ProcurarAluno.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -101,25 +102,28 @@ public class ListarAlunosController implements Initializable {
     @FXML
     private void remover(ActionEvent event) {
         if (event.getSource() == btn_Remover){
-            ObservableList<Aluno> alunos = table_Aluno.getSelectionModel().getSelectedItems();
+            Aluno aluno = table_Aluno.getSelectionModel().getSelectedItem();
             Disciplina disciplina = ADMController.getDisciplina();
-            for (int i = 0; i < alunos.size(); i++) {
+            IServidorSigava servidor = ServidorSigava.getIstance();
                 try{
-                    ServidorSigava.getIstance().RemoverAluno(disciplina, alunos.get(i));
+                    boolean rt = servidor.removerAlunoDisciplina(disciplina, aluno) 
+                            && servidor.RemoverAluno(disciplina, aluno);
+                    if (rt == true){
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setContentText("Aluno "+alunos.get(i).getNome()+" removido da disciplina "+disciplina.getNome()+"!");
+                    alerta.setContentText("Aluno "+aluno.getNome()+" removido da disciplina "+disciplina.getNome()+"!");
                     alerta.show();
                     ADMController.listaDisciplinas();
+                    ADMController.listaAlunos();
                     masterData.clear();
-                    masterData.addAll(ADMController.getDisciplina().getAlunos());
+                    masterData.addAll(ADMController.getDisciplina().getAlunos());}
                 }catch(DisciplinaNaoExisteException | AlunoNaoExisteException  e){
                     //Silent
                 }catch (AlunoNaoExisteNaDisciplinaException e2){
                     Alert alerta = new Alert(Alert.AlertType.ERROR);
-                    alerta.setContentText("Aluno "+alunos.get(i).getNome()+" não existe na disciplina "+disciplina.getNome()+"!");
+                    alerta.setContentText("Aluno "+aluno.getNome()+" não existe na disciplina "+disciplina.getNome()+"!");
                     alerta.show();
                 }                
-            }       
+                   
         }    
     }
 

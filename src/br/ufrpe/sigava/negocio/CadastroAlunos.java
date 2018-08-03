@@ -333,14 +333,8 @@ public class CadastroAlunos {
         boolean retorno = false;
         if(disciplina != null){
             if (aluno != null){
-                try{
-                    ServidorSigava.getIstance().RemoverAluno(disciplina, aluno);
                     retorno = repositorioAluno.removerDisciplina(disciplina, aluno);
-                    repositorioAluno.salvarArquivo();
-                    repositorioAluno.salvarArquivo();
-                }catch(AlunoNaoExisteNaDisciplinaException e){
-                    //silent
-                }                
+                    repositorioAluno.salvarArquivo();      
             }else throw new AlunoNaoExisteException();
         }else throw new DisciplinaNaoExisteException();
         return retorno;

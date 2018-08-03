@@ -167,8 +167,7 @@ public class CadastroDisciplinas {
             if (disciplina != null){
                 if (aluno != null){
                     if(existeAluno(disciplina, aluno)){
-                        retorno = this.repositorioDisciplina.removerAlunoDisciplina(disciplina, aluno) 
-                                && aluno.removerDisciplina(disciplina);
+                        retorno = this.repositorioDisciplina.removerAlunoDisciplina(disciplina, aluno);
                         RepositorioAluno.getInstance().salvarArquivo();
                         this.repositorioDisciplina.salvarArquivo();
                     }else throw new AlunoNaoExisteNaDisciplinaException();

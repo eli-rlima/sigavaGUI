@@ -273,10 +273,11 @@ public class ServidorSigava implements IServidorSigava{
                 throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException{
         return this.disciplinas.RemoverAluno(disciplina, aluno);
     }
-    
+    @Override
     public boolean removerProfessor (Disciplina disciplina) throws DisciplinaNaoExisteException {
         return this.disciplinas.removerProfessor(disciplina);
     }
+    @Override
     public boolean removerAlunoDisciplina (Disciplina disciplina, Aluno aluno) throws DisciplinaNaoExisteException, AlunoNaoExisteException, AlunoNaoExisteNaDisciplinaException{
         return alunos.removerDisciplina(disciplina, aluno);
     }

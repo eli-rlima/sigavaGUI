@@ -195,6 +195,8 @@ public class ADMController implements Initializable {
         masterDataD.clear();
         masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
     }
+    @FXML
+    private JFXButton btn_ListarDisciplinas;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -419,6 +421,21 @@ public class ADMController implements Initializable {
                     ListarAlunos listarAlunos = new ListarAlunos(); 
                         try { 
                             listarAlunos.start(new Stage()); 
+                        } catch (Exception ex) { 
+                            Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex); 
+                        } 
+                } 
+            } 
+        }); 
+         
+        btn_ListarDisciplinas.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                if (table_AdmAluno.getSelectionModel().getSelectedItem() != null){
+                    setAluno(table_AdmAluno.getSelectionModel().getSelectedItem());
+                    ListarDisciplinasAluno listar = new ListarDisciplinasAluno(); 
+                        try { 
+                            listar.start(new Stage()); 
                         } catch (Exception ex) { 
                             Logger.getLogger(ADMController.class.getName()).log(Level.SEVERE, null, ex); 
                         } 

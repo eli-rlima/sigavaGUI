@@ -89,6 +89,8 @@ public class AddProfessorController implements Initializable {
                     throw new IllegalAccessError("Senhas não conferem!");
                 }else if(passfield_PassProfessor.getText().equals("") || passfield_ConfSenhaProfessor.getText().equals("")){
                     throw new IllegalAccessError("Senhas não informadas!");
+                }else if (calendar_AddProfessor.getValue().isAfter(LocalDate.now())) {
+                    throw new IllegalArgumentException("Data de nascimento incorreta!");
                 }else{
                     Optional<ButtonType> result = null;
                     if(passfield_PassProfessor.getText().equals(passfield_ConfSenhaProfessor.getText())){
@@ -104,13 +106,6 @@ public class AddProfessorController implements Initializable {
                         alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
                         alertCadastrado.setContentText("Professor cadastrado com sucesso!");
                         Optional<ButtonType> result1 = alertCadastrado.showAndWait();
-                        calendar_AddProfessor.setValue(null);
-                        txt_CPFProfessor.setText("");
-                        txt_EmailProfessor.setText("");
-                        txt_NomeProfessor.setText("");
-                        passfield_PassProfessor.setText("");
-                        passfield_ConfSenhaProfessor.setText("");
-                        combobox_SexoProfessor.setValue(null);
                         ADMController.listaProfessores();
                         
                     }
@@ -119,32 +114,15 @@ public class AddProfessorController implements Initializable {
                 Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
                 alertAlunoJaExiste.setTitle("PROFESSOR JÁ EXISTE");
                 alertAlunoJaExiste.setContentText(e.getMessage());
-                Optional<ButtonType> result = alertAlunoJaExiste.showAndWait();
-                if(result.get() == ButtonType.OK){
-                    calendar_AddProfessor.setValue(null);
-                    txt_CPFProfessor.setText("");
-                    txt_EmailProfessor.setText("");
-                    txt_NomeProfessor.setText("");
-                    passfield_PassProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
-                    combobox_SexoProfessor.setValue(null);
-                }
+                alertAlunoJaExiste.show();              
                 
             }catch(IllegalArgumentException e1){
                 Alert alertInvalido = new Alert(Alert.AlertType.ERROR);
                 alertInvalido.setTitle("Erro no cadastro");
                 alertInvalido.setContentText(e1.getMessage());
-                Optional<ButtonType> result1 = alertInvalido.showAndWait();
-                if(result1.get() == ButtonType.OK){
-                    calendar_AddProfessor.setValue(null);
-                    txt_CPFProfessor.setText("");
-                    txt_EmailProfessor.setText("");
-                    txt_NomeProfessor.setText("");
-                    passfield_PassProfessor.setText("");
-                    passfield_ConfSenhaProfessor.setText("");
-                    combobox_SexoProfessor.setValue(null);
-                }
-            }catch(VerifyError e2){
+                alertInvalido.show();          
+                
+            }catch(IllegalAccessError e2){
                 Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
                 alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");
                 alertSenhaIncorreta.setContentText(e2.getMessage());

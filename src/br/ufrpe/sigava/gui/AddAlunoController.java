@@ -91,6 +91,8 @@ public class AddAlunoController implements Initializable {
                     throw new IllegalAccessError("Senhas não conferem!");
                 }else if(passfield_SenhaAluno.getText().equals("") || passfield_ConfSenhaAluno.getText().equals("")){
                     throw new IllegalAccessError("Senhas não informadas!");
+                }else if (calendar_AddAluno.getValue().isAfter(LocalDate.now())) {
+                    throw new IllegalArgumentException("Data de nascimento incorreta!");
                 }else{
                     Optional<ButtonType> result = null;
                     if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
@@ -120,30 +122,14 @@ public class AddAlunoController implements Initializable {
                 Alert alertAlunoJaExiste = new Alert(Alert.AlertType.WARNING);
                 alertAlunoJaExiste.setTitle("ALUNO JÁ EXISTE");
                 alertAlunoJaExiste.setContentText(e.getMessage());
-                Optional<ButtonType> result = alertAlunoJaExiste.showAndWait();
-                if(result.get() == ButtonType.OK){
-                    calendar_AddAluno.setValue(null);
-                    txt_CPFAluno.setText("");
-                    txt_EmailAluno.setText("");
-                    txt_NomeAluno.setText("");
-                    passfield_SenhaAluno.setText("");
-                    passfield_ConfSenhaAluno.setText("");
-                    combobox_SexoAluno.setValue(null);
-                }
+                alertAlunoJaExiste.show();
+
             }catch(IllegalArgumentException e1){
                 Alert alertInvalido = new Alert(Alert.AlertType.ERROR);
                 alertInvalido.setTitle("Erro no cadastro");
                 alertInvalido.setContentText(e1.getMessage());
-                Optional<ButtonType> result1 = alertInvalido.showAndWait();
-                if(result1.get() == ButtonType.OK){
-                    calendar_AddAluno.setValue(null);
-                    txt_CPFAluno.setText("");
-                    txt_EmailAluno.setText("");
-                    txt_NomeAluno.setText("");
-                    passfield_SenhaAluno.setText("");
-                    passfield_ConfSenhaAluno.setText("");
-                    combobox_SexoAluno.setValue(null);
-                }
+                alertInvalido.show();
+                
             }catch(IllegalAccessError e2){
                 Alert alertSenhaIncorreta = new Alert(Alert.AlertType.ERROR);
                 alertSenhaIncorreta.setTitle("SENHAS DIFERENTES");

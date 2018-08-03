@@ -15,11 +15,11 @@
       <TableView fx:id="table_AdmDisc" layoutX="20.0" layoutY="34.0" prefHeight="298.0" prefWidth="559.0">
          <columns>
            <TableColumn fx:id="tb_CellNameD" prefWidth="200.0" text="Nome" />
-                  <TableColumn fx:id="tb_CellNameProf" prefWidth="200.0" text="Professor" />
-                  <TableColumn fx:id="tb_CellCH" prefWidth="25.0" text="CH" />
-                  <TableColumn fx:id="tb_CellQnt" prefWidth="45.0" text="H/Dia" />
-                  <TableColumn fx:id="tb_CellDataInicio" prefWidth="75.0" text="Data Inicio" />
-                  <TableColumn fx:id="tb_CellDataFim" prefWidth="75.0" text="Data Fim" />
+                  <TableColumn fx:id="tb_CellNameProf" prefWidth="149.0" text="Professor" />
+                  <TableColumn fx:id="tb_CellCH" prefWidth="29.0" text="CH" />
+                  <TableColumn fx:id="tb_CellQnt" prefWidth="39.0" text="H/Dia" />
+                  <TableColumn fx:id="tb_CellDataInicio" prefWidth="70.0" text="Data Inicio" />
+                  <TableColumn fx:id="tb_CellDataFim" prefWidth="71.0" text="Data Fim" />
          </columns>
       </TableView>
       <JFXTextField fx:id="txt_ProcurarDisciplina" layoutX="20.0" layoutY="5.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Aluno" style="-fx-background-color: white;" />

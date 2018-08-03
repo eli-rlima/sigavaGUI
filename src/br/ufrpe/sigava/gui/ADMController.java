@@ -175,7 +175,9 @@ public class ADMController implements Initializable {
     
      private static ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
-    
+     
+     private static ObservableList<Disciplina> masterDataC =
+            FXCollections.observableArrayList();
 
    
     
@@ -195,6 +197,12 @@ public class ADMController implements Initializable {
         masterDataD.clear();
         masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
     }
+    
+    public static void listaTarefas(){
+        masterDataC.clear();
+        //masterDataC.addAll(ServidorSigava.getIstance().listarTarefas());
+    }
+    
     @FXML
     private JFXButton btn_ListarDisciplinas;
     

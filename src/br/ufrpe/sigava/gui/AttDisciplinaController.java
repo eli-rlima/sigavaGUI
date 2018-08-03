@@ -33,19 +33,14 @@ public class AttDisciplinaController implements Initializable {
     
     private Disciplina disciplina;
 
-    @FXML
     private JFXTextField txt_AttNomeDisc;
-    @FXML
     private DatePicker cal_AttDataInicioDisc;
-    @FXML
     private JFXTextField txt_AttDuracaoAulaDisc;
-    @FXML
     private JFXTextField txt_AttCargaHorariaDisc;
-    @FXML
     private JFXButton btn_AttDisc;
     @FXML
     private JFXButton btn_AttCancelDisc;
-
+ 
     /**
      * Initializes the controller class.
      */

@@ -5,10 +5,12 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import static br.ufrpe.sigava.gui.ProfessorController.getDisciplina;
 import static br.ufrpe.sigava.gui.ProfessorController.setDisciplina;
 import static br.ufrpe.sigava.gui.TarefasAlunoController.getDisciplina;
+import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import com.jfoenix.controls.JFXButton;
@@ -137,12 +139,8 @@ public class TarefasController implements Initializable {
             } 
         });
         
-        btn_AtualizarTarefa.setOnAction(new EventHandler<ActionEvent>() { 
-            @Override 
-            public void handle(ActionEvent event) { 
+        
+}
+     
                 
-            } 
-        });
-    }    
-    
 }

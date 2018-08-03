@@ -62,7 +62,7 @@ public class TarefasAlunoController implements Initializable {
         setDisciplina(AlunoController.getDisciplina());
         tb_CellCdg.setCellValueFactory(new PropertyValueFactory<>("codigoTarefa"));
         tb_CellDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        System.out.println(getDisciplina().ListarTarefas());
+        
         masterDataT.addAll(getDisciplina().ListarTarefas());
         FilteredList <Tarefa> filteredDataT = new FilteredList<>(masterDataT, t -> true);
             txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -80,7 +80,6 @@ public class TarefasAlunoController implements Initializable {
             });
         SortedList <Tarefa> sortedDataT = new SortedList<>(filteredDataT);
         table_Tarefas.setItems(sortedDataT.sorted());
-        listaTarefas();
     }    
     
 }

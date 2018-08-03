@@ -42,6 +42,7 @@ import javafx.stage.Stage;
 public class AlunoController implements Initializable {
     private static Aluno aluno;
     private static Disciplina disciplina;
+    private static Cronograma cronograma;
     @FXML
     private AnchorPane anchor_Prof;
     @FXML
@@ -91,10 +92,18 @@ public class AlunoController implements Initializable {
     
     private static ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
+    private static ObservableList<Cronograma> masterDataC =
+            FXCollections.observableArrayList();
+    @FXML
+    private JFXButton btn_ListarTarCrono;
     
-    public void listaDisciplinas(){
+    public static void listaDisciplinas(){
         masterDataD.clear();
         masterDataD.addAll(Controller.getAluno().getDisciplinas());
+    }
+    public static void listaCronogramas(){
+        masterDataC.clear();
+        masterDataC.addAll(Controller.getAluno().getCronogramas());
     }
     
     public static void setDisciplina(Disciplina disc){
@@ -103,6 +112,14 @@ public class AlunoController implements Initializable {
     
     public static Disciplina getDisciplina(){
         return disciplina;
+    }
+    
+    public static void setCronograma(Cronograma cron){
+        cronograma = cron;
+    }
+    
+    public static Cronograma getCronograma(){
+        return cronograma;
     }
     
     @Override
@@ -138,6 +155,25 @@ public class AlunoController implements Initializable {
         SortedList <Disciplina> sortedDataD = new SortedList<>(filteredDataD);
         table_DiscAluno.setItems(sortedDataD.sorted());
         
+        masterDataC.addAll(aluno.getCronogramas());
+        FilteredList <Cronograma> filteredDataC = new FilteredList<>(masterDataC, c -> true);
+            txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{
+                filteredDataD.setPredicate(c -> {
+                    // Se não houver filtro, retorna toda a lista.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                        String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (c.getNome().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filtro no nome.
+                    } 
+                    return false; // Se não houve filtro.
+                });
+            });
+        SortedList <Cronograma> sortedDataC = new SortedList<>(filteredDataC);
+        table_Cronograma.setItems(sortedDataC.sorted());
+        
         btn_ListarTarefas.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -149,6 +185,32 @@ public class AlunoController implements Initializable {
                     } catch (Exception ex) {
                         Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                }
+            }
+        });
+        btn_ListarTarCrono.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TarefasCrono tar = new TarefasCrono();
+                setCronograma(table_Cronograma.getSelectionModel().getSelectedItem());
+                if(getCronograma() != null){
+                    try {
+                        tar.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        btn_CadCrono.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CronogramaTela crono = new CronogramaTela();
+                setCronograma(table_Cronograma.getSelectionModel().getSelectedItem());
+                try {
+                    crono.start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

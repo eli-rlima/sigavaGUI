@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Cronograma implements Serializable{
+public class Cronograma implements Serializable, Comparable{
     private ArrayList<Marcacao> marcacoes = new ArrayList<Marcacao>();
     private String nome;
     
@@ -72,5 +72,10 @@ public class Cronograma implements Serializable{
             retorno.append("\n"+marcacoes.get(i).toString());
         }
         return retorno.toString();
+    }
+    @Override
+    public int compareTo (Object o){
+        Cronograma d = (Cronograma) o;
+        return this.getNome().compareTo(d.getNome());
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.ufrpe.sigava.gui.CronogramaController">
+   <children>
+      <Text fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Cronograma">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#f5f5f5" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome: " />
+      <JFXTextField fx:id="txt_NomeCrono" layoutX="65.0" layoutY="63.0" prefWidth="300.0" style="-fx-background-color: white;" />
+      <JFXButton fx:id="btn_Add" layoutX="215.0" layoutY="111.0" onAction="#adicionar" text="Adicionar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btn_Cancel" layoutX="298.0" layoutY="111.0" onAction="#cancelar" text="Cancelar" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

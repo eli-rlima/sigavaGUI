@@ -96,10 +96,11 @@ public class AddAlunoController implements Initializable {
                     if(passfield_SenhaAluno.getText().equals(passfield_ConfSenhaAluno.getText())){
                         Alert alertCadastro = new Alert(Alert.AlertType.CONFIRMATION);
                         alertCadastro.setTitle("CADASTRO");
-                        alertCadastro.setContentText("Deseja Cadastrar o aluno?");
+                        alertCadastro.setContentText("Deseja cadastrar o aluno?");
                         result = alertCadastro.showAndWait();
                     }
                     if(result.get() == ButtonType.OK){
+                        senha = passfield_SenhaAluno.getText();
                         servidor.cadastrarAluno(nome, email, sexo, dataAniversario, senha, cpf);
                         Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
                         alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");

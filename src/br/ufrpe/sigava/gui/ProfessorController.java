@@ -93,6 +93,7 @@ public class ProfessorController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Disciplina);
         Biblioteca.AlteracaoCorMouse(btn_AttCad);
         Biblioteca.AlteracaoCorMouse(btn_ListarAlunos);
+        Biblioteca.AlteracaoCorMouse(btn_NovaTarefa);
         professor = Controller.getProfessor();
         setDisciplina(table_View_Disc.getSelectionModel().getSelectedItem());
         tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
@@ -133,13 +134,30 @@ public class ProfessorController implements Initializable {
             public void handle(ActionEvent event) { 
                 AddTarefa add = new AddTarefa(); 
                 setDisciplina(table_View_Disc.getSelectionModel().getSelectedItem()); 
-                try { 
-                    add.start(new Stage()); 
-                } catch (Exception ex) { 
-                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
-                } 
+                if(getDisciplina() != null){
+                    try { 
+                        add.start(new Stage()); 
+                    } catch (Exception ex) { 
+                        Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
+                    } 
+                }
             } 
         }); 
+        btn_ListarTarefas.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TelaTarefa tar = new TelaTarefa();
+                setDisciplina(table_View_Disc.getSelectionModel().getSelectedItem());
+                if(getDisciplina() != null){
+                    try { 
+                        tar.start(new Stage()); 
+                    } catch (Exception ex) { 
+                        Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
+                    } 
+                }
+            }
+        });
+             
     }    
 
     @FXML

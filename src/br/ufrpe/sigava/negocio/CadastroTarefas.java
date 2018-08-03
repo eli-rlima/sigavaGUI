@@ -34,7 +34,7 @@ public class CadastroTarefas {
             throws TarefaJaExisteException, IllegalArgumentException, DisciplinaNaoExisteException{
         if (descricao != null && dataInicio != null && dataTermino != null && codigoTarefa >= 0) { //TODO
             if(disciplina != null){
-                if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
+                if (this.repositorioTarefa.buscar(codigoTarefa) == null){ //TODO
                     this.repositorioTarefa.adicionar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
                     this.repositorioTarefa.salvarArquivo();
                 }else{

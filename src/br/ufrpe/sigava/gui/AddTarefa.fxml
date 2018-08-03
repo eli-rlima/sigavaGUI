@@ -92,14 +92,6 @@
                   <Insets top="5.0" />
                </padding>
             </DatePicker>
-            <Label prefHeight="47.0" prefWidth="157.0" text="Disciplina:" textFill="WHITE" GridPane.rowIndex="4">
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <Label prefHeight="31.0" prefWidth="134.0" text="Data Inicio:" textFill="WHITE" GridPane.rowIndex="2">
                <padding>
                   <Insets left="15.0" />
@@ -116,22 +108,11 @@
                   <Insets left="5.0" />
                </GridPane.margin>
             </DatePicker>
-            <JFXTextField fx:id="txt_DisciplinaTarefa" focusColor="BLACK" onAction="#add_Aluno" prefHeight="8.0" prefWidth="211.0" promptText="Digite a disciplina" style="-fx-background-color: white;" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets right="1.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </JFXTextField>
          </children>
       </GridPane>
       <HBox layoutX="150.0" layoutY="267.0" prefHeight="36.0" prefWidth="200.0">
          <children>
-            <JFXButton fx:id="btn_Add" alignment="BASELINE_CENTER" onAction="#add_Aluno" prefHeight="36.0" prefWidth="103.0" text="Adicionar" textFill="WHITE">
+            <JFXButton fx:id="btn_Add" alignment="BASELINE_CENTER" onAction="#add_Tarefa" prefHeight="36.0" prefWidth="103.0" text="Adicionar" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

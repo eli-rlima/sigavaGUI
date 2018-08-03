@@ -102,11 +102,11 @@ public class Controller implements Initializable {
         Biblioteca.MarcaraCPF(txt_CPF);
         //Funcionalidades
         
-        usuario = txt_CPF.getText();
-        senha = txt_PASS.getText();
-        Login login = new Login(usuario, senha);
-        Aluno aluno;
-        Professor professor;
+        //usuario = txt_CPF.getText();
+        //senha = txt_PASS.getText();
+        //Login login = new Login(usuario, senha);
+        //Aluno aluno;
+        //Professor professor;
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login ERROR");
@@ -125,6 +125,7 @@ public class Controller implements Initializable {
                 usuario = txt_CPF.getText();
                 System.out.println(usuario);
                 senha = txt_PASS.getText();
+                Login login = new Login(usuario,senha);
                 
                 if(usuario.equals(USER_ADM) && senha.equals(LOCK_ADM)){
                     SigavaGUI.fechar();
@@ -133,34 +134,43 @@ public class Controller implements Initializable {
                     } catch (Exception ex) {
                         Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                try{
-                    professor = servidor.buscarProfessor(usuario);
-                    setProfessor(professor);
-                }catch(ProfessorNaoExisteException e1){
-                    alertProf.setHeaderText(null);
-                    alertProf.setContentText(e1.getMessage());
-                }
-                try{
-                    aluno = servidor.buscarAluno(usuario);
-                    setAluno(aluno);
-                }catch(AlunoNaoExisteException e){
-                    alert.setHeaderText(null);
-                    alert.setContentText(e.getMessage());
-                }
-                if(professor != null){
-                    SigavaGUI.fechar();
-                    try {
-                        prof.start(new Stage());
-                    } catch (Exception ex) {
-                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }else {
+                    try{
+                        if (servidor.buscarProfessor(usuario).getLogin().equals(login)){
+                        professor = servidor.buscarProfessor(usuario);
+                        setProfessor(professor);
+                        System.out.println("entrou prof");
                     }
-                }else if(aluno != null){
-                    SigavaGUI.fechar();
-                    try {
-                        alun.start(new Stage());
-                    } catch (Exception ex) {
-                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+
+                    }catch(ProfessorNaoExisteException  e1 ){
+                        //
+                    }try{
+                        if (servidor.buscarAluno(usuario).getLogin().equals(login)){
+                        System.out.println("entrou aluno");
+                        aluno = servidor.buscarAluno(usuario);
+                        setAluno(aluno);
+                        }
+                    }catch (AlunoNaoExisteException e1){
+                        //
+                    }
+                    if(professor != null){
+                        SigavaGUI.fechar();
+                        try {
+                            prof.start(new Stage());
+                        } catch (Exception ex) {
+                            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }else if(aluno != null){
+                        SigavaGUI.fechar();
+                        try {
+                            alun.start(new Stage());
+                        } catch (Exception ex) {
+                            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }else{
+                        Alert alerta = new Alert(Alert.AlertType.ERROR);
+                        alerta.setContentText("Login inválido!");
+                        alerta.show();
                     }
                 }
             }

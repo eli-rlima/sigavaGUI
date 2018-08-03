@@ -5,7 +5,11 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
+import static br.ufrpe.sigava.gui.ProfessorController.getDisciplina;
+import static br.ufrpe.sigava.gui.ProfessorController.setDisciplina;
 import static br.ufrpe.sigava.gui.TarefasAlunoController.getDisciplina;
+import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -18,11 +22,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -31,7 +41,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class TarefasController implements Initializable {
     
-    private Disciplina disciplina;
+    private static Disciplina disciplina;
 
     @FXML
     private VBox vbox_Professor;
@@ -55,7 +65,11 @@ public class TarefasController implements Initializable {
     private static ObservableList<Tarefa> masterDataT =
             FXCollections.observableArrayList();
     
-    public void listaTarefas(){
+    public static Disciplina getDisciplina(){
+        return disciplina;
+    }
+    
+    public static void listaTarefas(){
         masterDataT.clear();
         masterDataT.addAll(disciplina.ListarTarefas());
     }
@@ -71,8 +85,7 @@ public class TarefasController implements Initializable {
         disciplina = ProfessorController.getDisciplina();
         tb_CellCdg.setCellValueFactory(new PropertyValueFactory<>("codigoTarefa"));
         tb_CellDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        
-        masterDataT.addAll(disciplina.ListarTarefas());
+        listaTarefas();
         FilteredList <Tarefa> filteredDataT = new FilteredList<>(masterDataT, t -> true);
             txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{
                 filteredDataT.setPredicate(t -> {
@@ -89,6 +102,47 @@ public class TarefasController implements Initializable {
             });
         SortedList <Tarefa> sortedDataT = new SortedList<>(filteredDataT);
         table_Tarefas.setItems(sortedDataT.sorted());
+        this.disciplina = ProfessorController.getDisciplina();
+        
+        
+        btn_CadastrarTarefa.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                AddTarefa add = new AddTarefa();  
+                if(disciplina != null){
+                    try { 
+                        add.start(new Stage()); 
+                    } catch (Exception ex) { 
+                        Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
+                    } 
+                }
+            } 
+        });
+        
+        btn_RemoverTarefa.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                Tarefa tarefa = table_Tarefas.getSelectionModel().getSelectedItem();
+                try {
+                    ServidorSigava.getIstance().descadastrarTarefa(tarefa);
+                    TarefasController.listaTarefas();
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setContentText("Tarefa removida!");
+                    alerta.show();
+                } catch (TarefaNaoExisteException e) {
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setContentText("Tarefa não existe");
+                    alerta.show();
+                }
+            } 
+        });
+        
+        btn_AtualizarTarefa.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                
+            } 
+        });
     }    
     
 }

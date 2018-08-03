@@ -47,8 +47,11 @@ public class AddTarefaController implements Initializable {
         disciplina = d;
     } 
     @Override 
-    public void initialize(URL url, ResourceBundle rb) { 
-        setDisciplina(ProfessorController.getDisciplina());
+    public void initialize(URL url, ResourceBundle rb) {
+        if (ProfessorController.getDisciplina() != null){
+            setDisciplina(ProfessorController.getDisciplina());
+        }else setDisciplina(TarefasController.getDisciplina());
+        
         Biblioteca.AlteracaoCorMouse(btn_Add);
         Biblioteca.AlteracaoCorMouse(btn_Cancel);
         Biblioteca.MascaraInteiro(txt_CodigoTarefa);
@@ -99,6 +102,7 @@ public class AddTarefaController implements Initializable {
             txt_DescricaoTarefa.setText("");
             calendar_DataInicio.setValue(null);
             calendar_DataFim.setValue(null);
+            TarefasController.listaTarefas();
         }
     } 
 

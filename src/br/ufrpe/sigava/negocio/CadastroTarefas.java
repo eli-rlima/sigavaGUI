@@ -35,8 +35,12 @@ public class CadastroTarefas {
         if (descricao != null && dataInicio != null && dataTermino != null && codigoTarefa >= 0) { //TODO
             if(disciplina != null){
                 if (this.repositorioTarefa.buscar(codigoTarefa) == null){ //TODO
-                    this.repositorioTarefa.adicionar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
+                    Tarefa tarefa = new Tarefa(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
+                    this.repositorioTarefa.adicionar(tarefa);
+                    disciplina.adicionarTarefa(tarefa);
                     this.repositorioTarefa.salvarArquivo();
+                    RepositorioDisciplina.getInstance().salvarArquivo();
+                    System.out.println("TESTE");
                 }else{
                     throw new TarefaJaExisteException();
                 }

@@ -11,8 +11,6 @@ public class Tarefa implements Serializable, Comparable{
     private LocalDate dataInicio; 
     private LocalDate dataTermino; 
     private int codigoTarefa;
-
-
     private Disciplina disciplina;
  
     public Tarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino,

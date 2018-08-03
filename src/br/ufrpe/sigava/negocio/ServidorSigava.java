@@ -17,12 +17,13 @@ import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
+import java.io.Serializable;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ServidorSigava implements IServidorSigava{
+public class ServidorSigava implements IServidorSigava, Serializable{
     private CadastroProfessor professores;
     private CadastroAlunos alunos;
     private CadastroTarefas tarefas;

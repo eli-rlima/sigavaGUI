@@ -67,5 +67,5 @@ public  class Aluno extends Pessoa implements Serializable{
     public boolean existeCronograma(Cronograma cronograma){
         return cronogramas.contains(cronograma);
     }
-
+    
 }

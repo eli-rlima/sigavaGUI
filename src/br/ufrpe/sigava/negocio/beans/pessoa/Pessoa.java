@@ -92,5 +92,6 @@ public abstract class Pessoa implements Serializable{
     public abstract ArrayList<Disciplina> getDisciplinas();
 
     public abstract Disciplina buscarDisciplina(String nomeDisciplina);
+    
 
 }

@@ -64,14 +64,14 @@ public class ProfessorController implements Initializable {
     @FXML
     private TableColumn<Disciplina, String> tb_CellCH;
     
-    private ObservableList<Disciplina> masterDataD =
+    private static ObservableList<Disciplina> masterDataD =
             FXCollections.observableArrayList();
     @FXML
     private JFXTextField txt_ProcurarDisciplina;
     @FXML
     private JFXButton btn_NovaTarefa;
     
-    public void listaDisciplinas(){
+    public static void listaDisciplinas(){
         masterDataD.clear();
         masterDataD.addAll(ServidorSigava.getIstance().listarDisciplinas());
     }

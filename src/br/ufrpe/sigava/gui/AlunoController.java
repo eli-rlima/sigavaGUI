@@ -5,17 +5,27 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.negocio.ServidorSigava;
+import br.ufrpe.sigava.negocio.beans.Cronograma;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SortEvent;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -29,6 +39,7 @@ import javafx.stage.Stage;
  * @author Thiago
  */
 public class AlunoController implements Initializable {
+    private static Aluno aluno;
 
     @FXML
     private AnchorPane anchor_Prof;
@@ -51,11 +62,11 @@ public class AlunoController implements Initializable {
     @FXML
     private JFXButton btn_Cronograma;
     @FXML
-    private TableView<?> table_DiscAluno;
+    private TableView<Disciplina> table_DiscAluno;
     @FXML
     private VBox vbox_Disciplina;
     @FXML
-    private TableView<?> table_Cronograma;
+    private TableView<Cronograma> table_Cronograma;
     @FXML
     private Pane pane_Pesquisar;
     @FXML
@@ -70,10 +81,21 @@ public class AlunoController implements Initializable {
     private Pane pane_PesqCrono;
     @FXML
     private JFXTextField txt_ProcurarCrono;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private TableColumn<Disciplina, String> tb_CellDisc;
+    @FXML
+    private TableColumn<Disciplina, String> tb_CellCH;
+    @FXML
+    private TableColumn<Disciplina, String> tb_CellCrono;
+    
+    private static ObservableList<Disciplina> masterDataD =
+            FXCollections.observableArrayList();
+    
+    public void listaDisciplinas(){
+        masterDataD.clear();
+        masterDataD.addAll(Controller.getAluno().getDisciplinas());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Biblioteca.AlteracaoCorMouse(btn_AttCad);
@@ -83,6 +105,29 @@ public class AlunoController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Logout);
         Biblioteca.AlteracaoCorMouse(btn_NovaTarefa);
         Biblioteca.AlteracaoCorMouse(btn_RemoveCrono);
+        aluno = Controller.getAluno();
+        tb_CellDisc.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellCrono.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        
+        masterDataD.addAll(aluno.getDisciplinas());
+        FilteredList <Disciplina> filteredDataD = new FilteredList<>(masterDataD, d -> true);
+            txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{
+                filteredDataD.setPredicate(d -> {
+                    // Se não houver filtro, retorna toda a lista.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                        String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (d.getNome().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filtro no nome.
+                    } 
+                    return false; // Se não houve filtro.
+                });
+            });
+        SortedList <Disciplina> sortedDataD = new SortedList<>(filteredDataD);
+        table_DiscAluno.setItems(sortedDataD.sorted());
     }    
 
     @FXML
@@ -91,6 +136,7 @@ public class AlunoController implements Initializable {
             pane_Pesquisar.toFront();
             stck_Disc.toFront();
             vbox_Disciplina.toFront();
+            listaDisciplinas();
         }
         if(event.getSource() == btn_Cronograma){
             vbox_Cronograma.toFront();

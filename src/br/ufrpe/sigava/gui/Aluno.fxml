@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchor_Prof" prefHeight="432.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.AlunoController">
    <children>
-      <VBox fx:id="vbox_Cronograma" layoutX="260.0" layoutY="91.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;">
+      <VBox fx:id="vbox_Cronograma" layoutX="260.0" layoutY="91.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_CadCrono" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Cadastrar" textFill="WHITE">
                <font>
@@ -89,12 +89,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <StackPane fx:id="stck_Disc" layoutX="388.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <StackPane fx:id="stck_Disc" layoutX="388.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
          <children>
             <TableView fx:id="table_DiscAluno" prefHeight="351.0" prefWidth="278.0">
               <columns>
-                <TableColumn prefWidth="175.0" text="Disciplina" />
-                <TableColumn minWidth="9.0" prefWidth="102.0" text="Carga Horária" />
+                <TableColumn fx:id="tb_CellDisc" prefWidth="175.0" text="Disciplina" />
+                <TableColumn fx:id="tb_CellCH" minWidth="9.0" prefWidth="102.0" text="Carga Horária" />
               </columns>
             </TableView>
          </children>
@@ -112,18 +112,17 @@
          </children>
       </VBox>
       <Pane layoutX="250.0" layoutY="81.0" prefHeight="351.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0" />
-      <Pane fx:id="pane_Pesquisar" layoutX="249.0" layoutY="-6.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane fx:id="pane_Pesquisar" layoutX="259.0" layoutY="10.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTextField fx:id="txt_ProcurarDisciplina" layoutX="140.0" layoutY="51.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Disciplina" style="-fx-background-color: white;" />
-            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="388.0" layoutY="69.0" size="16" wrappingWidth="16.0" />
+            <JFXTextField fx:id="txt_ProcurarDisciplina" layoutX="139.0" layoutY="45.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Disciplina" style="-fx-background-color: white;" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="387.0" layoutY="63.0" size="16" wrappingWidth="16.0" />
          </children>
       </Pane>
-      <StackPane fx:id="stck_Crono" layoutX="398.0" layoutY="91.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <StackPane fx:id="stck_Crono" layoutX="388.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
          <children>
             <TableView fx:id="table_Cronograma" prefHeight="351.0" prefWidth="278.0">
                <columns>
-                  <TableColumn prefWidth="175.0" text="Cronograma" />
-                  <TableColumn minWidth="9.0" prefWidth="102.0" text="Carga Horária" />
+                  <TableColumn fx:id="tb_CellCrono" prefWidth="175.0" text="Cronograma" />
                </columns>
             </TableView>
             <Pane fx:id="pane_DefaultDIsc" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
@@ -135,6 +134,6 @@
             <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="387.0" layoutY="63.0" size="16" wrappingWidth="16.0" />
          </children>
       </Pane>
-      <Pane fx:id="pane_Default" layoutX="201.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="pane_Default" layoutX="259.0" layoutY="10.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -23,8 +23,8 @@ public class TelaTarefa extends Application{
         return stage;
     }
 
-    public static void setStage(Stage stage) {
-        AttProfessor.stage = stage;
+    public static void setStage(Stage sta) {
+        stage = sta;
     }
     
     public static void fechar(){

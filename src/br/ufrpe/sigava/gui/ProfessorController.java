@@ -128,6 +128,18 @@ public class ProfessorController implements Initializable {
                 }
             }
         });
+        btn_NovaTarefa.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) { 
+                AddTarefa add = new AddTarefa(); 
+                setDisciplina(table_View_Disc.getSelectionModel().getSelectedItem()); 
+                try { 
+                    add.start(new Stage()); 
+                } catch (Exception ex) { 
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
+                } 
+            } 
+        }); 
     }    
 
     @FXML

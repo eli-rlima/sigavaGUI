@@ -8,6 +8,7 @@ package br.ufrpe.sigava.gui;
 import br.ufrpe.sigava.dados.RepositorioTarefa;
 import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -51,12 +52,13 @@ public class ListarTarefasCronoController implements Initializable {
     private JFXButton btn_Fechar;
     
     public ArrayList<Tarefa> tarefas(){
+        Aluno aluno = Controller.getAluno();
         ArrayList<Tarefa> tarefas = new ArrayList();
-        ArrayList<Marcacao> marcacoes = Controller.getAluno().buscarCronograma(AlunoController.getCronograma().getNome()).marcacoes();
-        for(int i = 0; i < Controller.getAluno().getDisciplinas().size(); i++){
+        ArrayList<Marcacao> marcacoes = aluno.buscarCronograma(AlunoController.getCronograma().getNome()).marcacoes();
+        for(int i = 0; i < aluno.getDisciplinas().size(); i++){
             for(int j = 0; j < marcacoes.size(); j++){
-                if(Controller.getAluno().getDisciplinas().get(i).equals(RepositorioTarefa.getInstance().buscar(marcacoes.get(j).getCodigoTarefa()))){
-                    tarefas.add(RepositorioTarefa.getInstance().buscar(marcacoes.get(j).getCodigoTarefa()));
+                if(aluno.getDisciplinas().get(i).procurarTarefa(marcacoes.get(j).getCodigoTarefa()) != null){
+                    tarefas.add(aluno.getDisciplinas().get(i).procurarTarefa(marcacoes.get(j).getCodigoTarefa()));
                 }
             }
         }
@@ -65,7 +67,7 @@ public class ListarTarefasCronoController implements Initializable {
     
     public void listaTarefas(){
         masterDataT.clear();
-        masterDataT.addAll();
+        masterDataT.addAll(tarefas());
     }
     
     @Override

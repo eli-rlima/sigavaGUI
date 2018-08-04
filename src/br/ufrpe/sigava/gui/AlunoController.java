@@ -257,6 +257,7 @@ public class AlunoController implements Initializable {
                         Alert alertConf = new Alert(Alert.AlertType.INFORMATION);
                         alertConf.setContentText("Removido com sucesso!");
                         alertConf.show();
+                        listaCronogramas();
                     }
                 }catch(AlunoNaoExisteException e){
                     Alert alertConf = new Alert(Alert.AlertType.INFORMATION);

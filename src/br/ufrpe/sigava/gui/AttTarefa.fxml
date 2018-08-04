@@ -99,7 +99,7 @@
       </GridPane>
       <HBox layoutX="143.0" layoutY="262.0" prefHeight="36.0" prefWidth="200.0">
          <children>
-            <JFXButton fx:id="btn_AttTar" prefHeight="36.0" prefWidth="103.0" text="Atualizar" textFill="WHITE">
+            <JFXButton fx:id="btn_AttTar" onAction="#atualizar" prefHeight="36.0" prefWidth="103.0" text="Atualizar" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>

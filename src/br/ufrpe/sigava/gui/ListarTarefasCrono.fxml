@@ -4,15 +4,13 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.TarefasCronoController">
+<AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.ListarTarefasCronoController">
    <children>
       <TableView fx:id="table_TarefaCrono" layoutX="20.0" layoutY="34.0" prefHeight="298.0" prefWidth="559.0">
          <columns>
@@ -24,17 +22,9 @@
       </TableView>
       <JFXTextField fx:id="txt_ProcurarTarefa" layoutX="20.0" layoutY="5.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Tarefa" style="-fx-background-color: white;" />
       <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="271.0" layoutY="23.0" size="16" wrappingWidth="16.0" />
-      <HBox layoutX="386.0" layoutY="385.0" prefHeight="36.0" prefWidth="200.0">
+      <HBox layoutX="462.0" layoutY="339.0" prefHeight="36.0" prefWidth="111.0">
          <children>
-            <JFXButton fx:id="btn_Add" onAction="#adicionar" prefHeight="36.0" prefWidth="103.0" text="Adicionar" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="btn_Cancel" onAction="#cancel_Close" prefHeight="36.0" prefWidth="112.0" text="Cancelar" textFill="WHITE">
+            <JFXButton fx:id="btn_Fechar" onAction="#cancel_Close" prefHeight="36.0" prefWidth="112.0" text="Fechar" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -44,7 +34,5 @@
             </JFXButton>
          </children>
       </HBox>
-      <DatePicker fx:id="cal_DataFimAluno" layoutX="140.0" layoutY="354.0" />
-      <Text fill="#eeeeee" layoutX="20.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Término: " />
    </children>
 </AnchorPane>

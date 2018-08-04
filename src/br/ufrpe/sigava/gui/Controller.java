@@ -139,14 +139,12 @@ public class Controller implements Initializable {
                         if (servidor.buscarProfessor(usuario).getLogin().equals(login)){
                         professor = servidor.buscarProfessor(usuario);
                         setProfessor(professor);
-                        System.out.println("entrou prof");
                     }
 
                     }catch(ProfessorNaoExisteException  e1 ){
                         //
                     }try{
                         if (servidor.buscarAluno(usuario).getLogin().equals(login)){
-                        System.out.println("entrou aluno");
                         aluno = servidor.buscarAluno(usuario);
                         setAluno(aluno);
                         }

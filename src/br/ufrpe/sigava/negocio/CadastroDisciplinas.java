@@ -124,6 +124,8 @@ public class CadastroDisciplinas {
             aluno.adicionarDisciplina(disciplina);
             RepositorioAluno.getInstance().salvarArquivo();
             this.repositorioDisciplina.salvarArquivo();
+            RepositorioProfessor.getInstance().salvarArquivo();
+            RepositorioTarefa.getInstance().salvarArquivo();
             }else throw new AlunoNaoExisteException();
         }else throw new DisciplinaNaoExisteException();
         

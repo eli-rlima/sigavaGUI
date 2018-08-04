@@ -56,10 +56,13 @@ public class TarefasCronoController implements Initializable {
     
     private static ObservableList<Tarefa> masterDataT =
             FXCollections.observableArrayList();
-    @FXML
     private JFXTextField cal_DataFimTar;
     @FXML
     private DatePicker cal_DataFimAluno;
+    @FXML
+    private TableColumn<Tarefa, String> tb_CellDataIni;
+    @FXML
+    private TableColumn<Tarefa, String> tb_CellDataFim;
     
     public ArrayList<Tarefa> tarefas(){
         ArrayList<Tarefa> tarefas = new ArrayList();
@@ -88,6 +91,8 @@ public class TarefasCronoController implements Initializable {
         aluno = Controller.getAluno();
         tb_CellCdg.setCellValueFactory(new PropertyValueFactory<>("codigoTarefa"));
         tb_CellDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        tb_CellDataIni.setCellValueFactory(new PropertyValueFactory<>("dataInicio")); 
+        tb_CellDataFim.setCellValueFactory(new PropertyValueFactory<>("dataTermino")); 
         
         masterDataT.addAll(tarefas());
         FilteredList <Tarefa> filteredDataT = new FilteredList<>(masterDataT, t -> true);
@@ -113,29 +118,42 @@ public class TarefasCronoController implements Initializable {
     private void adicionar(ActionEvent event) {
         IServidorSigava servidor = ServidorSigava.getIstance();
         setTarefa(table_TarefaCrono.getSelectionModel().getSelectedItem());
-        cal_DataFimTar.setText(getTarefa().getDataTermino().toString());
         String nomeDisc, nomeCrono;
-        if(getTarefa() != null){
-            try{
-                nomeDisc = getTarefa().getDisciplina().getNome();
-                nomeCrono = AlunoController.getCronograma().getNome();
-                Aluno aluno = Controller.getAluno();
-                int codigoTarefa = getTarefa().getCodigoTarefa();
-                LocalDate dataFimAluno = cal_DataFimAluno.getValue();
-                servidor.adicionarMarcacao(nomeDisc, nomeCrono, aluno, codigoTarefa, dataFimAluno);
-                Alert alertCadastro = new Alert(Alert.AlertType.INFORMATION);
-                alertCadastro.setContentText("Tarefa adicionada!");
-                alertCadastro.show();
-            }catch(AlunoNaoExisteException e){
-
-            }catch(CronogramaNaoExisteException e1){
-
-            }catch(DisciplinaNaoExisteException e2){
-
-            }catch(TarefaNaoExisteException e3){
-
+        if(event.getSource() == btn_Add){
+            if(getTarefa() != null){
+                try{
+                    nomeDisc = getTarefa().getDisciplina().getNome();
+                    nomeCrono = AlunoController.getCronograma().getNome();
+                    Aluno aluno = Controller.getAluno();
+                    int codigoTarefa = getTarefa().getCodigoTarefa();
+                    LocalDate dataFimAluno  = cal_DataFimAluno.getValue();
+                    servidor.adicionarMarcacao(nomeDisc, nomeCrono, aluno, codigoTarefa, dataFimAluno);
+                    Alert alertCadastro = new Alert(Alert.AlertType.INFORMATION);
+                    alertCadastro.setContentText("Tarefa adicionada!");
+                    alertCadastro.show();
+                }catch(AlunoNaoExisteException e){
+                    Alert alertCadastro = new Alert(Alert.AlertType.ERROR); 
+                    alertCadastro.setContentText(e.getMessage()); 
+                    alertCadastro.show(); 
+                }catch(CronogramaNaoExisteException e1){
+                    Alert alertCadastro = new Alert(Alert.AlertType.ERROR); 
+                    alertCadastro.setContentText(e1.getMessage()); 
+                    alertCadastro.show();   
+                }catch(DisciplinaNaoExisteException e2){
+                    Alert alertCadastro = new Alert(Alert.AlertType.ERROR); 
+                    alertCadastro.setContentText(e2.getMessage()); 
+                    alertCadastro.show(); 
+                }catch(TarefaNaoExisteException e3){
+                    Alert alertCadastro = new Alert(Alert.AlertType.ERROR); 
+                    alertCadastro.setContentText(e3.getMessage()); 
+                    alertCadastro.show(); 
+                }catch(IllegalArgumentException e4){ 
+                    Alert alertCadastro = new Alert(Alert.AlertType.ERROR); 
+                    alertCadastro.setContentText(e4.getMessage()); 
+                    alertCadastro.show(); 
+                } 
+                listaTarefas();
             }
-            listaTarefas();
         }
     }
 

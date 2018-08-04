@@ -5,12 +5,10 @@
  */
 package br.ufrpe.sigava.gui;
 
-import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaNaoExisteException;
 import static br.ufrpe.sigava.gui.ProfessorController.getDisciplina;
 import static br.ufrpe.sigava.gui.ProfessorController.setDisciplina;
 import static br.ufrpe.sigava.gui.TarefasAlunoController.getDisciplina;
-import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import com.jfoenix.controls.JFXButton;
@@ -44,7 +42,7 @@ import javafx.stage.Stage;
 public class TarefasController implements Initializable {
     
     private static Disciplina disciplina;
-
+    private static Tarefa tarefa;
     @FXML
     private VBox vbox_Professor;
     @FXML
@@ -69,6 +67,12 @@ public class TarefasController implements Initializable {
     
     public static Disciplina getDisciplina(){
         return disciplina;
+    }
+    public static void setTarefa(Tarefa tar){
+        tarefa = tar;
+    }
+    public static Tarefa getTarefa(){
+        return tarefa;
     }
     
     public static void listaTarefas(){
@@ -139,8 +143,20 @@ public class TarefasController implements Initializable {
             } 
         });
         
-        
-}
-     
-                
+        btn_AtualizarTarefa.setOnAction(new EventHandler<ActionEvent>() { 
+            @Override 
+            public void handle(ActionEvent event) {
+                AttTarefa attTar = new AttTarefa();
+                setTarefa(table_Tarefas.getSelectionModel().getSelectedItem());
+                if(getTarefa() != null){
+                    try {
+                        attTar.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(TarefasController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+           } 
+        });
+    }    
+    
 }

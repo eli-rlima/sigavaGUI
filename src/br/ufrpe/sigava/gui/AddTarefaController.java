@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.gui; 
  
+import br.ufrpe.sigava.dados.RepositorioTarefa;
 import br.ufrpe.sigava.exceptions.DisciplinaNaoExisteException;
 import br.ufrpe.sigava.exceptions.TarefaJaExisteException;
 import br.ufrpe.sigava.negocio.IServidorSigava; 
@@ -83,7 +84,8 @@ public class AddTarefaController implements Initializable {
                 alertCadastro.setContentText("Deseja cadastrar a tarefa?");
                 result = alertCadastro.showAndWait();
                 if(result.get() == ButtonType.OK){
-                    servidor.cadastrarTarefa(descricao, dataInicio, dataInicio, codigoTarefa, disciplina);
+                    servidor.cadastrarTarefa(descricao, dataInicio, dataFim, codigoTarefa, disciplina);
+                    RepositorioTarefa.getInstance().salvarArquivo();
                     Alert alertCadastrado = new Alert(Alert.AlertType.INFORMATION);
                     alertCadastrado.setTitle("CONFIRMAÇÃO DE CADASTRO");
                     alertCadastrado.setContentText("Tarefa cadastrada com sucesso!");

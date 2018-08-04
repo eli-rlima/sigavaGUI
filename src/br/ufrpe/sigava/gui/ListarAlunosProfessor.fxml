@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="385.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.ListarAlunosProfessorController">
+   <children>
+      <TableView fx:id="table_Aluno" layoutX="20.0" layoutY="34.0" prefHeight="298.0" prefWidth="559.0">
+         <columns>
+            <TableColumn fx:id="tb_CellName" editable="false" prefWidth="191.0" text="Nome" />
+            <TableColumn fx:id="tb_CellEmail" editable="false" prefWidth="163.0" text="Email" />
+            <TableColumn fx:id="tb_CellCPF" editable="false" prefWidth="112.0" text="CPF" />
+            <TableColumn fx:id="tb_CellDataNasc" editable="false" prefWidth="92.0" text="Nascimento" />
+         </columns>
+      </TableView>
+      <JFXTextField fx:id="txt_ProcurarAluno" layoutX="20.0" layoutY="5.0" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar Aluno" style="-fx-background-color: white;" />
+      <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="271.0" layoutY="23.0" size="16" wrappingWidth="16.0" />
+      <JFXButton fx:id="btn_Cancel" layoutX="467.0" layoutY="334.0" onAction="#cancel_Close" prefHeight="50.0" prefWidth="112.0" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

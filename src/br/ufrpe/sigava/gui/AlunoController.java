@@ -5,6 +5,9 @@
  */
 package br.ufrpe.sigava.gui;
 
+import br.ufrpe.sigava.exceptions.AlunoNaoExisteException;
+import br.ufrpe.sigava.exceptions.CronogramaNaoExisteException;
+import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.ServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
@@ -12,6 +15,7 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +27,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -121,6 +127,8 @@ public class AlunoController implements Initializable {
     public static Cronograma getCronograma(){
         return cronograma;
     }
+    @FXML
+    private JFXButton btn_TarCrono;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -131,6 +139,7 @@ public class AlunoController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_Logout);
         Biblioteca.AlteracaoCorMouse(btn_ListarTarefas);
         Biblioteca.AlteracaoCorMouse(btn_RemoveCrono);
+        Biblioteca.AlteracaoCorMouse(btn_TarCrono);
         aluno = Controller.getAluno();        
         tb_CellDisc.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellCrono.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -211,6 +220,46 @@ public class AlunoController implements Initializable {
                     crono.start(new Stage());
                 } catch (Exception ex) {
                     Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        btn_TarCrono.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ListarTarefasCrono list = new ListarTarefasCrono();
+                setCronograma(table_Cronograma.getSelectionModel().getSelectedItem());
+                if(getCronograma() != null){
+                    try {
+                        list.start(new Stage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        btn_RemoveCrono.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                IServidorSigava servidor = ServidorSigava.getIstance();
+                Optional<ButtonType> result;
+                try{
+                    Alert alertRemove = new Alert(Alert.AlertType.CONFIRMATION);
+                    alertRemove.setContentText("Deseja remover o cronograma?");
+                    result = alertRemove.showAndWait();
+                    if(result.get() == ButtonType.OK){
+                        servidor.removerCronograma(aluno, getCronograma().getNome());
+                        Alert alertConf = new Alert(Alert.AlertType.INFORMATION);
+                        alertConf.setContentText("Removido com sucesso!");
+                        alertConf.show();
+                    }
+                }catch(AlunoNaoExisteException e){
+                    Alert alertConf = new Alert(Alert.AlertType.INFORMATION);
+                    alertConf.setContentText(e.getMessage());
+                    alertConf.show();
+                }catch(CronogramaNaoExisteException e1){
+                    Alert alertConf = new Alert(Alert.AlertType.INFORMATION);
+                    alertConf.setContentText(e1.getMessage());
+                    alertConf.show();
                 }
             }
         });

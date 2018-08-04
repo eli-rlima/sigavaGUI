@@ -14,34 +14,38 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author elive
+ * @author helto
  */
-public class TarefasAluno extends Application{
+public class ListarAlunosProfessor extends Application{
+    
+ 
     private static Stage stage;
 
     public static Stage getStage() {
         return stage;
     }
 
-    public static void setStage(Stage stag) {
-        stage = stag;
+    public static void setStage(Stage stage) {
+        ListarAlunosProfessor.stage = stage;
     }
     
     public static void fechar(){
-        stage.close();
+        getStage().close();
     }
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
-        Parent rootADM = FXMLLoader.load(getClass().getResource("TarefasAluno.fxml"));
+        Parent rootADM = FXMLLoader.load(getClass().getResource("ListarAlunosProfessor.fxml"));
         Scene sceneADM = new Scene(rootADM);
         primaryStage.setScene(sceneADM);
         primaryStage.show();
         setStage(stage);
+        
     }
     
     public static void main(String[] args) {
         launch(args);
     }
+    
 }

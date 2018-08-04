@@ -42,6 +42,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
+            <JFXButton fx:id="btn_TarCrono" layoutX="10.0" layoutY="104.0" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Tarefas Crono" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </VBox>
       <VBox prefHeight="380.0" prefWidth="250.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

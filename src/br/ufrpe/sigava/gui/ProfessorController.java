@@ -79,6 +79,7 @@ public class ProfessorController implements Initializable {
     public static void setDisciplina(Disciplina disc){
         disciplina = disc;
     }
+    
     public static Disciplina getDisciplina(){
         return disciplina;
     }
@@ -98,7 +99,7 @@ public class ProfessorController implements Initializable {
         setDisciplina(table_View_Disc.getSelectionModel().getSelectedItem());
         tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
         tb_CellDisc.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        
+        masterDataD.clear();        
         masterDataD.addAll(professor.getDisciplinas());
         FilteredList <Disciplina> filteredDataD = new FilteredList<>(masterDataD, d -> true);
             txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -151,6 +152,26 @@ public class ProfessorController implements Initializable {
                 if(getDisciplina() != null){
                     try { 
                         tar.start(new Stage()); 
+                    } catch (Exception ex) { 
+                        Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
+                    } 
+                }
+            }
+        });
+        
+        btn_ListarAlunos.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ListarAlunosProfessor LAP = new ListarAlunosProfessor();
+                
+                System.out.println(table_View_Disc.getSelectionModel().getSelectedItem());
+                setDisciplina(table_View_Disc.getSelectionModel().getSelectedItem());
+                System.out.println(ProfessorController.getDisciplina());
+                System.out.println(ProfessorController.getDisciplina().getAlunos());
+
+                if(getDisciplina() != null){
+                    try { 
+                        LAP.start(new Stage()); 
                     } catch (Exception ex) { 
                         Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex); 
                     } 

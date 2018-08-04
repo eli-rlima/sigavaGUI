@@ -555,6 +555,10 @@ public class ADMController implements Initializable {
         Biblioteca.AlteracaoCorMouse(btn_AttLista);
         Biblioteca.AlteracaoCorMouse(btn_AttListaD);
         Biblioteca.AlteracaoCorMouse(btn_AttListaP);
+        Biblioteca.AlteracaoCorMouse(btn_Remover_ProfessorD);
+        Biblioteca.AlteracaoCorMouse(btn_Listar);
+        Biblioteca.AlteracaoCorMouse(btn_ListarDisciplinas);
+        Biblioteca.AlteracaoCorMouse(btn_Remover_Professor);
     }
     
     

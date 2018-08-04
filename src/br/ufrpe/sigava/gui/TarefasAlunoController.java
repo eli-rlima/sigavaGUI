@@ -41,6 +41,10 @@ public class TarefasAlunoController implements Initializable {
     
     private static ObservableList<Tarefa> masterDataT =
             FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Tarefa, String> tb_CellDataIni;
+    @FXML
+    private TableColumn<Tarefa, String> tb_CellDataFim;
     
     public void listaTarefas(){
         masterDataT.clear();
@@ -62,6 +66,8 @@ public class TarefasAlunoController implements Initializable {
         setDisciplina(AlunoController.getDisciplina());
         tb_CellCdg.setCellValueFactory(new PropertyValueFactory<>("codigoTarefa"));
         tb_CellDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        tb_CellDataFim.setCellValueFactory(new PropertyValueFactory<>("dataTermino"));
+        tb_CellDataIni.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
         
         masterDataT.addAll(getDisciplina().ListarTarefas());
         FilteredList <Tarefa> filteredDataT = new FilteredList<>(masterDataT, t -> true);

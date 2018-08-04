@@ -105,16 +105,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <StackPane fx:id="stck_Disc" layoutX="388.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
-         <children>
-            <TableView fx:id="table_DiscAluno" prefHeight="351.0" prefWidth="278.0">
-              <columns>
-                <TableColumn fx:id="tb_CellDisc" prefWidth="175.0" text="Disciplina" />
-                <TableColumn fx:id="tb_CellCH" minWidth="9.0" prefWidth="102.0" text="Carga Horária" />
-              </columns>
-            </TableView>
-         </children>
-      </StackPane>
       <VBox fx:id="vbox_Disciplina" layoutX="260.0" layoutY="94.0" prefHeight="351.0" prefWidth="130.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="81.0">
          <children>
             <JFXButton fx:id="btn_ListarTarefas" prefHeight="47.0" prefWidth="137.0" style="-fx-background-color: #000000;" text="Listar Tarefas" textFill="WHITE">
@@ -151,5 +141,17 @@
          </children>
       </Pane>
       <Pane fx:id="pane_Default" layoutX="259.0" layoutY="10.0" prefHeight="84.0" prefWidth="417.0" style="-fx-background-color: #000000;" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <StackPane fx:id="stck_Disc" layoutX="388.0" layoutY="81.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+         <children>
+            <TableView fx:id="table_DiscAluno" prefHeight="351.0" prefWidth="278.0">
+              <columns>
+                <TableColumn fx:id="tb_CellDisc" prefWidth="72.0" text="Disciplina" />
+                <TableColumn fx:id="tb_CellCH" minWidth="9.0" prefWidth="97.0" text="Carga Horária" />
+                  <TableColumn fx:id="tb_CellDataIni" minWidth="9.0" text="Data Inicio" />
+                  <TableColumn fx:id="tb_CellDataFim" minWidth="9.0" prefWidth="86.0" text="Data Fim" />
+              </columns>
+            </TableView>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

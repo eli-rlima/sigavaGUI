@@ -13,8 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.ufrpe.sigava.gui.TarefasController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.sigava.gui.TarefasController">
    <children>
       <Pane layoutY="-4.0" prefHeight="404.0" prefWidth="138.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -58,7 +57,9 @@
             <TableView fx:id="table_Tarefas" prefHeight="317.0" prefWidth="462.0">
               <columns>
                 <TableColumn fx:id="tb_CellCdg" prefWidth="75.0" text="Código" />
-                <TableColumn fx:id="tb_CellDesc" prefWidth="75.0" text="Descrição" />
+                <TableColumn fx:id="tb_CellDesc" prefWidth="192.0" text="Descrição" />
+                  <TableColumn fx:id="tb_CellDataIni" prefWidth="96.0" text="Data Início" />
+                  <TableColumn fx:id="tb_CellDataFim" prefWidth="98.0" text="Data Fim" />
               </columns>
             </TableView>
          </children>

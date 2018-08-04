@@ -68,10 +68,10 @@ public class AttTarefaController implements Initializable {
     @FXML
     private void atualizar(ActionEvent event) {
         IServidorSigava servidor = ServidorSigava.getIstance();
+        int codigoTarefa;
+        String descricao;
+        LocalDate dataInicio, dataTermino;
         if(event.getSource() == btn_AttTar){
-            int codigoTarefa;
-            String descricao;
-            LocalDate dataInicio, dataTermino;
             descricao = txt_AttDescricao.getText();
             codigoTarefa = Integer.parseInt(txt_AttCodigoTarefa.getText());
             dataInicio = cal_AttDataInicioTar.getValue();
@@ -80,10 +80,15 @@ public class AttTarefaController implements Initializable {
                 servidor.atualizarTarefa(tarefa, descricao, dataInicio, dataTermino, codigoTarefa);
                 Alert alertAtt = new Alert(Alert.AlertType.INFORMATION);
                 alertAtt.setContentText("Atualizado com sucesso!");
+                alertAtt.show();
+                Stage stage = (Stage) btn_AttCancelDisc.getScene().getWindow();
+                stage.close();
             }catch(TarefaNaoExisteException e){
                 Alert alertAtt = new Alert(Alert.AlertType.ERROR);
                 alertAtt.setContentText(e.getMessage());
             }
+            TarefasController.listaTarefas();
+            
         }
     }
 }

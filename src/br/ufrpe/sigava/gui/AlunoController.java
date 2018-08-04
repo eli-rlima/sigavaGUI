@@ -129,6 +129,10 @@ public class AlunoController implements Initializable {
     }
     @FXML
     private JFXButton btn_TarCrono;
+    @FXML
+    private TableColumn<Disciplina, String> tb_CellDataIni;
+    @FXML
+    private TableColumn<Disciplina, String> tb_CellDataFim;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -144,6 +148,8 @@ public class AlunoController implements Initializable {
         tb_CellDisc.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellCrono.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tb_CellCH.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        tb_CellDataFim.setCellValueFactory(new PropertyValueFactory<>("dataTermino"));
+        tb_CellDataIni.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
         
         masterDataD.addAll(aluno.getDisciplinas());
         FilteredList <Disciplina> filteredDataD = new FilteredList<>(masterDataD, d -> true);

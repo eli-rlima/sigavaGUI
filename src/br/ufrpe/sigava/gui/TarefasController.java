@@ -79,6 +79,10 @@ public class TarefasController implements Initializable {
         masterDataT.clear();
         masterDataT.addAll(disciplina.ListarTarefas());
     }
+    @FXML
+    private TableColumn<Tarefa, String> tb_CellDataIni;
+    @FXML
+    private TableColumn<Tarefa, String> tb_CellDataFim;
 
     /**
      * Initializes the controller class.
@@ -91,6 +95,9 @@ public class TarefasController implements Initializable {
         disciplina = ProfessorController.getDisciplina();
         tb_CellCdg.setCellValueFactory(new PropertyValueFactory<>("codigoTarefa"));
         tb_CellDesc.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        tb_CellDataFim.setCellValueFactory(new PropertyValueFactory<>("dataTermino"));
+        tb_CellDataIni.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+        
         listaTarefas();
         FilteredList <Tarefa> filteredDataT = new FilteredList<>(masterDataT, t -> true);
             txt_ProcurarDisciplina.textProperty().addListener((observable, oldValue, newValue) ->{

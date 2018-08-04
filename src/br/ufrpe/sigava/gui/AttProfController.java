@@ -133,9 +133,6 @@ public class AttProfController implements Initializable {
                 pass_Prof.setText("");
                 pass_ConfProf.setText("");
             }
-            ProfessorTela.fechar();
-            ProfessorTela profTela = new ProfessorTela();
-            profTela.start(new Stage());
         }
     }
 

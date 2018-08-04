@@ -32,7 +32,9 @@
             <TableView fx:id="table_Tarefas" prefHeight="316.0" prefWidth="553.0">
               <columns>
                 <TableColumn fx:id="tb_CellCdg" prefWidth="75.0" text="Código" />
-                <TableColumn fx:id="tb_CellDesc" prefWidth="75.0" text="Descrição" />
+                <TableColumn fx:id="tb_CellDesc" prefWidth="327.0" text="Descrição" />
+                  <TableColumn fx:id="tb_CellDataIni" minWidth="0.0" prefWidth="98.0" text="Data Início" />
+                  <TableColumn fx:id="tb_CellDataFim" prefWidth="99.0" text="Data Fim" />
               </columns>
             </TableView>
          </children>
